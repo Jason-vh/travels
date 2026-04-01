@@ -20,6 +20,7 @@
       --monterosso-peach: #F5C3A8;
       --corniglia-green: #A8D5A2;
       --riomaggiore-red: #D4615E;
+      --laspezia-blue: #4A6FA5;
       --sand: #FFF8F0;
       --ink: #2C2C2C;
       --muted: #6B7280;
@@ -339,8 +340,14 @@
     /* ── Info cards ── */
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .info-card {
@@ -392,7 +399,7 @@
     }
 
     .accom-card.featured {
-      border: 2px solid var(--manarola-pink);
+      border: 2px solid var(--laspezia-blue);
     }
 
     .accom-badge {
@@ -403,7 +410,7 @@
       letter-spacing: 0.08em;
       padding: 0.25rem 0.7rem;
       border-radius: 99px;
-      background: var(--manarola-pink);
+      background: var(--laspezia-blue);
       color: #fff;
       margin-bottom: 1rem;
     }
@@ -631,7 +638,7 @@
     <div class="hero-flag">🇮🇹</div>
     <h1>Cinque Terre</h1>
     <div class="hero-dates">May 22 – 25, 2026</div>
-    <div class="hero-subtitle">3 days · 5 villages · 6 friends · base camp: Manarola · ∞ limoncello</div>
+    <div class="hero-subtitle">3 days · 5 villages · 6 friends · base camp: La Spezia · ∞ limoncello</div>
     <a href="#villages" class="hero-scroll">↓</a>
 
     <div class="houses">
@@ -663,6 +670,7 @@
     <p class="section-intro">
       Strung along the Italian Riviera, each village has its own personality.
       A tiny train connects them all in minutes – hop on, hop off, repeat.
+      We're based in La Spezia, the gateway city just down the line.
     </p>
 
     <div class="villages">
@@ -713,12 +721,12 @@
       </div>
       <div class="day-route">
         <div class="day-route-label">🗺️ Today's route</div>
-        <svg viewBox="0 0 520 105" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 -20 680 125" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="sea0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2D9CDB" stop-opacity="0.07"/><stop offset="100%" stop-color="#2D9CDB" stop-opacity="0.03"/></linearGradient>
           </defs>
           <!-- Sea fill -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68 L 520,105 L 0,105 Z" fill="url(#sea0)"/>
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42 L 680,55 L 680,105 L 0,105 Z" fill="url(#sea0)"/>
           <!-- Waves -->
           <g stroke="#2D9CDB" stroke-opacity="0.08" fill="none" stroke-width="1">
             <path d="M 20,85 Q 40,80 60,85 Q 80,90 100,85 Q 120,80 140,85"/>
@@ -726,42 +734,44 @@
             <path d="M 400,82 Q 420,77 440,82 Q 460,87 480,82"/>
           </g>
           <!-- Coastline -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
-          <!-- Inactive dots -->
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
+          <!-- Inactive village dots -->
           <circle cx="60" cy="58" r="4" fill="var(--monterosso-peach)" class="route-dot-inactive"/>
           <circle cx="185" cy="55" r="4" fill="var(--vernazza-yellow)" class="route-dot-inactive"/>
           <circle cx="310" cy="73" r="4" fill="var(--corniglia-green)" class="route-dot-inactive"/>
+          <circle cx="420" cy="66" r="4" fill="var(--manarola-pink)" class="route-dot-inactive"/>
           <circle cx="485" cy="63" r="4" fill="var(--riomaggiore-red)" class="route-dot-inactive"/>
-          <!-- Active: Manarola with pulse -->
-          <circle cx="420" cy="66" r="14" fill="var(--manarola-pink)" fill-opacity="0.08"/>
-          <circle cx="420" cy="66" r="9" fill="var(--manarola-pink)" fill-opacity="0.15"/>
-          <circle cx="420" cy="66" r="5" fill="var(--manarola-pink)" stroke="#fff" stroke-width="2"/>
+          <!-- Active: La Spezia with pulse -->
+          <circle cx="600" cy="42" r="14" fill="var(--laspezia-blue)" fill-opacity="0.08"/>
+          <circle cx="600" cy="42" r="9" fill="var(--laspezia-blue)" fill-opacity="0.15"/>
+          <circle cx="600" cy="42" r="5" fill="var(--laspezia-blue)" stroke="#fff" stroke-width="2"/>
           <!-- Labels -->
           <text x="60" y="50" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Monterosso</text>
           <text x="185" y="47" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Vernazza</text>
           <text x="310" y="66" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Corniglia</text>
-          <text x="420" y="50" text-anchor="middle" font-family="'Playfair Display',serif" font-size="10" fill="var(--manarola-pink)" font-weight="700">Manarola</text>
+          <text x="420" y="58" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Manarola</text>
           <text x="485" y="55" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Riomaggiore</text>
+          <text x="600" y="27" text-anchor="middle" font-family="'Playfair Display',serif" font-size="10" fill="var(--laspezia-blue)" font-weight="700">La Spezia</text>
           <!-- Arrival indicator -->
-          <path d="M 420,18 L 420,40" stroke="var(--terracotta)" stroke-width="1.5" stroke-dasharray="3 2" stroke-linecap="round"/>
-          <polygon points="420,42 416,36 424,36" fill="var(--terracotta)" opacity="0.7"/>
-          <rect x="396" y="4" width="48" height="14" rx="7" fill="var(--terracotta)" fill-opacity="0.1"/>
-          <text x="420" y="14" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--terracotta)" font-weight="700">ARRIVE</text>
+          <path d="M 600,2 L 600,22" stroke="var(--terracotta)" stroke-width="1.5" stroke-dasharray="3 2" stroke-linecap="round"/>
+          <polygon points="600,24 596,18 604,18" fill="var(--terracotta)" opacity="0.7"/>
+          <rect x="576" y="-8" width="48" height="14" rx="7" fill="var(--terracotta)" fill-opacity="0.1"/>
+          <text x="600" y="2" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--terracotta)" font-weight="700">ARRIVE</text>
         </svg>
       </div>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-dot" style="border-color:var(--terracotta)"></div>
           <div class="timeline-time" style="color:var(--terracotta)">Afternoon</div>
-          <h4>Arrive & Check In</h4>
-          <p>Make your way to Cinque Terre. The easiest route is by train via La Spezia – direct connections from Florence (2.5h), Milan (3h), or Pisa (1.5h).</p>
+          <h4>Arrive in La Spezia</h4>
+          <p>Make your way to La Spezia – the gateway city to Cinque Terre. Direct train connections from Florence (2.5h), Milan (3h), or Pisa (1.5h). Drop bags at the apartment and breathe.</p>
           <span class="timeline-tag tag-travel">🚆 travel</span>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot" style="border-color:var(--terracotta)"></div>
           <div class="timeline-time" style="color:var(--terracotta)">Evening</div>
           <h4>Passeggiata & First Dinner</h4>
-          <p>Drop bags, stretch legs, wander Manarola as the sun gets low. Find a terrace with a sea view for the first group dinner – fresh catch of the day, local white wine, and way too much focaccia.</p>
+          <p>No rushing to the villages tonight – unwind in La Spezia instead. Stroll the waterfront promenade, wander Via del Prione, and find a local trattoria for the first group dinner. La Spezia has a great seafood scene that most tourists skip entirely. Fresh catch, local Vermentino white wine, and way too much focaccia.</p>
           <span class="timeline-tag tag-food">🍝 food</span>
         </div>
       </div>
@@ -778,14 +788,15 @@
       </div>
       <div class="day-route">
         <div class="day-route-label">🗺️ Today's route</div>
-        <svg viewBox="0 0 520 105" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 -20 680 125" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2D9CDB" stop-opacity="0.07"/><stop offset="100%" stop-color="#2D9CDB" stop-opacity="0.03"/></linearGradient>
-            <path id="d1train" d="M 420,66 C 390,70 350,74 310,73 C 270,70 240,58 185,55 C 130,52 90,57 60,58" fill="none"/>
+            <path id="d1train" d="M 600,42 C 560,46 530,52 485,63 C 460,66 430,68 420,66 C 390,70 350,74 310,73 C 270,70 240,58 185,55 C 130,52 90,57 60,58" fill="none"/>
             <path id="d1hike" d="M 60,58 C 75,38 110,22 140,20 C 165,19 178,35 185,55" fill="none"/>
+            <path id="d1return" d="M 185,55 C 240,58 350,62 420,66 C 460,64 520,48 600,42" fill="none"/>
           </defs>
           <!-- Sea fill -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68 L 520,105 L 0,105 Z" fill="url(#sea1)"/>
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42 L 680,55 L 680,105 L 0,105 Z" fill="url(#sea1)"/>
           <!-- Waves -->
           <g stroke="#2D9CDB" stroke-opacity="0.08" fill="none" stroke-width="1">
             <path d="M 20,85 Q 40,80 60,85 Q 80,90 100,85 Q 120,80 140,85"/>
@@ -793,13 +804,15 @@
             <path d="M 400,82 Q 420,77 440,82 Q 460,87 480,82"/>
           </g>
           <!-- Coastline -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
-          <!-- Train route -->
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
+          <!-- Train route out -->
           <use href="#d1train" stroke="var(--sea)" stroke-width="2.5" stroke-opacity="0.35" class="route-dash"/>
-          <!-- Hike route (above coast, through hills) -->
+          <!-- Hike route -->
           <use href="#d1hike" stroke="var(--olive)" stroke-width="2.5" stroke-opacity="0.4" class="route-dash"/>
+          <!-- Return route -->
+          <use href="#d1return" stroke="var(--sea)" stroke-width="1.5" stroke-opacity="0.15" class="route-dash"/>
           <!-- Animated train -->
-          <g style="offset-path: path('M 420,66 C 390,70 350,74 310,73 C 270,70 240,58 185,55 C 130,52 90,57 60,58')" class="route-traveller">
+          <g style="offset-path: path('M 600,42 C 560,46 530,52 485,63 C 460,66 430,68 420,66 C 390,70 350,74 310,73 C 270,70 240,58 185,55 C 130,52 90,57 60,58')" class="route-traveller">
             <text font-size="14" text-anchor="middle" dominant-baseline="central" y="-12">🚆</text>
           </g>
           <!-- Animated hiker -->
@@ -807,10 +820,11 @@
             <text font-size="12" text-anchor="middle" dominant-baseline="central" y="-10">🥾</text>
           </g>
           <!-- Inactive -->
+          <circle cx="420" cy="66" r="4" fill="var(--manarola-pink)" class="route-dot-inactive"/>
           <circle cx="485" cy="63" r="4" fill="var(--riomaggiore-red)" class="route-dot-inactive"/>
           <!-- Active villages -->
-          <circle cx="420" cy="66" r="9" fill="var(--manarola-pink)" fill-opacity="0.12"/>
-          <circle cx="420" cy="66" r="5" fill="var(--manarola-pink)" stroke="#fff" stroke-width="2"/>
+          <circle cx="600" cy="42" r="9" fill="var(--laspezia-blue)" fill-opacity="0.12"/>
+          <circle cx="600" cy="42" r="5" fill="var(--laspezia-blue)" stroke="#fff" stroke-width="2"/>
           <circle cx="310" cy="73" r="8" fill="var(--corniglia-green)" fill-opacity="0.12"/>
           <circle cx="310" cy="73" r="4.5" fill="var(--corniglia-green)" stroke="#fff" stroke-width="1.5"/>
           <circle cx="185" cy="55" r="9" fill="var(--vernazza-yellow)" fill-opacity="0.15"/>
@@ -821,8 +835,9 @@
           <text x="60" y="78" text-anchor="middle" font-family="'Playfair Display',serif" font-size="9" fill="var(--ink)" font-weight="700">Monterosso</text>
           <text x="185" y="46" text-anchor="middle" font-family="'Playfair Display',serif" font-size="9" fill="var(--ink)" font-weight="700">Vernazza</text>
           <text x="310" y="64" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="var(--ink)" font-weight="500">Corniglia</text>
-          <text x="420" y="54" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="var(--manarola-pink)" font-weight="600">Manarola</text>
+          <text x="420" y="58" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Manarola</text>
           <text x="485" y="55" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Riomaggiore</text>
+          <text x="600" y="32" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="var(--laspezia-blue)" font-weight="600">La Spezia</text>
           <!-- Legend -->
           <g transform="translate(10, 8)">
             <line x1="0" y1="0" x2="16" y2="0" stroke="var(--sea)" stroke-width="2" stroke-dasharray="4 3" stroke-opacity="0.5"/>
@@ -837,8 +852,8 @@
           <div class="timeline-dot" style="border-color:var(--olive)"></div>
           <div class="timeline-time" style="color:var(--olive)">Morning</div>
           <h4>Train to Monterosso</h4>
-          <p>Grab a cappuccino, then hop on the Cinque Terre Express to Monterosso – the northernmost village. Start the day at the beach or explore the old town streets.</p>
-          <span class="timeline-tag tag-train">🚆 train</span>
+          <p>Grab a cappuccino in La Spezia, then hop on the Cinque Terre Express to Monterosso – the northernmost village (~25 min). Start the day at the beach or explore the old town streets.</p>
+          <span class="timeline-tag tag-train">🚆 train · ~25 min</span>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot" style="border-color:var(--olive)"></div>
@@ -864,9 +879,9 @@
         <div class="timeline-item">
           <div class="timeline-dot" style="border-color:var(--olive)"></div>
           <div class="timeline-time" style="color:var(--olive)">Evening</div>
-          <h4>Sunset Aperitivo</h4>
-          <p>Back to Manarola. Spritz o'clock at Nessun Dorma as the sun drops into the Ligurian Sea. Then a slow dinner – let the restaurant choose for you with a tasting menu.</p>
-          <span class="timeline-tag tag-food">🥂 aperitivo</span>
+          <h4>Sunset Dinner in Vernazza</h4>
+          <p>You're already here – stay for the magic hour. Grab a harbourside table as the sun drops behind the headland. Fresh seafood, local wine, the sound of waves. Then a relaxed train back to La Spezia (~20 min). Tickets are only €5 after 7:30pm!</p>
+          <span class="timeline-tag tag-food">🍷 dinner</span>
         </div>
       </div>
     </div>
@@ -882,14 +897,16 @@
       </div>
       <div class="day-route">
         <div class="day-route-label">🗺️ Today's route</div>
-        <svg viewBox="0 0 520 105" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 -20 680 125" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="sea2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2D9CDB" stop-opacity="0.07"/><stop offset="100%" stop-color="#2D9CDB" stop-opacity="0.03"/></linearGradient>
-            <path id="d2train" d="M 420,66 C 445,65 465,63 485,63" fill="none"/>
-            <path id="d2boat" d="M 485,63 C 480,78 465,88 445,86 C 430,84 422,75 420,66" fill="none"/>
+            <path id="d2train" d="M 600,42 C 520,52 505,58 485,63" fill="none"/>
+            <path id="d2walk" d="M 485,63 C 465,65 445,66 420,66" fill="none"/>
+            <path id="d2boat" d="M 420,66 C 430,84 445,88 465,86 C 480,84 488,75 485,63" fill="none"/>
+            <path id="d2return" d="M 420,66 C 460,64 520,48 600,42" fill="none"/>
           </defs>
           <!-- Sea fill -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68 L 520,105 L 0,105 Z" fill="url(#sea2)"/>
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42 L 680,55 L 680,105 L 0,105 Z" fill="url(#sea2)"/>
           <!-- Waves -->
           <g stroke="#2D9CDB" stroke-opacity="0.08" fill="none" stroke-width="1">
             <path d="M 20,85 Q 40,80 60,85 Q 80,90 100,85 Q 120,80 140,85"/>
@@ -897,17 +914,21 @@
             <path d="M 400,82 Q 420,77 440,82 Q 460,87 480,82"/>
           </g>
           <!-- Coastline -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
           <!-- Train route -->
           <use href="#d2train" stroke="var(--sea)" stroke-width="2.5" stroke-opacity="0.35" class="route-dash"/>
-          <!-- Boat route (curves out to sea) -->
+          <!-- Walk route -->
+          <use href="#d2walk" stroke="var(--olive)" stroke-width="2" stroke-opacity="0.3" class="route-dash"/>
+          <!-- Boat route -->
           <use href="#d2boat" stroke="var(--sea)" stroke-width="2" stroke-opacity="0.25" class="route-dash"/>
+          <!-- Return route (faint) -->
+          <use href="#d2return" stroke="var(--sea)" stroke-width="1.5" stroke-opacity="0.12" class="route-dash"/>
           <!-- Animated train -->
-          <g style="offset-path: path('M 420,66 C 445,65 465,63 485,63')" class="route-traveller">
+          <g style="offset-path: path('M 600,42 C 520,52 505,58 485,63')" class="route-traveller">
             <text font-size="14" text-anchor="middle" dominant-baseline="central" y="-12">🚆</text>
           </g>
           <!-- Animated boat -->
-          <g style="offset-path: path('M 485,63 C 480,78 465,88 445,86 C 430,84 422,75 420,66'); animation-delay: 3s" class="route-traveller">
+          <g style="offset-path: path('M 420,66 C 430,84 445,88 465,86 C 480,84 488,75 485,63'); animation-delay: 3s" class="route-traveller">
             <text font-size="13" text-anchor="middle" dominant-baseline="central" y="2">⛵</text>
           </g>
           <!-- Inactive -->
@@ -915,6 +936,8 @@
           <circle cx="185" cy="55" r="4" fill="var(--vernazza-yellow)" class="route-dot-inactive"/>
           <circle cx="310" cy="73" r="4" fill="var(--corniglia-green)" class="route-dot-inactive"/>
           <!-- Active villages -->
+          <circle cx="600" cy="42" r="9" fill="var(--laspezia-blue)" fill-opacity="0.12"/>
+          <circle cx="600" cy="42" r="5" fill="var(--laspezia-blue)" stroke="#fff" stroke-width="2"/>
           <circle cx="420" cy="66" r="9" fill="var(--manarola-pink)" fill-opacity="0.12"/>
           <circle cx="420" cy="66" r="5" fill="var(--manarola-pink)" stroke="#fff" stroke-width="2"/>
           <circle cx="485" cy="63" r="9" fill="var(--riomaggiore-red)" fill-opacity="0.15"/>
@@ -925,6 +948,7 @@
           <text x="310" y="66" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Corniglia</text>
           <text x="420" y="54" text-anchor="middle" font-family="'Playfair Display',serif" font-size="9" fill="var(--manarola-pink)" font-weight="700">Manarola</text>
           <text x="485" y="51" text-anchor="middle" font-family="'Playfair Display',serif" font-size="9" fill="var(--ink)" font-weight="700">Riomaggiore</text>
+          <text x="600" y="32" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="var(--laspezia-blue)" font-weight="600">La Spezia</text>
           <!-- Legend -->
           <g transform="translate(10, 8)">
             <line x1="0" y1="0" x2="16" y2="0" stroke="var(--sea)" stroke-width="2" stroke-dasharray="4 3" stroke-opacity="0.5"/>
@@ -939,14 +963,14 @@
           <div class="timeline-dot" style="border-color:var(--sea)"></div>
           <div class="timeline-time" style="color:var(--sea)">Morning</div>
           <h4>Train to Riomaggiore</h4>
-          <p>Head south. Riomaggiore's colourful houses tumble down to the water in dramatic fashion. Wander the narrow main street, grab a focaccia from a bakery.</p>
-          <span class="timeline-tag tag-train">🚆 train</span>
+          <p>Head to the closest village – just 9 minutes from La Spezia. Riomaggiore's colourful houses tumble down to the water in dramatic fashion. Wander the narrow main street, grab a focaccia from a bakery.</p>
+          <span class="timeline-tag tag-train">🚆 train · ~9 min</span>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot" style="border-color:var(--sea)"></div>
           <div class="timeline-time" style="color:var(--sea)">Late Morning</div>
           <h4>Manarola – The Classic View</h4>
-          <p>One stop north by train (or walk the Via dell'Amore if it's open!). Manarola is the most photographed village – get the viewpoint from the cemetery path. It's stunning.</p>
+          <p>One stop along by train (or walk the Via dell'Amore if it's open!). Manarola is the most photographed village – get the viewpoint from the cemetery path. It's stunning.</p>
           <span class="timeline-tag tag-explore">✨ explore</span>
         </div>
         <div class="timeline-item">
@@ -960,7 +984,7 @@
           <div class="timeline-dot" style="border-color:var(--sea)"></div>
           <div class="timeline-time" style="color:var(--sea)">Evening</div>
           <h4>The Big Group Dinner</h4>
-          <p>Last night calls for the best table. Back in Manarola – Trattoria dal Billy for the seafood feast. Frutti di mare, grilled branzino, local Sciacchetrà dessert wine. Cheers to the crew 🥂</p>
+          <p>Last night calls for the best table. Sunset spritz at Nessun Dorma as the sun drops into the Ligurian Sea, then Trattoria dal Billy in Manarola for the seafood feast. Frutti di mare, grilled branzino, local Sciacchetrà dessert wine. Cheers to the crew 🥂 Train back to La Spezia (~15 min) – last service is 11:30pm, plenty of time.</p>
           <span class="timeline-tag tag-food">🍷 feast</span>
         </div>
       </div>
@@ -969,7 +993,7 @@
     <!-- Day 3 – Departure -->
     <div class="day">
       <div class="day-header">
-        <div class="day-number" style="background:var(--manarola-pink)">3</div>
+        <div class="day-number" style="background:var(--laspezia-blue)">3</div>
         <div class="day-meta">
           <h3>Arrivederci</h3>
           <span class="day-date">Sunday, May 25</span>
@@ -977,12 +1001,13 @@
       </div>
       <div class="day-route">
         <div class="day-route-label">🗺️ Today's route</div>
-        <svg viewBox="0 0 520 105" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 -20 680 125" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="sea3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2D9CDB" stop-opacity="0.07"/><stop offset="100%" stop-color="#2D9CDB" stop-opacity="0.03"/></linearGradient>
+            <path id="d3quick" d="M 600,42 C 520,52 505,58 485,63" fill="none"/>
           </defs>
           <!-- Sea fill -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68 L 520,105 L 0,105 Z" fill="url(#sea3)"/>
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42 L 680,55 L 680,105 L 0,105 Z" fill="url(#sea3)"/>
           <!-- Waves -->
           <g stroke="#2D9CDB" stroke-opacity="0.08" fill="none" stroke-width="1">
             <path d="M 20,85 Q 40,80 60,85 Q 80,90 100,85 Q 120,80 140,85"/>
@@ -990,42 +1015,48 @@
             <path d="M 400,82 Q 420,77 440,82 Q 460,87 480,82"/>
           </g>
           <!-- Coastline -->
-          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 510,66 520,68" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
-          <!-- Inactive dots -->
+          <path d="M 0,68 C 50,60 100,52 170,55 C 240,58 280,72 340,74 C 390,75 420,68 460,64 C 490,61 530,54 600,42" fill="none" stroke="#2D9CDB" stroke-width="1.5" stroke-opacity="0.2"/>
+          <!-- Quick trip route -->
+          <use href="#d3quick" stroke="var(--sea)" stroke-width="2" stroke-opacity="0.3" class="route-dash"/>
+          <!-- Inactive village dots -->
           <circle cx="60" cy="58" r="4" fill="var(--monterosso-peach)" class="route-dot-inactive"/>
           <circle cx="185" cy="55" r="4" fill="var(--vernazza-yellow)" class="route-dot-inactive"/>
           <circle cx="310" cy="73" r="4" fill="var(--corniglia-green)" class="route-dot-inactive"/>
-          <circle cx="485" cy="63" r="4" fill="var(--riomaggiore-red)" class="route-dot-inactive"/>
-          <!-- Active: Manarola -->
-          <circle cx="420" cy="66" r="14" fill="var(--manarola-pink)" fill-opacity="0.08"/>
-          <circle cx="420" cy="66" r="9" fill="var(--manarola-pink)" fill-opacity="0.15"/>
-          <circle cx="420" cy="66" r="5" fill="var(--manarola-pink)" stroke="#fff" stroke-width="2"/>
-          <!-- Departure path -->
-          <path d="M 420,66 C 440,60 470,50 505,38" stroke="var(--manarola-pink)" stroke-width="1.5" stroke-dasharray="4 3" stroke-opacity="0.4" fill="none"/>
-          <polygon points="507,37 500,34 501,41" fill="var(--manarola-pink)" fill-opacity="0.5"/>
-          <rect x="468" y="22" width="52" height="14" rx="7" fill="var(--manarola-pink)" fill-opacity="0.1"/>
-          <text x="494" y="32" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--manarola-pink)" font-weight="700">LA SPEZIA</text>
+          <circle cx="420" cy="66" r="4" fill="var(--manarola-pink)" class="route-dot-inactive"/>
+          <!-- Active: Riomaggiore (morning trip) -->
+          <circle cx="485" cy="63" r="9" fill="var(--riomaggiore-red)" fill-opacity="0.15"/>
+          <circle cx="485" cy="63" r="5" fill="var(--riomaggiore-red)" stroke="#fff" stroke-width="2"/>
+          <!-- Active: La Spezia -->
+          <circle cx="600" cy="42" r="14" fill="var(--laspezia-blue)" fill-opacity="0.08"/>
+          <circle cx="600" cy="42" r="9" fill="var(--laspezia-blue)" fill-opacity="0.15"/>
+          <circle cx="600" cy="42" r="5" fill="var(--laspezia-blue)" stroke="#fff" stroke-width="2"/>
           <!-- Labels -->
           <text x="60" y="50" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Monterosso</text>
           <text x="185" y="47" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Vernazza</text>
           <text x="310" y="66" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Corniglia</text>
-          <text x="420" y="50" text-anchor="middle" font-family="'Playfair Display',serif" font-size="10" fill="var(--manarola-pink)" font-weight="700">Manarola</text>
-          <text x="485" y="55" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Riomaggiore</text>
+          <text x="420" y="58" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="var(--muted)" opacity="0.35">Manarola</text>
+          <text x="485" y="51" text-anchor="middle" font-family="'Playfair Display',serif" font-size="9" fill="var(--ink)" font-weight="700">Riomaggiore</text>
+          <text x="600" y="27" text-anchor="middle" font-family="'Playfair Display',serif" font-size="10" fill="var(--laspezia-blue)" font-weight="700">La Spezia</text>
+          <!-- Departure path -->
+          <path d="M 600,42 C 555,40 562,30 568,18" stroke="var(--laspezia-blue)" stroke-width="1.5" stroke-dasharray="4 3" stroke-opacity="0.4" fill="none"/>
+          <polygon points="627,10 621,12 624,18" fill="var(--laspezia-blue)" fill-opacity="0.5"/>
+          <rect x="598" y="-4" width="48" height="14" rx="7" fill="var(--laspezia-blue)" fill-opacity="0.1"/>
+          <text x="622" y="6" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="var(--laspezia-blue)" font-weight="700">DEPART</text>
         </svg>
       </div>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-dot" style="border-color:var(--manarola-pink)"></div>
-          <div class="timeline-time" style="color:var(--manarola-pink)">Morning</div>
-          <h4>Last Espresso & Stroll</h4>
-          <p>No rush. One final cappuccino, one last wander through Manarola. Pick up limoncello, pesto jars, or olive oil to take home.</p>
+          <div class="timeline-dot" style="border-color:var(--laspezia-blue)"></div>
+          <div class="timeline-time" style="color:var(--laspezia-blue)">Morning</div>
+          <h4>Last Espresso in Riomaggiore</h4>
+          <p>One last village visit – train to Riomaggiore (9 min) for a final cappuccino, a wander through those dramatic colourful streets before the crowds arrive, and a goodbye look at the coast. Pick up limoncello, pesto jars, or olive oil to take home.</p>
           <span class="timeline-tag tag-explore">☕ morning</span>
         </div>
         <div class="timeline-item">
-          <div class="timeline-dot" style="border-color:var(--manarola-pink)"></div>
-          <div class="timeline-time" style="color:var(--manarola-pink)">Late Morning</div>
-          <h4>Check Out & Depart</h4>
-          <p>Train back to La Spezia and onward to your next destination. Or – plot twist – add another day? 😏</p>
+          <div class="timeline-dot" style="border-color:var(--laspezia-blue)"></div>
+          <div class="timeline-time" style="color:var(--laspezia-blue)">Late Morning</div>
+          <h4>Back to La Spezia & Depart</h4>
+          <p>Train back to La Spezia – you're already at the main station, no transfers needed. Grab bags from the apartment and catch your onward train. Easy. Or – plot twist – add another day? 😏</p>
           <span class="timeline-tag tag-travel">🚆 travel</span>
         </div>
       </div>
@@ -1035,80 +1066,67 @@
   <!-- ═══ Accommodation ═══ -->
   <section class="section" id="stay">
     <span class="section-label" style="background:#FEF3C7;color:#D97706">Where We're Staying</span>
-    <h2>Home base: Manarola 🎨</h2>
+    <h2>Home base: La Spezia 🏙️</h2>
     <p class="section-intro">
-      We're staying in Manarola – the colourful heart of Cinque Terre. Central location (2 villages each way), best sunsets, and home to Nessun Dorma. Here are the apartment options – vote for your favourite!
+      We're based in La Spezia – the gateway city to Cinque Terre. Better value than staying in the villages, easier arrivals &amp; departures, and the Cinque Terre Express gets you to Riomaggiore in 9 minutes. More space, more restaurants, more practical for a group of 6.
     </p>
 
     <div class="accom-grid">
 
-      <!-- Option 1: Featured -->
+      <!-- Option 1: La Spezia Apartment -->
       <div class="accom-card featured">
-        <span class="accom-badge">⭐ Top Pick</span>
+        <span class="accom-badge">Option 1</span>
         <div class="accom-photos">
-          <img class="photo-hero" src="images/rollandi-balcony.png" alt="Balcony with sea view over Manarola">
-          <img class="photo-sm" src="images/rollandi-living.png" alt="Living area and kitchen">
-          <img class="photo-sm" src="images/rollandi-bathroom.png" alt="Bathroom">
+          <img class="photo-hero" src="images/spezia-living.png" alt="Modern living room with dining area">
+          <img class="photo-sm" src="images/spezia-balcony.png" alt="Balcony with bistro table overlooking Italian street">
+          <img class="photo-sm" src="images/spezia-bedroom.png" alt="Bedroom with double bed">
         </div>
-        <h3>Via Rollandi 46 – Luxury Apartment with Sea View</h3>
-        <p class="accom-subtitle">3 bedrooms · 2 bathrooms</p>
+        <h3>Casa Del Mercato – Prestige Apartment</h3>
+        <p class="accom-subtitle">3 bedrooms · 3 beds · 2 bathrooms · hosted by Claudio</p>
         <div class="accom-details">
-          <span class="accom-detail">🛏️ 2 queen beds + 1 twin room</span>
-          <span class="accom-detail">🌊 Sea view</span>
+          <span class="accom-detail">🛏️ 3 double beds</span>
           <span class="accom-detail">🏠 Balcony</span>
+          <span class="accom-detail">🛁 Hot tub</span>
+          <span class="accom-detail">☕ Espresso machine</span>
           <span class="accom-detail">❄️ A/C</span>
+          <span class="accom-detail">📍 Pedestrian centre</span>
+          <span class="accom-detail">⭐ New listing</span>
         </div>
         <div class="accom-price">
-          <span class="total">€1,552</span>
-          <span class="per-couple">total · ~€259 per person</span>
+          <span class="total">€1,017</span>
+          <span class="per-couple">total · ~€170 per person</span>
         </div>
         <p class="accom-note">Free cancellation before May 21</p>
-        <div class="accom-proscons">
-          <div class="accom-pros">
-            <span>Pros</span>
-            <ul>
-              <li>Sea view from balcony</li>
-              <li>Modern, clean design</li>
-            </ul>
-          </div>
-        </div>
+
         <div class="accom-links">
-          <a class="accom-link" href="https://www.booking.com/hotel/it/luxury-apartments-manarola.html?label=gen173nr-10CAEoggI46AdIM1gEaKkBiAEBmAEzuAEHyAEP2AED6AEB-AEBiAIBqAIBuALVoLPOBsACAdICJDIxOWNiOWEzLTMwODEtNDcxYy1hYjU3LTJiNDYwMzE3ODExYtgCAeACAQ&aid=304142&ucfs=1&checkin=2026-05-22&checkout=2026-05-25&dest_id=-132084&dest_type=city&group_adults=6&no_rooms=3&group_children=0&nflt=oos%3D1%3Breview_score%3D70%3Breview_score%3D80&srpvid=2bdf3835c8d20197&srepoch=1775030798&matching_block_id=128891001_222284628_6_0_0&atlas_src=sr_iw_title#room_128891009" target="_blank">Booking.com</a>
-          <a class="accom-link" href="https://www.airbnb.com/rooms/11236256?adults=6&check_in=2026-05-22&check_out=2026-05-25&location=Manarola%2C%20Liguria%2C%20Italy&search_mode=regular_search&source_impression_id=p3_1775031562_P3no0HTc542ddWo6&previous_page_section_name=1001&federated_search_id=40cc9592-04ab-443d-8eed-20c440b4628f" target="_blank">Airbnb</a>
+          <a class="accom-link" href="https://www.airbnb.com/rooms/1622401975713986390?adults=6&check_in=2026-05-22&check_out=2026-05-25" target="_blank">View on Airbnb</a>
         </div>
       </div>
 
-      <!-- Option 2: Casa Ines -->
+      <!-- Option 2: Cinque Terre Swing -->
       <div class="accom-card">
+        <span class="accom-badge" style="background:var(--olive)">Option 2</span>
         <div class="accom-photos">
-          <img class="photo-hero" src="images/casaines-living.png" alt="Living room with Italian tiles and fireplace">
-          <img class="photo-sm" src="images/casaines-bedroom.png" alt="Bedroom">
-          <img class="photo-sm" src="images/casaines-kitchen.png" alt="Kitchen">
+          <img class="photo-hero" src="images/swing-living.png" alt="Stylish living room with bold wallpaper and dining area">
+          <img class="photo-sm" src="images/swing-bedroom.png" alt="Bedroom with blue ceiling and queen bed">
+          <img class="photo-sm" src="images/swing-bathroom.png" alt="Designer bathroom with crane wallpaper">
         </div>
-        <h3>Casa Ines – Three-Bedroom Apartment</h3>
-        <p class="accom-subtitle">3 bedrooms · 2 bathrooms</p>
+        <h3>Cinque Terre Swing – Boutique Apartment</h3>
+        <p class="accom-subtitle">3 bedrooms · 3 queen beds + sofa beds · downtown La Spezia</p>
         <div class="accom-details">
-          <span class="accom-detail">🛏️ 2 full beds + 1 twin room</span>
-          <span class="accom-detail">🏠 City view</span>
-          <span class="accom-detail">🏠 Balcony</span>
+          <span class="accom-detail">🛏️ 3 queen beds + sofa beds</span>
           <span class="accom-detail">❄️ A/C</span>
-          <span class="accom-detail">🧺 Washing machine</span>
+          <span class="accom-detail">📍 Excellent location (9.2)</span>
+          <span class="accom-detail">⭐ 9.1 rating · 26 reviews</span>
         </div>
         <div class="accom-price">
-          <span class="total">€1,086</span>
-          <span class="per-couple">total · ~€181 per person</span>
+          <span class="total">€1,197</span>
+          <span class="per-couple">total · ~€200 per person</span>
         </div>
-        <p class="accom-note">Free cancellation before May 21</p>
-        <div class="accom-proscons">
-          <div class="accom-cons">
-            <span>Cons</span>
-            <ul>
-              <li>Really rough design and layout</li>
-            </ul>
-          </div>
-        </div>
+        <p class="accom-note warning">Non-refundable</p>
+
         <div class="accom-links">
-          <a class="accom-link" href="https://www.booking.com/hotel/it/casa-ines.html?label=gen173nr-10CAEoggI46AdIM1gEaKkBiAEBmAEzuAEHyAEP2AED6AEB-AEBiAIBqAIBuALVoLPOBsACAdICJDIxOWNiOWEzLTMwODEtNDcxYy1hYjU3LTJiNDYwMzE3ODExYtgCAeACAQ&aid=304142&ucfs=1&checkin=2026-05-22&checkout=2026-05-25&dest_id=-132084&dest_type=city&group_adults=6&no_rooms=3&group_children=0&nflt=oos%3D1%3Breview_score%3D70%3Bprivacy_type%3D3&srpvid=2bdf3835c8d20197&srepoch=1775031622&matching_block_id=36868428_222284638_6_0_0&atlas_src=sr_iw_title#room_36868428" target="_blank">Booking.com</a>
+          <a class="accom-link" href="https://www.booking.com/hotel/it/cinque-terre-swing.html?checkin=2026-05-22&checkout=2026-05-25&group_adults=6&no_rooms=3" target="_blank">View on Booking.com</a>
         </div>
       </div>
 
@@ -1119,8 +1137,6 @@
       </div>
 
     </div>
-
-
   </section>
 
   <!-- ═══ Practical Info ═══ -->
@@ -1135,17 +1151,17 @@
       <div class="info-card">
         <div class="info-icon">🚆</div>
         <h4>Cinque Terre Express</h4>
-        <p>A local train runs between all 5 villages every 15-20 min. Journey between any two villages: 2-8 minutes. Get the <strong>Cinque Terre Card</strong> (€16/day) for unlimited rides + trail access.</p>
+        <p>Every 15-20 min, <strong>5am–11:30pm</strong>. La Spezia → Riomaggiore 9 min, → Monterosso 25 min. Tickets €5 after 7:30pm. Get the <strong>Cinque Terre Treno Card</strong> (~€49-68/3 days) for unlimited rides + trail access.</p>
       </div>
       <div class="info-card">
         <div class="info-icon">🥾</div>
         <h4>Hiking Trails</h4>
-        <p>The Blue Trail (SVA) connects all 5 villages. Best section: Monterosso → Vernazza (~2h). Check trail status before going – some sections close seasonally. Included with the Cinque Terre Card.</p>
+        <p>The Blue Trail (SVA) connects all 5 villages. Best section: Monterosso → Vernazza (~2h). Check trail status before going – some sections close seasonally. Included with the Cinque Terre Treno Card.</p>
       </div>
       <div class="info-card">
         <div class="info-icon">💰</div>
         <h4>Cash & Cards</h4>
-        <p>Bring some cash – smaller restaurants and shops may not take cards. ATMs exist in each village but can have queues. Budget ~€60-80/person/day for food & drinks.</p>
+        <p>Bring some cash – smaller village restaurants and shops may not take cards. La Spezia has plenty of ATMs. Budget ~€60-80/person/day for food & drinks.</p>
       </div>
       <div class="info-card">
         <div class="info-icon">👟</div>
@@ -1160,7 +1176,7 @@
       <div class="info-card">
         <div class="info-icon">🍝</div>
         <h4>Must-Eat List</h4>
-        <p>Trofie al pesto · Fried anchovies · Focaccia di Recco · Sciacchetrà wine · Limoncello · Farinata · Fresh catch of the day</p>
+        <p>Trofie al pesto · Fried anchovies · Focaccia di Recco · Sciacchetrà wine · Limoncello · Farinata · Fresh catch of the day. Don't skip La Spezia's own restaurants – the daily market on Via del Prione is 🤌</p>
       </div>
     </div>
   </section>
