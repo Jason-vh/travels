@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinque Terre 🍋 May 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       TOKENS & RESET
+    ========================================================= */
+    :root {
+      --yellow:       #FFE135;
+      --yellow-light: #FFF4A3;
+      --yellow-dark:  #E8C400;
+      --green:        #1A4731;
+      --green-mid:    #2D6A4F;
+      --green-light:  #52B788;
+      --white:        #FFFEF5;
+      --cream:        #FFFBE6;
+      --orange:       #FF7A2F;
+      --blue:         #1A6FA8;
+      --blue-light:   #56B4E9;
+      --red:          #C0392B;
+      --radius-sm:    8px;
+      --radius-md:    16px;
+      --radius-lg:    28px;
+      --radius-xl:    48px;
+      --shadow:       0 4px 24px rgba(26,71,49,0.13);
+      --shadow-lg:    0 8px 40px rgba(26,71,49,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--cream);
+      color: var(--green);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', serif;
+      line-height: 1.15;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* =========================================================
+       TILE BORDER UTILITY  (CSS-only Mediterranean ceramic tile)
+    ========================================================= */
+    .tile-border {
+      position: relative;
+    }
+    .tile-border::before,
+    .tile-border::after {
+      content: '';
+      display: block;
+      height: 18px;
+      width: 100%;
+      background-image:
+        repeating-linear-gradient(90deg,
+          var(--green)    0px,  var(--green)    2px,
+          transparent     2px,  transparent     18px),
+        repeating-linear-gradient(90deg,
+          var(--yellow)   0px,  var(--yellow)   6px,
+          var(--green)    6px,  var(--green)    8px,
+          var(--yellow)   8px,  var(--yellow)   14px,
+          var(--green)    14px, var(--green)    16px,
+          var(--yellow)   16px, var(--yellow)   18px);
+    }
+    .tile-border::before { margin-bottom: 0; }
+    .tile-border::after  { margin-top: 0; }
+
+    /* diamond tile strip */
+    .tile-strip {
+      height: 20px;
+      width: 100%;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          var(--yellow)   0px, var(--yellow)   5px,
+          var(--green)    5px, var(--green)    10px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          var(--yellow)   0px, var(--yellow)   5px,
+          transparent     5px, transparent    10px
+        );
+      background-blend-mode: multiply;
+    }
+
+    /* =========================================================
+       CSS LEMON
+    ========================================================= */
+    .lemon {
+      display: inline-block;
+      position: relative;
+      width: var(--lemon-size, 60px);
+      height: var(--lemon-size, 60px);
+    }
+    /* lemon body */
+    .lemon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--yellow);
+      border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%;
+      border: 3px solid var(--yellow-dark);
+      box-shadow: inset -4px -4px 8px rgba(0,0,0,0.08), 2px 2px 0 var(--yellow-dark);
+    }
+    /* leaf */
+    .lemon::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-30deg);
+      width: 45%;
+      height: 55%;
+      background: var(--green-mid);
+      border-radius: 50% 5% 50% 5%;
+      border: 2px solid var(--green);
+      z-index: 1;
+    }
+    .lemon-sm { --lemon-size: 38px; }
+    .lemon-lg { --lemon-size: 90px; }
+    .lemon-xl { --lemon-size: 140px; }
+
+    /* lemon half (decorative) */
+    .lemon-half {
+      display: inline-block;
+      width: 56px;
+      height: 28px;
+      background: var(--yellow);
+      border-radius: 28px 28px 0 0;
+      border: 3px solid var(--yellow-dark);
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .lemon-half::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: var(--yellow-dark);
+      opacity: .4;
+    }
+    .lemon-half::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%) rotate(90deg);
+      width: 3px;
+      height: 100%;
+      background: var(--yellow-dark);
+      opacity: .4;
+    }
+
+    /* =========================================================
+       NAV
+    ========================================================= */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--green);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 52px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    nav .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-right: auto;
+      letter-spacing: .02em;
+    }
+    nav a.nav-link {
+      color: var(--yellow-light);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      transition: background .2s, color .2s;
+    }
+    nav a.nav-link:hover {
+      background: var(--yellow);
+      color: var(--green);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      background: var(--yellow);
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* big citrus slice BG decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: var(--yellow-dark);
+      opacity: .25;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      opacity: .12;
+    }
+
+    .hero-lemons {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: white;
+      padding: 6px 18px;
+      border-radius: 999px;
+      border: 2.5px solid var(--green);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      color: var(--green);
+      position: relative;
+      z-index: 2;
+      font-optical-sizing: auto;
+      line-height: 1.0;
+      max-width: 900px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--white);
+      -webkit-text-stroke: 2px var(--green);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      color: var(--green-mid);
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .badge {
+      background: var(--green);
+      color: var(--yellow);
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 10px 20px;
+      border-radius: 999px;
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border: 2.5px solid var(--green);
+      box-shadow: 3px 3px 0 var(--yellow-dark);
+    }
+    .badge.alt {
+      background: var(--white);
+      color: var(--green);
+      border-color: var(--green);
+      box-shadow: 3px 3px 0 var(--green);
+    }
+
+    .hero-scroll {
+      position: relative;
+      z-index: 2;
+      margin-top: 48px;
+      font-size: 1.5rem;
+      animation: bounce 1.8s infinite;
+      color: var(--green);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* tile strip at bottom of hero */
+    .hero .tile-strip { position: absolute; bottom: 0; left: 0; }
+
+    /* =========================================================
+       SECTION WRAPPER
+    ========================================================= */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--yellow);
+      border: 2px solid var(--green);
+      border-radius: 999px;
+      padding: 5px 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 12px;
+      font-optical-sizing: auto;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+    .section-intro {
+      font-size: 1.08rem;
+      color: var(--green-mid);
+      max-width: 700px;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       DIVIDER
+    ========================================================= */
+    .full-strip {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .bg-green { background: var(--green); }
+    .bg-yellow { background: var(--yellow); }
+    .bg-white  { background: var(--white); }
+    .bg-cream  { background: var(--cream); }
+
+    /* =========================================================
+       VILLAGES GRID
+    ========================================================= */
+    .villages-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 800px) {
+      .villages-grid { grid-template-columns: repeat(2, 1fr); }
+      nav a.nav-link { display: none; }
+      nav a.nav-link:first-of-type { display: flex; }
+    }
+    @media (max-width: 500px) {
+      .villages-grid { grid-template-columns: 1fr; }
+    }
+
+    .village-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 3px solid var(--green);
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 5px 5px 0 var(--green);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .village-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 var(--green);
+    }
+    .village-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--yellow);
+    }
+    .village-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--yellow-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .village-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .village-desc {
+      font-size: 0.83rem;
+      color: var(--green-mid);
+      font-weight: 600;
+    }
+    .village-emoji {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    /* =========================================================
+       ITINERARY
+    ========================================================= */
+    .itinerary-day {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 3px solid var(--green);
+      box-shadow: 6px 6px 0 var(--green);
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .day-header {
+      background: var(--green);
+      color: var(--yellow);
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .day-number {
+      font-family: 'Fraunces', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1;
+      color: var(--yellow);
+      opacity: .9;
+      min-width: 60px;
+    }
+    .day-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--yellow);
+    }
+    .day-info .day-date {
+      font-size: 0.88rem;
+      color: var(--green-light);
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+    .day-body {
+      padding: 28px 32px;
+    }
+    .day-activities {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .activity {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      border: 2.5px solid var(--yellow-dark);
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .activity-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .activity-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 3px;
+    }
+    .activity-text span {
+      font-size: 0.83rem;
+      color: var(--green-mid);
+      font-weight: 600;
+    }
+    .day-note {
+      margin-top: 18px;
+      background: var(--yellow-light);
+      border-left: 5px solid var(--yellow-dark);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 12px 18px;
+      font-size: 0.9rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       ACCOMMODATION
+    ========================================================= */
+    .accom-box {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 3px dashed var(--green);
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .accom-box::before {
+      content: '?';
+      position: absolute;
+      font-family: 'Fraunces', serif;
+      font-size: 18rem;
+      font-weight: 900;
+      color: var(--yellow);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .accom-box > * { position: relative; z-index: 1; }
+    .accom-box h3 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .accom-box p {
+      font-size: 1rem;
+      color: var(--green-mid);
+      font-weight: 600;
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+    .accom-checklist {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .accom-checklist li {
+      background: var(--cream);
+      border: 2px solid var(--yellow-dark);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* =========================================================
+       PRACTICAL INFO — CARDS
+    ========================================================= */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .info-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 3px solid var(--green);
+      box-shadow: 5px 5px 0 var(--yellow-dark);
+      overflow: hidden;
+    }
+    .info-card-head {
+      background: var(--yellow);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 3px solid var(--green);
+    }
+    .info-card-head .icon { font-size: 1.5rem; }
+    .info-card-head h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+    .info-card-body {
+      padding: 16px 20px;
+    }
+    .info-card-body ul {
+      list-style: none;
+    }
+    .info-card-body ul li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--yellow-dark);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--green-mid);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .info-card-body ul li:last-child { border-bottom: none; }
+    .info-card-body ul li::before {
+      content: '🍋';
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .info-highlight {
+      background: var(--yellow-light);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 10px;
+      border: 2px solid var(--yellow-dark);
+    }
+
+    /* =========================================================
+       THE CREW
+    ========================================================= */
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 700px) {
+      .crew-grid { grid-template-columns: 1fr; }
+    }
+    .couple-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 3px solid var(--green);
+      box-shadow: 6px 6px 0 var(--green);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .couple-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--green);
+    }
+    .couple-card::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--yellow);
+      opacity: .4;
+    }
+    .couple-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 3px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 16px;
+      box-shadow: 3px 3px 0 var(--green);
+    }
+    .couple-num {
+      position: absolute;
+      top: 16px; right: 16px;
+      font-family: 'Fraunces', serif;
+      font-size: 0.75rem;
+      font-weight: 900;
+      font-style: italic;
+      background: var(--green);
+      color: var(--yellow);
+      border-radius: 999px;
+      padding: 3px 10px;
+    }
+    .couple-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .couple-placeholder {
+      font-size: 0.85rem;
+      color: var(--green-mid);
+      font-style: italic;
+      font-weight: 600;
+    }
+    .couple-vibe {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--green-mid);
+      background: var(--yellow-light);
+      border-radius: 999px;
+      padding: 4px 14px;
+      display: inline-block;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    footer {
+      background: var(--green);
+      color: var(--yellow-light);
+      padding: 48px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,225,53,.07);
+    }
+    .footer-lemons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    footer h2 {
+      font-size: 2rem;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+    footer p {
+      font-size: 0.9rem;
+      color: var(--green-light);
+      font-weight: 600;
+      max-width: 500px;
+      margin: 0 auto 6px;
+    }
+    footer .footer-heart {
+      font-size: 0.85rem;
+      color: var(--green-mid);
+      margin-top: 20px;
+    }
+
+    /* =========================================================
+       DECORATIVE SCATTERED LEMONS
+    ========================================================= */
+    .scatter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      margin: 24px 0;
+    }
+
+    /* =========================================================
+       HIGHLIGHT BAR
+    ========================================================= */
+    .highlight-bar {
+      background: var(--yellow);
+      border-radius: var(--radius-lg);
+      border: 3px solid var(--green);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 5px 5px 0 var(--green);
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .highlight-bar .hb-icon { font-size: 2rem; }
+    .highlight-bar p {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--green);
+    }
+    .highlight-bar strong { font-size: 1.05rem; }
+
+    /* =========================================================
+       TRAIN MAP (visual)
+    ========================================================= */
+    .train-map {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 3px solid var(--green);
+      padding: 32px;
+      box-shadow: 6px 6px 0 var(--green);
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+    .train-line {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: 600px;
+      position: relative;
+    }
+    .train-stop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+    .train-stop .dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 3px solid var(--green);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--green);
+      box-shadow: 2px 2px 0 var(--green);
+    }
+    .train-stop .stop-name {
+      font-family: 'Fraunces', serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--green);
+      text-align: center;
+    }
+    .train-stop .stop-vibe {
+      font-size: 0.72rem;
+      color: var(--green-mid);
+      font-weight: 600;
+      text-align: center;
+      max-width: 80px;
+    }
+    .train-connector {
+      flex: 0 0 auto;
+      height: 4px;
+      width: 40px;
+      background: repeating-linear-gradient(90deg,
+        var(--green) 0, var(--green) 6px,
+        transparent 6px, transparent 10px
+      );
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .train-connector::after {
+      content: '🚂';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+    }
+
+    /* =========================================================
+       QUICK HELPERS
+    ========================================================= */
+    .mt-0 { margin-top: 0; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; justify-content: center; }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">🍋 Cinque Terre '26</span>
+    <a class="nav-link" href="#villages">Villages</a>
+    <a class="nav-link" href="#itinerary">Itinerary</a>
+    <a class="nav-link" href="#stay">Stay</a>
+    <a class="nav-link" href="#practical">Info</a>
+  </nav>
+
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
+  <section class="hero">
+    <div class="hero-lemons">
+      <div class="lemon lemon-xl"></div>
+      <div class="lemon lemon-lg" style="margin-top:20px;"></div>
+      <div class="lemon lemon-xl" style="margin-top:8px;"></div>
+    </div>
+    <p class="hero-eyebrow">🇮🇹 Italy · Liguria · 6 People</p>
+    <h1>Cinque <em>Terre</em></h1>
+    <p class="hero-sub">Three sun-soaked days on the Italian Riviera — hiking, swimming, pasta, and the best lemons in the world.</p>
+    <div class="hero-badges">
+      <div class="badge">📅 May 22 – 25, 2026</div>
+      <div class="badge alt">🌊 3 Nights</div>
+      <div class="badge">👫 3 Couples · 6 People</div>
+      <div class="badge alt">🥾 Hiking + Swimming</div>
+      <div class="badge">🚂 Train Hopping</div>
+    </div>
+    <div class="hero-scroll">↓</div>
+    <div class="tile-strip" style="position:absolute;bottom:0;left:0;width:100%;"></div>
+  </section>
+
+  <!-- =========================================================
+       VILLAGES
+  ========================================================= -->
+  <div class="full-strip bg-green">
+    <div class="section" id="villages">
+      <p class="section-label" style="background:var(--yellow);color:var(--green);">⚓ The Five Villages</p>
+      <h2 class="section-title" style="color:var(--yellow);">Five villages, <em style="color:var(--yellow-light);">one coast</em></h2>
+      <p class="section-intro" style="color:var(--green-light);">Strung together by train and coastal trail, each village has its own personality. Here's your cheat sheet.</p>
+
+      <!-- train map -->
+      <div class="train-map">
+        <p style="font-size:.8rem;font-weight:800;color:var(--green-mid);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;">North → South along the coast</p>
+        <div class="train-line">
+          <div class="train-stop">
+            <div class="dot">1</div>
+            <div class="stop-name">Monterosso al Mare</div>
+            <div class="stop-vibe">Beaches & hotels</div>
+          </div>
+          <div class="train-connector"></div>
+          <div class="train-stop">
+            <div class="dot">2</div>
+            <div class="stop-name">Vernazza</div>
+            <div class="stop-vibe">Iconic harbor</div>
+          </div>
+          <div class="train-connector"></div>
+          <div class="train-stop">
+            <div class="dot">3</div>
+            <div class="stop-name">Corniglia</div>
+            <div class="stop-vibe">Clifftop village</div>
+          </div>
+          <div class="train-connector"></div>
+          <div class="train-stop">
+            <div class="dot">4</div>
+            <div class="stop-name">Manarola</div>
+            <div class="stop-vibe">Wine & sunsets</div>
+          </div>
+          <div class="train-connector"></div>
+          <div class="train-stop">
+            <div class="dot">5</div>
+            <div class="stop-name">Riomaggiore</div>
+            <div class="stop-vibe">Southern gateway</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="villages-grid">
+        <div class="village-card">
+          <div class="village-emoji">🏖️</div>
+          <div class="village-num">01</div>
+          <div class="village-name">Monterosso al Mare</div>
+          <div class="village-desc">The biggest village. Proper sandy beaches, grand hotels, and the famous giant Neptune statue. Best for a lazy beach afternoon.</div>
+        </div>
+        <div class="village-card">
+          <div class="village-emoji">⛵</div>
+          <div class="village-num">02</div>
+          <div class="village-name">Vernazza</div>
+          <div class="village-desc">Many people's favourite — a tiny natural harbour, colorful tower, and gelato eaten on the sea wall. Postcard perfection.</div>
+        </div>
+        <div class="village-card">
+          <div class="village-emoji">🌿</div>
+          <div class="village-num">03</div>
+          <div class="village-name">Corniglia</div>
+          <div class="village-desc">The only village with no direct sea access — perched 100m up on a cliff. Quietest, fewest tourists, great views. Worth the stairs.</div>
+        </div>
+        <div class="village-card">
+          <div class="village-emoji">🍷</div>
+          <div class="village-num">04</div>
+          <div class="village-name">Manarola</div>
+          <div class="village-desc">Wine country's edge — the vineyards almost tumble into the sea. Famous for the Sciacchetrà dessert wine and legendary sunset views.</div>
+        </div>
+        <div class="village-card">
+          <div class="village-emoji">🚪</div>
+          <div class="village-num">05</div>
+          <div class="village-name">Riomaggiore</div>
+          <div class="village-desc">Southern gateway to the park. Vibrant, a little grittier, great seafood trattorias tucked into the narrow main street.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       ITINERARY
+  ========================================================= -->
+  <div class="full-strip bg-yellow tile-border">
+    <div class="section" id="itinerary">
+      <p class="section-label">🗓️ The Plan</p>
+      <h2 class="section-title">Day-by-<em>day</em></h2>
+      <p class="section-intro">Four days, three nights, five villages. Here's how we're doing it.</p>
+
+      <div class="scatter">
+        <div class="lemon lemon-sm"></div>
+        <div class="lemon-half"></div>
+        <div class="lemon lemon-sm"></div>
+        <div class="lemon-half"></div>
+        <div class="lemon lemon-sm"></div>
+        <div class="lemon-half"></div>
+        <div class="lemon lemon-sm"></div>
+      </div>
+
+      <!-- DAY 0 -->
+      <div class="itinerary-day">
+        <div class="day-header">
+          <div class="day-number">0</div>
+          <div class="day-info">
+            <div class="day-date">Friday, May 22, 2026</div>
+            <h3>Arrival Day — Check In & Settle</h3>
+          </div>
+          <div style="margin-left:auto;font-size:2rem;">✈️</div>
+        </div>
+        <div class="day-body">
+          <div class="day-activities">
+            <div class="activity">
+              <div class="activity-icon">🚆</div>
+              <div class="activity-text">
+                <strong>Travel to base village</strong>
+                <span>Train from La Spezia or Genoa — everyone arrives at their own pace</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🏠</div>
+              <div class="activity-text">
+                <strong>Check in to accommodation</strong>
+                <span>Drop bags, freshen up, and claim your room</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🥂</div>
+              <div class="activity-text">
+                <strong>Aperitivo hour</strong>
+                <span>Spritz or local white wine — we've arrived!</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🍝</div>
+              <div class="activity-text">
+                <strong>Welcome dinner</strong>
+                <span>Group dinner at a local trattoria — pesto pasta mandatory</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🌊</div>
+              <div class="activity-text">
+                <strong>Evening stroll</strong>
+                <span>Walk the harbor, get your sea legs, watch the sunset</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-note">🍋 Vibe check: low-key arrival. No agenda, no rushing. Find a café, order something cold, let Italy wash over you.</div>
+        </div>
+      </div>
+
+      <!-- DAY 1 -->
+      <div class="itinerary-day">
+        <div class="day-header" style="background:var(--green-mid);">
+          <div class="day-number">1</div>
+          <div class="day-info">
+            <div class="day-date">Saturday, May 23, 2026</div>
+            <h3>Hiking Day — Northern Villages</h3>
+          </div>
+          <div style="margin-left:auto;font-size:2rem;">🥾</div>
+        </div>
+        <div class="day-body">
+          <div class="highlight-bar" style="background:var(--yellow-light);border-color:var(--yellow-dark);box-shadow:4px 4px 0 var(--yellow-dark);">
+            <span class="hb-icon">🗺️</span>
+            <p><strong>Route:</strong> Monterosso → Vernazza → Corniglia (SVV Trail / Sentiero Azzurro)<br>~7km · ~3.5 hrs with stops · Moderate difficulty</p>
+          </div>
+          <div class="day-activities">
+            <div class="activity">
+              <div class="activity-icon">☀️</div>
+              <div class="activity-text">
+                <strong>Early start, train north</strong>
+                <span>Take the first morning train to Monterosso al Mare</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🏖️</div>
+              <div class="activity-text">
+                <strong>Monterosso beach & coffee</strong>
+                <span>Espresso and a pastry by the beach — fuel up!</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🥾</div>
+              <div class="activity-text">
+                <strong>Hike to Vernazza</strong>
+                <span>Most scenic stretch — cliffs, vineyards, sea views. ~2h</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">⛵</div>
+              <div class="activity-text">
+                <strong>Vernazza lunch stop</strong>
+                <span>Focaccia, fried calamari, and cold white wine at the harbour</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🌿</div>
+              <div class="activity-text">
+                <strong>Hike to Corniglia</strong>
+                <span>Quieter trail — big views as you climb up to the clifftop. ~1.5h</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🧗</div>
+              <div class="activity-text">
+                <strong>The 382 steps of Lardarina</strong>
+                <span>Climb the famous staircase into Corniglia village — worth every step</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🚂</div>
+              <div class="activity-text">
+                <strong>Train back & rest</strong>
+                <span>Short hop back to base — shower, nap, recover</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🌅</div>
+              <div class="activity-text">
+                <strong>Sunset & dinner</strong>
+                <span>Find a terrace with a view — golden hour in the Cinque Terre hits different</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-note">🎒 Bring: water (2L each), sunscreen, good shoes, Cinque Terre Card for trail access. The trail is hot in May — start early!</div>
+        </div>
+      </div>
+
+      <!-- DAY 2 -->
+      <div class="itinerary-day">
+        <div class="day-header" style="background:var(--blue);">
+          <div class="day-number">2</div>
+          <div class="day-info">
+            <div class="day-date">Sunday, May 24, 2026</div>
+            <h3>Southern Villages & Sea Day</h3>
+          </div>
+          <div style="margin-left:auto;font-size:2rem;">🏊</div>
+        </div>
+        <div class="day-body">
+          <div class="highlight-bar" style="background:var(--blue-light);border-color:var(--blue);box-shadow:4px 4px 0 var(--blue);color:white;">
+            <span class="hb-icon">🗺️</span>
+            <p style="color:var(--green);"><strong>Route:</strong> Manarola → Riomaggiore (Via dell'Amore) + swimming breaks<br>~3km easy trail + ferries/train for flexibility</p>
+          </div>
+          <div class="day-activities">
+            <div class="activity">
+              <div class="activity-icon">🍷</div>
+              <div class="activity-text">
+                <strong>Morning in Manarola</strong>
+                <span>Explore the wine terraces, swim off the rocks, get gelato</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">💑</div>
+              <div class="activity-text">
+                <strong>Via dell'Amore</strong>
+                <span>The "Path of Love" — rebuilt cliffside walk to Riomaggiore. Romantic & easy.</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🌊</div>
+              <div class="activity-text">
+                <strong>Swimming at Riomaggiore</strong>
+                <span>Rocky cove below the village — crystal clear Ligurian Sea</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">⛵</div>
+              <div class="activity-text">
+                <strong>Boat ferry option</strong>
+                <span>Seasonal ferries run between villages — see it all from the sea!</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🦞</div>
+              <div class="activity-text">
+                <strong>Long seafood lunch</strong>
+                <span>Grilled octopus, trofie al pesto, Vermentino wine — take your time</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">😴</div>
+              <div class="activity-text">
+                <strong>Afternoon free time</strong>
+                <span>Swim more, explore, shop for lemon ceramics, or nap shamelessly</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🍋</div>
+              <div class="activity-text">
+                <strong>Limoncino tasting</strong>
+                <span>Local lemon liqueur — find a bar that makes their own</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🎉</div>
+              <div class="activity-text">
+                <strong>Last night celebration dinner</strong>
+                <span>Best restaurant of the trip — splurge a little, we're in Italy!</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-note">🌊 Check if the Via dell'Amore is open (check NPS Cinque Terre website — it reopened in 2024 after years of closure). Also check ferry timetables — they're seasonal.</div>
+        </div>
+      </div>
+
+      <!-- DAY 3 -->
+      <div class="itinerary-day">
+        <div class="day-header" style="background:var(--orange);">
+          <div class="day-number">3</div>
+          <div class="day-info">
+            <div class="day-date">Monday, May 25, 2026</div>
+            <h3>Departure Day — One Last Espresso</h3>
+          </div>
+          <div style="margin-left:auto;font-size:2rem;">👋</div>
+        </div>
+        <div class="day-body">
+          <div class="day-activities">
+            <div class="activity">
+              <div class="activity-icon">☕</div>
+              <div class="activity-text">
+                <strong>Final morning coffee</strong>
+                <span>Sit at a café by the water one last time. Breathe it all in.</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🛍️</div>
+              <div class="activity-text">
+                <strong>Last-minute shopping</strong>
+                <span>Pesto jars, lemon ceramics, limoncino, focaccia for the road</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🧳</div>
+              <div class="activity-text">
+                <strong>Check out</strong>
+                <span>Luggage storage at the station if needed — most trains to La Spezia</span>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity-icon">🚆</div>
+              <div class="activity-text">
+                <strong>Onward journeys</strong>
+                <span>Everyone heads off their own way — until next time!</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-note">🧃 May 25 is a public holiday in Italy (Liberation Day weekend). Trains may be busy — book early and arrive at the platform with time to spare!</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       ACCOMMODATION
+  ========================================================= -->
+  <div class="full-strip bg-cream">
+    <div class="section" id="stay">
+      <p class="section-label">🏠 Where We're Sleeping</p>
+      <h2 class="section-title">Accommodation</h2>
+      <p class="section-intro">We're still hunting for the perfect place. It's competitive in May — let's nail this down soon.</p>
+
+      <div class="accom-box">
+        <h3>📍 TBD — To Be Decided!</h3>
+        <p>We haven't booked yet. See below for what we're looking for. Someone volunteer to lead the search 🍋</p>
+        <ul class="accom-checklist">
+          <li>✓ Sleeps 6 people</li>
+          <li>✓ In or very near one of the 5 villages</li>
+          <li>✓ Sea view (ideally!)</li>
+          <li>✓ Private kitchen or communal dining</li>
+          <li>✓ Near a train station</li>
+          <li>✓ AC or good ventilation (May gets warm!)</li>
+          <li>✓ Check-in May 22, Check-out May 25</li>
+          <li>✓ Budget: TBD</li>
+        </ul>
+      </div>
+
+      <div class="info-grid" style="margin-top:24px;">
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">💡</span>
+            <h4>Best base villages</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>Monterosso: Most hotels, beaches, easiest for luggage</li>
+              <li>Vernazza: Beautiful but steep — hard with bags</li>
+              <li>Manarola: Great central location, lots of rental options</li>
+              <li>Riomaggiore: Southernmost — easy train access</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">🔍</span>
+            <h4>Where to look</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>Airbnb (lots of apartments in old buildings)</li>
+              <li>Booking.com (good for hotels/guesthouses)</li>
+              <li>Local agencies — ask for "affittacamere"</li>
+              <li>Book early! May is peak season</li>
+            </ul>
+            <div class="info-highlight">⚡ Tip: Accommodation fills fast for May weekends. Book 3–4 months out!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PRACTICAL INFO
+  ========================================================= -->
+  <div class="full-strip bg-green tile-border">
+    <div class="section" id="practical">
+      <p class="section-label" style="background:var(--yellow);">📋 Know Before You Go</p>
+      <h2 class="section-title" style="color:var(--yellow);">Practical <em style="color:var(--yellow-light);">Info</em></h2>
+      <p class="section-intro" style="color:var(--green-light);">Everything you need to know so you can just enjoy the lemons.</p>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">🎟️</span>
+            <h4>Cinque Terre Card</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>Required for hiking on the coastal trails (Sentiero Azzurro)</li>
+              <li>1-day: ~€7.50 / 2-day: ~€14.50 per person</li>
+              <li>Includes trail access + some include train travel</li>
+              <li>Buy online in advance at parconazionale5terre.it or at station offices</li>
+            </ul>
+            <div class="info-highlight">💡 Get the Trekking + Train combo card for Day 1 — saves time and money vs. buying separately.</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">🚆</span>
+            <h4>Getting Around by Train</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>Regional trains connect all 5 villages — runs every 15–30 min</li>
+              <li>Journey between villages: 3–8 minutes each!</li>
+              <li>Buy tickets at station machines or Trenitalia app</li>
+              <li>Validate tickets before boarding (yellow machines)</li>
+              <li>From La Spezia: direct trains to all villages ~20–40 min</li>
+            </ul>
+            <div class="info-highlight">⚠️ Trains get packed in summer — travel early or late to avoid crowds.</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">🌤️</span>
+            <h4>Weather in May</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>Average highs: 20–24°C (68–75°F)</li>
+              <li>Sea temperature: ~18°C — swimable for the brave!</li>
+              <li>Morning mist is common, clears by midday</li>
+              <li>Occasional thunderstorms — pack a light rain layer</li>
+              <li>Sunscreen is essential — reflected heat off sea + stone</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">🍽️</span>
+            <h4>Food & Drink Must-Haves</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li><strong>Trofie al pesto</strong> — the local pasta, made fresh</li>
+              <li><strong>Focaccia al formaggio</strong> — especially in Recco nearby</li>
+              <li><strong>Acciughe</strong> — anchovies, cured with salt and lemon</li>
+              <li><strong>Farinata</strong> — crispy chickpea pancake, eaten standing up</li>
+              <li><strong>Sciacchetrà</strong> — sweet dessert wine from local grapes</li>
+              <li><strong>Limoncino</strong> — local lemon liqueur (not limoncello!)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">👟</span>
+            <h4>What to Pack</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>Comfortable hiking shoes (trail is rocky)</li>
+              <li>Swimsuit + quick-dry towel</li>
+              <li>Water shoes for rocky beaches</li>
+              <li>2L water bottle minimum per person</li>
+              <li>Light rain jacket / windbreaker</li>
+              <li>Sunscreen, hat, sunglasses</li>
+              <li>Cash — many small places are cash only</li>
+              <li>Lightweight day bag / backpack</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">
+            <span class="icon">💰</span>
+            <h4>Money & Budget Tips</h4>
+          </div>
+          <div class="info-card-body">
+            <ul>
+              <li>ATMs in Monterosso, Vernazza, Riomaggiore</li>
+              <li>Budget €30–50/person/day for food + drinks</li>
+              <li>Tourist tax applies in all villages (~€2–4/night)</li>
+              <li>Ferries cost ~€6–8 per leg (worth it!)</li>
+              <li>Avoid peak lunchtime restaurants — prices jump</li>
+            </ul>
+            <div class="info-highlight">🧾 Eat where the menus are handwritten in Italian. That's always the right choice.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="scatter" style="margin-top:32px;">
+        <div class="lemon" style="--lemon-size:50px;"></div>
+        <div class="lemon lemon-sm"></div>
+        <div class="lemon" style="--lemon-size:65px;"></div>
+        <div class="lemon lemon-sm"></div>
+        <div class="lemon" style="--lemon-size:44px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer>
+    <div class="tile-strip" style="margin-bottom:32px;"></div>
+    <div class="footer-lemons">
+      <div class="lemon lemon-sm"></div>
+      <div class="lemon"></div>
+      <div class="lemon lemon-lg"></div>
+      <div class="lemon"></div>
+      <div class="lemon lemon-sm"></div>
+    </div>
+    <h2>See you on the Riviera!</h2>
+    <p>May 22 – 25, 2026 · Cinque Terre, Liguria, Italy</p>
+    <p>Trains, trails, swimming holes, and too much pesto. <br>We cannot wait. 🍋🌊🇮🇹</p>
+    <p class="footer-heart">Made with love for the group trip of the year · v4 Lemon Grove</p>
+  </footer>
+
+  <script>
+    // Smooth active nav highlighting on scroll
+    const sections = document.querySelectorAll('[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.style.background = '');
+          navLinks.forEach(l => l.style.color = '');
+          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+          if (active) {
+            active.style.background = 'var(--yellow)';
+            active.style.color = 'var(--green)';
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
