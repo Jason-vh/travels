@@ -22,26 +22,21 @@ The Caddy snippet uses a wildcard `host *.travels.vhtm.eu`, so any
 subdomain that resolves to `vhtm-eu.exe.xyz` routes to nginx. nginx
 then dispatches by `server_name` to the right document root.
 
-## One-time DNS / edge setup
+Note: the exe.dev edge does **not** accept wildcard registrations and
+rejects any host whose parent zone contains a wildcard CNAME. So:
 
-```bash
-# DNS (Porkbun, vhtm.eu zone):
-#   *.travels.vhtm.eu  CNAME  vhtm-eu.exe.xyz
-
-# exe.dev edge — try wildcard first; if rejected, register subdomains individually:
-ssh exe.dev domain add vhtm-eu '*.travels.vhtm.eu'
-# Fallback:
-# ssh exe.dev domain add vhtm-eu cinqueterre.travels.vhtm.eu
-```
+- Porkbun: **no** `*.travels` wildcard record — one explicit CNAME per trip
+- exe.dev: one `domain add` call per trip
+- Caddy: one snippet for the whole prefix (this file) — the wildcard works fine here
 
 ## Adding a new trip
 
 1. Create a folder: `my-trip/` with an `index.html`.
 2. Add a `COPY my-trip/ /usr/share/nginx/html/my-trip/` line to the `Dockerfile`.
 3. Add a `server { … server_name mytrip.travels.vhtm.eu; … }` block to `nginx.conf`.
-4. Push — the runner builds and reloads. If the exe.dev wildcard works,
-   nothing else to do. If not, also run
-   `ssh exe.dev domain add vhtm-eu mytrip.travels.vhtm.eu`.
+4. Porkbun: add an **explicit** `mytrip.travels` CNAME → `vhtm-eu.exe.xyz`.
+5. exe.dev: `ssh exe.dev domain add vhtm-eu mytrip.travels.vhtm.eu`.
+6. Push — the runner builds and reloads.
 
 ## Operations
 
