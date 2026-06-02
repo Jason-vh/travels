@@ -7,6 +7,7 @@ Static itinerary sites for group trips. Deployed to [travel.vhtm.eu](https://tra
 | Trip | Dates | URL |
 |------|-------|-----|
 | 🇮🇹 Cinque Terre | May 22–25, 2026 | [cinqueterre.travels.vhtm.eu](https://cinqueterre.travels.vhtm.eu/) |
+| 🇵🇹 Algarve | TBD | [algarve.travels.vhtm.eu](https://algarve.travels.vhtm.eu/) |
 
 ## Adding a new trip
 

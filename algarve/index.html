@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#133D4C">
+  <title>Algarve '26 — Olhão</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F4E8D0;
+      --cream-warm: #ECDDBD;
+      --ink: #221710;
+      --terracotta: #C8542B;
+      --mustard: #E6B345;
+      --ocean: #1F5B6E;
+      --ocean-deep: #133D4C;
+      --coral: #E8755A;
+      --rose: #D4625E;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 900; letter-spacing: -0.01em; }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      z-index: 100;
+    }
+
+    /* ── Shared stamp ── */
+    .poster-stamp {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border: 2px solid var(--mustard);
+      color: var(--mustard);
+    }
+
+    /* ── Hero poster ── */
+    .poster {
+      position: relative;
+      padding: 2.5rem 1.25rem 3rem;
+      overflow: hidden;
+      background: var(--ocean-deep);
+      color: var(--cream);
+    }
+
+    .poster-frame {
+      position: absolute;
+      inset: 0.875rem;
+      border: 2px solid var(--mustard);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .poster-frame::before, .poster-frame::after {
+      content: '';
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 2px solid var(--mustard);
+    }
+    .poster-frame::before { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+    .poster-frame::after { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+    .sunburst {
+      position: absolute;
+      top: -20vw;
+      right: -20vw;
+      width: 80vw;
+      height: 80vw;
+      max-width: 600px;
+      max-height: 600px;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    .waves {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 28%;
+      z-index: 0;
+    }
+
+    .poster-content { position: relative; z-index: 1; padding-top: 2.5rem; }
+
+    .poster h1 {
+      font-size: clamp(3.5rem, 18vw, 7rem);
+      line-height: 0.85;
+      color: var(--cream);
+    }
+
+    .poster h1 .underline { display: inline-block; position: relative; }
+    .poster h1 .underline::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 0.05em;
+      height: 0.18em;
+      background: var(--terracotta);
+      z-index: -1;
+    }
+    .poster h1 em { font-style: italic; color: var(--mustard); }
+
+    .poster-foot {
+      position: relative;
+      z-index: 1;
+      margin-top: 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+    }
+
+    .poster-dates {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .poster-seal { width: 80px; height: 80px; flex-shrink: 0; }
+
+    /* ── Base section (just heading + intro) ── */
+    .base {
+      padding: 3.5rem 1.5rem 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .base .poster-stamp {
+      color: var(--terracotta);
+      border-color: var(--terracotta);
+      margin-bottom: 1.25rem;
+    }
+
+    .base h2 {
+      font-size: clamp(3rem, 14vw, 5rem);
+      line-height: 0.9;
+      margin-bottom: 1.25rem;
+    }
+
+    .base p {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: var(--ocean-deep);
+      max-width: 36em;
+      margin: 0 auto;
+    }
+
+    /* ── Section common ── */
+    .sec {
+      padding: 4rem 1.25rem 4rem;
+    }
+
+    .sec-todo    { background: var(--cream); }
+    .sec-beaches { background: var(--cream-warm); }
+    .sec-trips   { background: var(--cream); }
+    .sec-dive    { background: var(--ocean-deep); color: var(--cream); }
+    .sec-getting { background: var(--cream-warm); }
+
+    .sec-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .sec-head .poster-stamp {
+      color: var(--ocean);
+      border-color: var(--ocean);
+      margin-bottom: 1.25rem;
+    }
+
+    .sec-dive .sec-head .poster-stamp {
+      color: var(--mustard);
+      border-color: var(--mustard);
+    }
+
+    .sec-head h2 {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+      line-height: 1;
+    }
+
+    .sec-head h2 em { font-style: italic; color: var(--terracotta); }
+    .sec-dive .sec-head h2 em { color: var(--mustard); }
+
+    .sec-sub {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .sub {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .sub:last-child { margin-bottom: 0; }
+
+    .sub-head {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1.5px solid var(--ocean);
+    }
+
+    .sec-dive .sub-head {
+      color: var(--mustard);
+      border-bottom-color: var(--mustard);
+    }
+
+    /* ── Activity items ── */
+    .items { display: grid; gap: 0.75rem; }
+
+    .item {
+      padding: 1.15rem 1.4rem;
+      background: var(--cream);
+      border: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .item.star { background: var(--mustard); }
+
+    .item-star {
+      position: absolute;
+      top: 0.65rem;
+      right: 0.9rem;
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--coral);
+      line-height: 1;
+    }
+
+    .item h4 {
+      font-size: 1.15rem;
+      line-height: 1.15;
+      margin-bottom: 0.3rem;
+      padding-right: 1.5rem;
+    }
+
+    .item p {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+
+    /* ── Menu (restaurants) ── */
+    .menu {
+      background: var(--cream);
+      border: 2px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);
+      padding: 1.25rem 1.4rem;
+    }
+
+    .menu-row {
+      padding: 0.85rem 0;
+      border-bottom: 1px dashed rgba(34,23,16,0.3);
+    }
+
+    .menu-row:last-child { border-bottom: none; }
+
+    .menu-row-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .menu-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .menu-name .star {
+      color: var(--terracotta);
+      margin-right: 0.2rem;
+    }
+
+    .menu-loc {
+      display: inline-block;
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 600;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      opacity: 0.7;
+      margin-left: 0.5rem;
+      transform: translateY(-1px);
+    }
+
+    .menu-rating {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ocean);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .menu-desc {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      opacity: 0.78;
+      margin-top: 0.25rem;
+    }
+
+    .menu-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      border: 1.5px dashed var(--terracotta);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--terracotta);
+      text-align: center;
+    }
+
+    .menu-note em {
+      font-style: normal;
+      font-weight: 900;
+    }
+
+    /* ── Beach island cards ── */
+    .islands { display: grid; gap: 1rem; }
+
+    .island {
+      background: var(--cream);
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      padding: 1.4rem 1.5rem;
+      position: relative;
+    }
+
+    .island.star { background: var(--mustard); }
+
+    .island h3 {
+      font-size: 1.4rem;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      padding-right: 1.75rem;
+    }
+
+    .island-meta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 0.6rem;
+    }
+
+    .island-meta span { padding-right: 0.75rem; border-right: 1.5px solid var(--ocean); }
+    .island-meta span:last-child { border-right: none; padding-right: 0; }
+
+    .island p {
+      font-size: 0.93rem;
+      line-height: 1.55;
+      opacity: 0.88;
+    }
+
+    /* ── Ferry board (vintage ticket) ── */
+    .ferry-board {
+      background: var(--ocean-deep);
+      color: var(--cream);
+      border: 2px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      margin: 2.5rem auto 1.5rem;
+      padding: 1.5rem 1.4rem;
+      max-width: 720px;
+    }
+
+    .ferry-board-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px dashed var(--mustard);
+      gap: 1rem;
+    }
+
+    .ferry-label {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mustard);
+    }
+
+    .ferry-cash {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.7rem;
+      border: 1.5px solid var(--mustard);
+      color: var(--mustard);
+      transform: rotate(-3deg);
+      display: inline-block;
+      letter-spacing: 0.05em;
+    }
+
+    .ferry-route { margin-bottom: 1.5rem; }
+    .ferry-route:last-child { margin-bottom: 0; }
+
+    .ferry-route-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .route-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--coral);
+      line-height: 1;
+    }
+
+    .route-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--cream);
+    }
+
+    .route-time {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      opacity: 0.85;
+      margin-left: auto;
+    }
+
+    .ferry-times {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    @media (min-width: 480px) {
+      .ferry-times { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    .ferry-times span {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 0.92rem;
+      padding: 0.4rem 0.3rem;
+      text-align: center;
+      background: var(--ocean);
+      color: var(--cream);
+      border: 1px solid var(--mustard);
+    }
+
+    .ferry-fare {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    /* ── Also on the water ── */
+    .water-extras {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.5rem 1.4rem;
+      background: var(--cream);
+      border: 2px solid var(--ink);
+    }
+
+    .water-extras h3 {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 1rem;
+    }
+
+    .water-extras ul {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .water-extras li {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .water-extras li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      color: var(--coral);
+      font-size: 0.7rem;
+    }
+
+    .water-extras li strong {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    /* ── Day trips ── */
+    .trips { display: grid; gap: 1rem; }
+
+    .trip {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 1.1rem;
+      padding: 1.25rem 1.4rem;
+      background: var(--cream);
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      position: relative;
+    }
+
+    .trip.star { background: var(--coral); color: var(--cream); }
+
+    .trip-dist {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      line-height: 1;
+      text-align: center;
+      padding: 0.6rem 0.2rem;
+      border: 2px solid currentColor;
+      align-self: start;
+    }
+
+    .trip-dist span {
+      display: block;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 0.2rem;
+      opacity: 0.85;
+    }
+
+    .trip h3 {
+      font-size: 1.3rem;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+      padding-right: 1.5rem;
+    }
+
+    .trip-sub {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .trip p {
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .closer {
+      max-width: 720px;
+      margin: 2.5rem auto 0;
+      padding-top: 1.75rem;
+      border-top: 1.5px dashed var(--ink);
+    }
+
+    .closer h3 {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .closer-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .closer-tag {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.45rem 0.95rem;
+      border: 1.5px solid var(--ocean-deep);
+      color: var(--ocean-deep);
+      background: var(--cream);
+      border-radius: 999px;
+    }
+
+    .closer-tag.star {
+      background: var(--mustard);
+      border-color: var(--ink);
+    }
+
+    /* ── Diving ── */
+    .dive-intro {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.55;
+      text-align: center;
+      color: var(--mustard);
+    }
+
+    .dive-stats {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .dive-stat {
+      padding: 1rem 0.5rem;
+      border: 1.5px solid var(--mustard);
+      text-align: center;
+    }
+
+    .dive-stat .v {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .dive-stat .k {
+      display: block;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mustard);
+      margin-top: 0.4rem;
+    }
+
+    .ops { display: grid; gap: 0.75rem; }
+
+    .op {
+      background: var(--ocean);
+      border: 1.5px solid var(--mustard);
+      padding: 1.1rem 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem 1rem;
+      align-items: baseline;
+    }
+
+    .op-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+
+    .op-dist {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      white-space: nowrap;
+    }
+
+    .op-note {
+      grid-column: 1 / -1;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+
+    .op.lead { background: var(--mustard); border-color: var(--ink); }
+    .op.lead .op-name { color: var(--ink); }
+    .op.lead .op-dist { color: var(--ocean-deep); }
+    .op.lead .op-note { color: var(--ink); opacity: 0.85; }
+
+    .dive-rules {
+      max-width: 720px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.25rem;
+      border: 1.5px dashed var(--mustard);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .dive-rules strong {
+      font-family: 'Inter Tight', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-right: 0.5rem;
+    }
+
+    /* ── Getting there ── */
+    .legs {
+      max-width: 600px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .leg {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr;
+      gap: 0.6rem 1rem;
+      align-items: baseline;
+      padding: 0.95rem 1.25rem;
+      background: var(--cream);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .leg-from, .leg-to {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+
+    .leg-arrow {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      color: var(--terracotta);
+    }
+
+    .leg-meta {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--ocean);
+      text-align: right;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ocean-deep);
+      color: var(--mustard);
+      text-align: center;
+      padding: 2.25rem 1.5rem;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    @media (min-width: 720px) {
+      .poster { padding: 3rem 2rem 4rem; }
+      .sec { padding: 5rem 2rem; }
+      .items { grid-template-columns: 1fr 1fr; }
+      .islands { grid-template-columns: 1fr 1fr 1fr; }
+      .trips { grid-template-columns: 1fr 1fr; }
+      .ops { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="poster">
+    <div class="poster-frame"></div>
+
+    <svg class="sunburst" viewBox="0 0 200 200">
+      <g fill="none" stroke="#E6B345" stroke-width="0.8" opacity="0.55">
+        <circle cx="100" cy="100" r="35"/>
+        <circle cx="100" cy="100" r="55"/>
+        <circle cx="100" cy="100" r="80"/>
+      </g>
+      <circle cx="100" cy="100" r="22" fill="#E6B345" opacity="0.85"/>
+      <g stroke="#E6B345" stroke-width="1.2" opacity="0.7">
+        <line x1="100" y1="10" x2="100" y2="40"/>
+        <line x1="100" y1="160" x2="100" y2="190"/>
+        <line x1="10" y1="100" x2="40" y2="100"/>
+        <line x1="160" y1="100" x2="190" y2="100"/>
+        <line x1="35" y1="35" x2="55" y2="55"/>
+        <line x1="145" y1="35" x2="165" y2="55"/>
+        <line x1="35" y1="165" x2="55" y2="145"/>
+        <line x1="145" y1="165" x2="165" y2="145"/>
+        <line x1="70" y1="15" x2="78" y2="42"/>
+        <line x1="130" y1="15" x2="122" y2="42"/>
+        <line x1="70" y1="185" x2="78" y2="158"/>
+        <line x1="130" y1="185" x2="122" y2="158"/>
+        <line x1="15" y1="70" x2="42" y2="78"/>
+        <line x1="15" y1="130" x2="42" y2="122"/>
+        <line x1="185" y1="70" x2="158" y2="78"/>
+        <line x1="185" y1="130" x2="158" y2="122"/>
+      </g>
+    </svg>
+
+    <svg class="waves" viewBox="0 0 1200 240" preserveAspectRatio="none">
+      <path d="M0,140 C150,90 300,190 450,140 C600,90 750,190 900,140 C1050,90 1150,180 1200,140 L1200,240 L0,240 Z" fill="#1F5B6E" opacity="0.7"/>
+      <path d="M0,180 C150,130 300,220 450,180 C600,130 750,220 900,180 C1050,140 1150,210 1200,180 L1200,240 L0,240 Z" fill="#C8542B" opacity="0.85"/>
+      <path d="M0,210 C200,180 400,235 600,210 C800,185 1000,235 1200,210 L1200,240 L0,240 Z" fill="#E6B345"/>
+    </svg>
+
+    <div class="poster-content">
+      <h1><span class="underline">Algarve</span><br><em>'26</em></h1>
+    </div>
+
+    <div class="poster-foot">
+      <div class="poster-dates">23 — 27 Jun</div>
+      <svg class="poster-seal" viewBox="0 0 100 100">
+        <defs>
+          <path id="circle" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/>
+        </defs>
+        <circle cx="50" cy="50" r="42" fill="none" stroke="#E6B345" stroke-width="1"/>
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#E6B345" stroke-width="1"/>
+        <text font-family="Fraunces, serif" font-weight="700" font-size="7" fill="#E6B345" letter-spacing="2">
+          <textPath href="#circle" startOffset="0">● TRAVELS ● ALGARVE ● MMXXVI ● PORTUGAL </textPath>
+        </text>
+        <text x="50" y="56" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-weight="900" font-size="22" fill="#E6B345">AL</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- BASE -->
+  <section class="base">
+    <span class="poster-stamp">The Base</span>
+    <h2>Olhão</h2>
+    <p>A working fishing town on the east Algarve — twin red-brick markets, cubist whitewashed houses with rooftop terraces, and the best Saturday market in the region.</p>
+  </section>
+
+  <!-- THINGS TO DO -->
+  <section class="sec sec-todo">
+    <div class="sec-head">
+      <span class="poster-stamp">★ The Menu</span>
+      <h2>Around town &amp; <em>at the table</em>.</h2>
+    </div>
+
+    <div class="sub">
+      <div class="sub-head">On foot from the base</div>
+      <div class="items">
+        <article class="item star">
+          <span class="item-star">★</span>
+          <h4>The twin markets</h4>
+          <p>Daily; Saturday is peak. Fish in one building, fruit &amp; veg in the other, stalls spilling out front. Go early.</p>
+        </article>
+        <article class="item">
+          <h4>Waterfront stroll</h4>
+          <p>Jardim Patrão Joaquim Lopes — palm-lined, ferries arriving and departing, evening drinks spot.</p>
+        </article>
+        <article class="item">
+          <h4>Wandering the cubist old town</h4>
+          <p>Barreta and Levante neighbourhoods. Narrow whitewashed lanes, tiled doorways, rooftop terraces.</p>
+        </article>
+        <article class="item">
+          <h4>Sunset from the villa rooftop</h4>
+          <p>Cubist architecture is built for this — most Olhão Airbnbs have private terraces.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-head">Eat &amp; drink</div>
+      <div class="menu">
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name"><span class="star">★</span>O Bistrô Dos Amigos</span>
+            <span class="menu-rating">4.9</span>
+          </div>
+          <div class="menu-desc">French / European, homey.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name"><span class="star">★</span>Vai e Volta</span>
+            <span class="menu-rating">4.7</span>
+          </div>
+          <div class="menu-desc">Grilled seafood, daily catches.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name"><span class="star">★</span>Maré Shrimp &amp; Stuff</span>
+            <span class="menu-rating">4.8</span>
+          </div>
+          <div class="menu-desc">Shrimp &amp; prawn specialist.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name"><span class="star">★</span>Taberna D'olhão</span>
+            <span class="menu-rating">4.8</span>
+          </div>
+          <div class="menu-desc">Tapas, octopus in garlic, pork cheeks. Old-town setting.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name">Café Snack Dominó</span>
+            <span class="menu-rating">4.8</span>
+          </div>
+          <div class="menu-desc">Budget Portuguese / Med, great desserts.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name">Petiscais</span>
+            <span class="menu-rating">4.7</span>
+          </div>
+          <div class="menu-desc">Mediterranean, tuna.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name">Restaurante Mosse</span>
+            <span class="menu-rating">4.6</span>
+          </div>
+          <div class="menu-desc">Creative seafood with a Med twist.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name">Chá Chá Chá</span>
+            <span class="menu-rating">4.4</span>
+          </div>
+          <div class="menu-desc">Seafood / Mediterranean.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name">Casa Corvo<span class="menu-loc">Fuseta · 10 min east</span></span>
+            <span class="menu-rating">4.8</span>
+          </div>
+          <div class="menu-desc">Whole fish, tuna.</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-line">
+            <span class="menu-name">À do Rui<span class="menu-loc">Fuseta</span></span>
+            <span class="menu-rating">4.6</span>
+          </div>
+          <div class="menu-desc">Premium seafood.</div>
+        </div>
+      </div>
+
+      <p class="menu-note">Order <em>cataplana</em> once. Grilled <em>sardinhas</em> are peak season. Find <em>polvo</em> in Santa Luzia.</p>
+    </div>
+  </section>
+
+  <!-- BEACHES -->
+  <section class="sec sec-beaches">
+    <div class="sec-head">
+      <span class="poster-stamp">Beaches</span>
+      <h2>Three islands. <em>One ferry terminal.</em></h2>
+    </div>
+
+    <div class="sub">
+      <div class="islands">
+        <article class="island star">
+          <span class="item-star">★</span>
+          <h3>Ilha da Armona</h3>
+          <div class="island-meta"><span>15 min ferry</span><span>€4.20 rtn</span></div>
+          <p>Classic Algarve beach on the ocean side, mostly empty even in June. Cafe and a few restaurants. The default beach day.</p>
+        </article>
+        <article class="island star">
+          <span class="item-star">★</span>
+          <h3>Ilha da Culatra + Farol</h3>
+          <div class="island-meta"><span>30–45 min</span><span>€4.80 rtn</span></div>
+          <p>Small fishing village to wander, then a short walk across to Praia do Farol with its lighthouse. Long, wild beach.</p>
+        </article>
+        <article class="island">
+          <h3>Ilha Deserta (Barreta)</h3>
+          <div class="island-meta"><span>Uninhabited</span></div>
+          <p>One of the only buildings is <strong>Estaminé</strong> — sustainable seafood, books up. Make it lunch.</p>
+        </article>
+      </div>
+
+      <div class="ferry-board">
+        <div class="ferry-board-head">
+          <span class="ferry-label">Departures · June</span>
+          <span class="ferry-cash">Cash only</span>
+        </div>
+
+        <div class="ferry-route">
+          <div class="ferry-route-head">
+            <span class="route-num">01</span>
+            <span class="route-name">Olhão → Armona</span>
+            <span class="route-time">15–20 min</span>
+          </div>
+          <div class="ferry-times">
+            <span>07:30</span><span>09:30</span><span>11:30</span><span>12:30</span>
+            <span>14:30</span><span>15:30</span><span>17:30</span><span>18:30</span><span>19:45</span>
+          </div>
+          <div class="ferry-fare">Adult return · €4.20</div>
+        </div>
+
+        <div class="ferry-route">
+          <div class="ferry-route-head">
+            <span class="route-num">02</span>
+            <span class="route-name">Olhão → Culatra → Farol</span>
+            <span class="route-time">30–45 min</span>
+          </div>
+          <div class="ferry-times">
+            <span>07:00</span><span>09:00</span><span>11:00</span><span>15:00</span><span>17:15</span><span>19:30</span>
+          </div>
+          <div class="ferry-fare">Adult return · €4.80</div>
+        </div>
+      </div>
+
+      <div class="water-extras">
+        <h3>Also on the water</h3>
+        <ul>
+          <li><strong>Ria Formosa boat tour</strong> — flat-water lagoon tour. Flamingos, spoonbills, fishermen on stilts.</li>
+          <li><strong>Kayak / SUP</strong> through lagoon channels — operators on the Olhão waterfront.</li>
+          <li><strong>Oyster tasting on a boat</strong> — local operators take you to working oyster beds; opened straight from the water with a glass of wine.</li>
+          <li><strong>Quinta de Marim</strong> — Ria Formosa visitor centre. Marsh boardwalks, old tide mill, salt pans. Low-key half-morning.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY TRIPS -->
+  <section class="sec sec-trips">
+    <div class="sec-head">
+      <span class="poster-stamp">Day Trips</span>
+      <h2>Further <em>afield</em>.</h2>
+    </div>
+
+    <div class="sub">
+      <div class="trips">
+        <article class="trip star">
+          <div class="trip-dist">1h<span>West</span></div>
+          <div>
+            <span class="item-star">★</span>
+            <h3>The cliff coast</h3>
+            <div class="trip-sub">Carvoeiro · Benagil · Marinha</div>
+            <p>The "iconic Algarve" day you don't get from Olhão. Sete Vales Suspensos clifftop walk before 10am. Benagil sea cave by boat / kayak / SUP — 2026 rules: guided tours only, no swimming in, no disembarking. Praia da Marinha for the afternoon.</p>
+          </div>
+        </article>
+
+        <article class="trip star">
+          <div class="trip-dist">2h<span>East</span></div>
+          <div>
+            <span class="item-star">★</span>
+            <h3>Seville</h3>
+            <div class="trip-sub">Spain · genuinely doable from Olhão</div>
+            <p>Tapas, alcázar, cathedral, Plaza de España. One full-on day but memorable. Wouldn't be possible from Lagos.</p>
+          </div>
+        </article>
+
+        <article class="trip">
+          <div class="trip-dist">2h<span>West</span></div>
+          <div>
+            <h3>Sagres &amp; Cape St. Vincent</h3>
+            <div class="trip-sub">Mainland Europe's southwest tip</div>
+            <p>Dramatic cliffs, surfer beaches (Amado, Bordeira), fortress, sunset at the cape. Long day but high-impact.</p>
+          </div>
+        </article>
+
+        <article class="trip">
+          <div class="trip-dist">1h45<span>Inland</span></div>
+          <div>
+            <h3>Monchique mountains</h3>
+            <div class="trip-sub">Cool air, thermal springs, big views</div>
+            <p>Caldas de Monchique thermal springs, sweeping coast views from Fóia. Good antidote to beach saturation. <em>Not on the dive day — altitude rule.</em></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="closer">
+        <h3>Closer in — 30–45 min</h3>
+        <div class="closer-list">
+          <span class="closer-tag star">★ Tavira</span>
+          <span class="closer-tag">Santa Luzia · polvo</span>
+          <span class="closer-tag">Cabanas</span>
+          <span class="closer-tag">Loulé Sat market</span>
+          <span class="closer-tag">Estoi · Milreu</span>
+          <span class="closer-tag">Faro old town</span>
+          <span class="closer-tag">Silves · castle</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVING -->
+  <section class="sec sec-dive">
+    <div class="sec-head">
+      <span class="poster-stamp">Diving</span>
+      <h2>One <em>discovery dive</em>.</h2>
+      <div class="sec-sub">Jason &amp; Victor</div>
+    </div>
+
+    <p class="dive-intro">Shallow reef, half-morning, no certification needed. Briefing, kit, skills, one boat dive, debrief.</p>
+
+    <div class="dive-stats">
+      <div class="dive-stat"><span class="v">~ 12 m</span><span class="k">Depth</span></div>
+      <div class="dive-stat"><span class="v">½ morning</span><span class="k">Time</span></div>
+      <div class="dive-stat"><span class="v">€ 125 pp</span><span class="k">Price</span></div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-head">Operator shortlist</div>
+      <div class="ops">
+        <article class="op lead">
+          <div class="op-name">Tuna Dive Tours</div>
+          <div class="op-dist">Olhão · 0 min</div>
+          <div class="op-note">Closest — walk from the villa. Worth a call for availability.</div>
+        </article>
+        <article class="op">
+          <div class="op-name">Hidroespaço</div>
+          <div class="op-dist">Faro · ~15 min</div>
+          <div class="op-note">Long-established, strong reviews, good for first-timers.</div>
+        </article>
+        <article class="op">
+          <div class="op-name">Openwaters Diving Center</div>
+          <div class="op-dist">Quarteira · ~30 min</div>
+          <div class="op-note">Another solid PADI option.</div>
+        </article>
+        <article class="op">
+          <div class="op-name">Algarve Divexperience</div>
+          <div class="op-dist">Carvoeiro · ~50 min</div>
+          <div class="op-note">5-star PADI resort. Pairs naturally with a cliff-coast day.</div>
+        </article>
+      </div>
+    </div>
+
+    <div class="dive-rules">
+      <strong>Don't:</strong> dive on the return-flight day (12-hr no-fly rule), or pair with a Monchique day (altitude rule).
+    </div>
+  </section>
+
+  <!-- GETTING THERE -->
+  <section class="sec sec-getting">
+    <div class="sec-head">
+      <span class="poster-stamp">Getting there</span>
+      <h2>Two flights, <em>15 min east</em>.</h2>
+    </div>
+
+    <div class="legs">
+      <div class="leg">
+        <span class="leg-from">AMS</span>
+        <span class="leg-arrow">→</span>
+        <span class="leg-to">FAO</span>
+        <span class="leg-meta">~3h 15 · four of us</span>
+      </div>
+      <div class="leg">
+        <span class="leg-from">MAN</span>
+        <span class="leg-arrow">→</span>
+        <span class="leg-to">FAO</span>
+        <span class="leg-meta">~2h 50 · Victor</span>
+      </div>
+      <div class="leg">
+        <span class="leg-from">FAO</span>
+        <span class="leg-arrow">→</span>
+        <span class="leg-to">Olhão</span>
+        <span class="leg-meta">15 min · one car</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Boa viagem.
+  </footer>
+
+</body>
+</html>
