@@ -54,7 +54,7 @@ export const legs = [
       { name: 'Main Camp', dates: 'Sun 13 Dec · 1 night', status: 'booked', details: ['SANParks RR776219', 'Check-in 14:00 · check-out 10:00', 'Gate closes 19:00'] },
       { name: 'Nyathi', dates: 'Mon 14 – Wed 16 Dec · 2 nights', status: 'booked', details: [{ text: 'No phone signal or Wi-Fi', warning: true }, 'SANParks RR776219', 'Check-in 14:00 · check-out 10:00', 'Gate open 06:00–18:00', 'Self-catering'] },
     ],
-    plans: [{ text: 'Guided game drive, Sun evening or Mon morning', status: 'todo', detail: 'Takes ~2 hours. Night drive: best for lions, hyenas, jackals. Sunrise: animals most active.' }, 'Self-drives through the park'],
+    plans: [{ text: 'Guided game drive, Sun evening or Mon morning', status: 'todo', detail: 'Three options: sunrise (05:30), sunset (17:30) or night (19:30), ~2 hours each. Book ahead and check in 30 min before. Night: best for lions, hyenas, jackals. Sunrise: animals most active.' }, 'Self-drives through the park'],
     notes: ['Buy food and supplies before Addo: Nyathi is self-catering'],
   },
   {
@@ -132,7 +132,7 @@ export const todos = [
     group: 'addo',
     items: [
       { done: true, what: 'Book Main Camp + Nyathi', when: 'Sun 13 – Wed 16 Dec', note: 'SANParks RR776219' },
-      { what: 'Book Addo game drive', when: 'Sun 13 eve or Mon 14 morning', note: 'With SANParks, from Main Camp' },
+      { what: 'Book Addo game drive', when: 'Sun 13 eve or Mon 14 morning', note: 'Sunrise 05:30, sunset 17:30 or night 19:30 · check in 30 min before' },
     ],
   },
   {

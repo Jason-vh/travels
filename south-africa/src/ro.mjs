@@ -61,8 +61,8 @@ export const ro = {
   'Gate open 06:00–18:00': 'Poarta e deschisă 06:00–18:00',
   'Self-catering': 'Gătim singuri',
   'Guided game drive, Sun evening or Mon morning': 'Safari cu ghid, duminică seara sau luni dimineața',
-  'Takes ~2 hours. Night drive: best for lions, hyenas, jackals. Sunrise: animals most active.':
-    'Durează ~2 ore. Seara: cele mai mari șanse pentru lei, hiene și șacali. La răsărit: animalele sunt cele mai active.',
+  'Three options: sunrise (05:30), sunset (17:30) or night (19:30), ~2 hours each. Book ahead and check in 30 min before. Night: best for lions, hyenas, jackals. Sunrise: animals most active.':
+    'Trei variante: la răsărit (05:30), la apus (17:30) sau noaptea (19:30), ~2 ore fiecare. Rezervăm din timp și facem check-in cu 30 min înainte. Noaptea: cele mai mari șanse pentru lei, hiene și șacali. La răsărit: animalele sunt cele mai active.',
   'Self-drives through the park': 'Safari prin parc cu mașina noastră',
   'Buy food and supplies before Addo: Nyathi is self-catering': 'Cumpărăm mâncare și provizii înainte de Addo: la Nyathi gătim singuri',
   '~125 km / 2h drive from Nyathi (Addo)': '~125 km / 2 ore de condus din Nyathi (Addo)',
@@ -141,7 +141,7 @@ export const ro = {
   'Sun 13 – Wed 16 Dec': 'dum. 13 – mie. 16 dec.',
   'Book Addo game drive': 'Rezervă safariul în Addo',
   'Sun 13 eve or Mon 14 morning': 'dum. 13 seara sau lun. 14 dimineața',
-  'With SANParks, from Main Camp': 'Prin SANParks, de la Main Camp',
+  'Sunrise 05:30, sunset 17:30 or night 19:30 · check in 30 min before': 'Răsărit 05:30, apus 17:30 sau noapte 19:30 · check-in cu 30 min înainte',
   'Book Cannon Rocks stay': 'Rezervă cazarea în Cannon Rocks',
   'Wed 16 – Sat 19 Dec': 'mie. 16 – sâm. 19 dec.',
   '3 nights, or Kenton-on-Sea': '3 nopți, sau Kenton-on-Sea',
