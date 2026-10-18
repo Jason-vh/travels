@@ -162,7 +162,12 @@
     text-decoration: none;
     transition: transform .15s, box-shadow .15s;
   }
-  .leg:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  @media (hover: hover) and (min-width: 641px) {
+    .leg:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  }
+  @media not ((hover: hover) and (min-width: 641px)) {
+    .leg { cursor: default; -webkit-tap-highlight-color: transparent; }
+  }
   .leg > :not(.art) { position: relative; }
   .leg .art {
     position: absolute;
@@ -1055,8 +1060,13 @@ addEventListener('resize', renderInset);
 /* ---------- hover linking ---------- */
 
 const wrap = document.querySelector('.wrap');
+const interactiveCards = matchMedia('(hover: hover) and (min-width: 641px)');
 document.querySelectorAll('.leg').forEach(card => {
+  card.addEventListener('click', event => {
+    if (!interactiveCards.matches) event.preventDefault();
+  });
   card.addEventListener('mouseenter', () => {
+    if (!interactiveCards.matches) return;
     wrap.classList.add('focus');
     document.querySelectorAll(`[data-leg~="${card.dataset.leg}"]`).forEach(el => el.classList.add('hot'));
   });
