@@ -202,33 +202,7 @@ function describeDay(date) {
 }
 
 function christmasScene() {
-  const stars = [[18, 10], [34, 22], [52, 7], [70, 16], [88, 6], [104, 24], [122, 11], [61, 30], [9, 28], [96, 34]]
-    .map(([x, y], i) => `<circle class="star" cx="${x}" cy="${y}" r="${i % 3 ? .7 : 1.1}" style="animation-delay:${(i * .37) % 2.6}s"/>`).join('');
-  const lightColors = ['#f2a33a', '#f07a4f', '#fbf0d2', '#8fd0d4'];
-  const lights = [[128, 62], [138, 60], [124, 74], [135, 72], [146, 70], [121, 86], [131, 85], [142, 84], [151, 82]]
-    .map(([x, y], i) => `<circle class="bulb" cx="${x}" cy="${y}" r="1.5" fill="${lightColors[i % 4]}" style="animation-delay:${(i * .53) % 2.4}s"/>`).join('');
-  return `<svg class="scene" viewBox="0 0 160 100" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="xmas-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#1c1a33"/>
-        <stop offset=".65" stop-color="#4a2d4f"/>
-        <stop offset="1" stop-color="#7a4560"/>
-      </linearGradient>
-      <mask id="xmas-moon"><rect width="160" height="100" fill="#fff"/><circle cx="115" cy="33.8" r="5.3" fill="#000"/></mask>
-      <radialGradient id="xmas-glow"><stop offset="0" stop-color="#f2a33a" stop-opacity=".55"/><stop offset="1" stop-color="#f2a33a" stop-opacity="0"/></radialGradient>
-    </defs>
-    <rect width="160" height="100" fill="url(#xmas-sky)"/>
-    <g fill="#fbf0d2">${stars}</g>
-    <path class="shooting" d="M40 6 l14 6" stroke="#fbf0d2" stroke-width=".8" stroke-linecap="round"/>
-    <circle cx="112" cy="36" r="6" fill="#f6dfa8" mask="url(#xmas-moon)"/>
-    <path d="M0 78 Q30 64 62 74 T120 70 T160 66 V100 H0Z" fill="#3a2440"/>
-    <path d="M0 88 Q40 80 80 86 T160 82 V100 H0Z" fill="#1f2a24"/>
-    <circle class="tree-glow" cx="136" cy="74" r="22" fill="url(#xmas-glow)"/>
-    <path d="M136 50 L150 70 L144 70 L155 86 L117 86 L128 70 L122 70 Z" fill="#2f5a3e"/>
-    <rect x="133.5" y="86" width="5" height="5" fill="#5a3b2a"/>
-    ${lights}
-    <path class="topper" d="M136 44.5 l1.4 3 3.2 .3 -2.4 2.1 .8 3.1 -3-1.7 -3 1.7 .8-3.1 -2.4-2.1 3.2-.3Z" fill="#f2a33a"/>
-  </svg>`;
+  return '<div class="scene" aria-hidden="true"></div>';
 }
 
 function renderCalendar() {
