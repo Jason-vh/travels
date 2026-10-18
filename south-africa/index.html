@@ -259,6 +259,7 @@
     text-transform: uppercase;
     vertical-align: 3px;
   }
+  .block a, .todo .note a { color: inherit; text-decoration: underline; text-decoration-color: var(--clay); text-underline-offset: 2px; }
   .block li .detail { color: var(--muted); font-size: 12.5px; }
   .chip.booked { background: #3f6b4a; border-color: #3f6b4a; color: var(--paper); }
   .chip.paid { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px 1px 6px; background: #3f6b4a; border-color: #3f6b4a; color: var(--paper); }
@@ -773,7 +774,7 @@
     <div class="blocks">
       <div class="column">
         <div class="block getting"><h4>Getting there</h4><ul><li>Land Sunday evening</li></ul></div>
-        <div class="block plans"><h4>Plans</h4><ul><li>Fri evening: Stellenbosch wine farm, sunset and dinner<span class="status is-todo">To book</span><div class="detail">By Uber, ~45 min each way. Sunset ~19:55.</div></li></ul></div>
+        <div class="block plans"><h4>Plans</h4><ul><li>Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a><span class="status is-todo">To book</span><div class="detail">Farm restaurant in the Winelands. By Uber, ~45 min each way. Book early: reservations open months ahead.</div></li></ul></div>
         
       </div>
       <div class="column">
@@ -917,7 +918,7 @@
     <h3 class="todo-group"><i style="background:#2f7f8a"></i>Cape Town</h3>
     <ul class="todo">
       <li><span class="what">Book Joburg → Cape Town flights</span><span class="when">Sun 6 Dec, evening</span><span class="note"></span><span class="assignee"></span></li>
-      <li><span class="what">Book Stellenbosch dinner</span><span class="when">Fri 11 Dec, evening</span><span class="note">Wine farm with a sunset view</span><span class="assignee"></span></li>
+      <li><span class="what">Book Babylonstoren dinner</span><span class="when">Fri 11 Dec, evening</span><span class="note"><a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a></span><span class="assignee"></span></li>
       <li><span class="what">Book Cape Town stay</span><span class="when">Sun 6 – Sat 12 Dec</span><span class="note">6 nights, good Wi-Fi for the work week</span><span class="assignee"></span></li>
       <li><span class="what">Book Cape Town car rental</span><span class="when">Sat 12 – Sat 19 Dec</span><span class="note">One way, drop off at Gqeberha</span><span class="assignee"></span></li>
     </ul>
@@ -944,8 +945,8 @@
   <section>
     <h2>Budget</h2>
     <div class="budget-summary">
-  <div><span class="label">Total</span><b>€6,914</b><small>R127,900</small></div>
-  <div><span class="label">Each</span><b>€3,457</b><small>R63,950</small></div>
+  <div><span class="label">Total</span><b>€6,935</b><small>R128,300</small></div>
+  <div><span class="label">Each</span><b>€3,468</b><small>R64,150</small></div>
   <div><span class="label">Paid</span><b>€2,510.19</b><small>R46,440</small></div></div>
     <ul class="budget"><li class="actual">
     <div><div class="what">Flights Amsterdam ⇄ Joburg</div><div class="detail">Return via Zurich, 2 people</div></div>
@@ -960,9 +961,9 @@
     <div class="payer"></div>
     <div class="amount"><b>~€811</b><small>R15,000</small></div>
   </li><li class="estimate">
-    <div><div class="what">Stellenbosch evening</div><div class="detail">Dinner + Uber both ways</div></div>
+    <div><div class="what">Babylonstoren dinner</div><div class="detail">Babel, plus Uber both ways</div></div>
     <div class="payer"></div>
-    <div class="amount"><b>~€119</b><small>R2,200</small></div>
+    <div class="amount"><b>~€141</b><small>R2,600</small></div>
   </li><li class="estimate">
     <div><div class="what">Cape Town car rental</div><div class="detail">7 days, including one-way fee</div></div>
     <div class="payer"></div>

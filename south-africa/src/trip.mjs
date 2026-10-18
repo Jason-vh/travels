@@ -35,7 +35,7 @@ export const legs = [
     from: 6, to: 12, move: 'fly',
     getting: ['Land Sunday evening'],
     stay: null,
-    plans: [{ text: 'Fri evening: Stellenbosch wine farm, sunset and dinner', status: 'todo', detail: 'By Uber, ~45 min each way. Sunset ~19:55.' }],
+    plans: [{ text: 'Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>', status: 'todo', detail: 'Farm restaurant in the Winelands. By Uber, ~45 min each way. Book early: reservations open months ahead.' }],
     notes: ['Working Mon 7 – Fri 11'],
   },
   {
@@ -82,7 +82,7 @@ export const budget = [
   { item: 'Flights Amsterdam ⇄ Joburg', detail: 'Return via Zurich, 2 people', estimate: 2000, actual: 1927.74, currency: 'EUR', paidBy: 'Jason' },
   { item: 'Flight Joburg → Cape Town', detail: 'Sun 6 Dec, 2 people', estimate: 4000 },
   { item: 'Cape Town stay', detail: '6 nights', estimate: 15000 },
-  { item: 'Stellenbosch evening', detail: 'Dinner + Uber both ways', estimate: 2200 },
+  { item: 'Babylonstoren dinner', detail: 'Babel, plus Uber both ways', estimate: 2600 },
   { item: 'Cape Town car rental', detail: '7 days, including one-way fee', estimate: 7000 },
   { item: 'Fuel, Cape Town → Gqeberha', detail: '~1,300 km', estimate: 2200 },
   { item: 'Wilderness or Knysna', detail: '1 night', estimate: 1800 },
@@ -116,7 +116,7 @@ export const todos = [
     group: 'cpt',
     items: [
       { what: 'Book Joburg → Cape Town flights', when: 'Sun 6 Dec, evening' },
-      { what: 'Book Stellenbosch dinner', when: 'Fri 11 Dec, evening', note: 'Wine farm with a sunset view' },
+      { what: 'Book Babylonstoren dinner', when: 'Fri 11 Dec, evening', note: '<a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>' },
       { what: 'Book Cape Town stay', when: 'Sun 6 – Sat 12 Dec', note: '6 nights, good Wi-Fi for the work week' },
       { what: 'Book Cape Town car rental', when: 'Sat 12 – Sat 19 Dec', note: 'One way, drop off at Gqeberha' },
     ],
