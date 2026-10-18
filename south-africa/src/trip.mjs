@@ -33,9 +33,9 @@ export const legs = [
   {
     id: 'cpt', place: 'cpt', name: 'Cape Town', color: '#2f7f8a', art: 'cape-town',
     from: 6, to: 12, move: 'fly',
-    getting: ['Land Sunday morning'],
+    getting: ['Land Sunday morning', 'Pick up the rental car at the airport'],
     stay: null,
-    plans: [{ text: 'Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>', status: 'todo', detail: 'Farm restaurant in the Winelands, ~1h each way. Go a bit earlier if we can: the garden closes at 18:00.' }, 'Table Mountain cableway'],
+    plans: [{ text: 'Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>', status: 'todo', detail: 'Farm restaurant in the Winelands, ~1h each way. Go a bit earlier if we can: the garden closes at 18:00.' }, 'Table Mountain cableway', 'Chapman’s Peak Drive'],
     notes: ['Working Mon 7 – Fri 11'],
   },
   {
@@ -83,7 +83,7 @@ export const budget = [
   { item: 'Flight Joburg → Cape Town', detail: 'Sun 6 Dec, 2 people', estimate: 4000 },
   { item: 'Cape Town stay', detail: '6 nights', estimate: 15000 },
   { item: 'Babylonstoren dinner', detail: 'Babel set menu, wine and tip, plus transport both ways', estimate: 4800 },
-  { item: 'Cape Town car rental', detail: '7 days, including one-way fee', estimate: 7000 },
+  { item: 'Car rental', detail: '13 days, Cape Town → Gqeberha, including one-way fee', estimate: 10500 },
   { item: 'Fuel, Cape Town → Gqeberha', detail: '~1,300 km', estimate: 2800 },
   { item: 'Knysna stay', detail: '1 night', estimate: 1800 },
   { item: 'Addo: Main Camp + Nyathi', detail: '3 nights + park fees · SANParks RR776219', estimate: 420, actual: 582.45, currency: 'EUR', paidBy: 'Jason' },
@@ -119,7 +119,7 @@ export const todos = [
       { what: 'Book Babylonstoren dinner', when: 'Fri 11 Dec, evening', note: '<a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>' },
       { what: 'Book transport to and from Babylonstoren', when: 'Fri 11 Dec', note: '~1h each way' },
       { what: 'Book Cape Town stay', when: 'Sun 6 – Sat 12 Dec', note: '6 nights, good Wi-Fi for the work week' },
-      { what: 'Book Cape Town car rental', when: 'Sat 12 – Sat 19 Dec', note: 'One way, drop off at Gqeberha' },
+      { what: 'Book car rental', when: 'Sun 6 – Sat 19 Dec', note: 'Pick up at Cape Town airport, one way to Gqeberha' },
     ],
   },
   {
