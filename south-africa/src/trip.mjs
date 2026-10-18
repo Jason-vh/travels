@@ -23,7 +23,7 @@ export const tickets = {
 
 export const legs = [
   {
-    id: 'arrive', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'images/joburg.jpg',
+    id: 'arrive', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'joburg',
     from: 5, to: 6, move: 'land',
     getting: ['Land at OR Tambo Sat 10:00'],
     stay: [{ name: 'With family', dates: 'Sat 5 Dec · 1 night', status: 'family', details: [] }],
@@ -31,7 +31,7 @@ export const legs = [
     notes: ['Sun morning: fly on to Cape Town'],
   },
   {
-    id: 'cpt', place: 'cpt', name: 'Cape Town', color: '#2f7f8a', art: 'images/cape-town.jpg',
+    id: 'cpt', place: 'cpt', name: 'Cape Town', color: '#2f7f8a', art: 'cape-town',
     from: 6, to: 12, move: 'fly',
     getting: ['Land Sunday morning'],
     stay: null,
@@ -39,7 +39,7 @@ export const legs = [
     notes: ['Working Mon 7 – Fri 11'],
   },
   {
-    id: 'gr', place: 'gr', name: 'Garden Route', color: '#3f6b4a', art: 'images/garden-route.jpg',
+    id: 'gr', place: 'gr', name: 'Garden Route', color: '#3f6b4a', art: 'garden-route',
     from: 12, to: 13, move: 'drive',
     getting: ['~490 km / 5½h drive from Cape Town'],
     stay: [{ name: 'Knysna', dates: 'Sat 12 Dec · 1 night', status: 'todo', details: ['Or Plettenberg Bay, 30 min further'] }],
@@ -47,7 +47,7 @@ export const legs = [
     notes: ['Aim to be at Addo by ~16:00'],
   },
   {
-    id: 'addo', place: 'addo', name: 'Addo', color: '#c4512a', art: 'images/addo.jpg',
+    id: 'addo', place: 'addo', name: 'Addo', color: '#c4512a', art: 'addo',
     from: 13, to: 16, move: 'drive',
     getting: ['~310 km / 4h drive from Knysna'],
     stay: [
@@ -58,7 +58,7 @@ export const legs = [
     notes: ['Buy food and supplies before Addo: Nyathi is self-catering'],
   },
   {
-    id: 'cr', place: 'cr', name: 'Cannon Rocks', color: '#d98e1f', art: 'images/cannon-rocks.jpg',
+    id: 'cr', place: 'cr', name: 'Cannon Rocks', color: '#d98e1f', art: 'cannon-rocks',
     from: 16, to: 19, move: 'drive',
     getting: ['~125 km / 2h drive from Nyathi (Addo)'],
     stay: [{ name: 'Cannon Rocks or Kenton-on-Sea', dates: 'Wed 16 – Sat 19 Dec · 3 nights', status: 'todo', details: ['Self-catering'] }],
@@ -66,7 +66,7 @@ export const legs = [
     notes: ['Small shops only: Kenton-on-Sea is 15 min away'],
   },
   {
-    id: 'xmas', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'images/christmas.jpg',
+    id: 'xmas', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'christmas',
     from: 19, to: 27, move: 'fly',
     getting: ['~135 km / 1½h drive from Cannon Rocks to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · ~1h45', status: 'todo' }],
     stay: [{ name: 'Airbnb in Boksburg', dates: 'Sat 19 – Sun 27 Dec · 8 nights', status: 'todo', details: [] }],

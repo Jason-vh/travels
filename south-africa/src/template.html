@@ -7,10 +7,83 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#f3e9d6">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    font-display: swap;
+    src: url('fonts/dm-sans-normal-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    font-display: swap;
+    src: url('fonts/dm-sans-normal-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/fraunces-italic-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/fraunces-italic-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/fraunces-normal-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/fraunces-normal-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Fraunces fallback';
+    src: local('Georgia Bold'), local('Georgia-Bold'), local('Times New Roman Bold');
+    size-adjust: 96.7%;
+    ascent-override: 101.14%;
+    descent-override: 26.37%;
+    line-gap-override: 0%;
+  }
+  @font-face {
+    font-family: 'Fraunces fallback';
+    font-style: italic;
+    src: local('Georgia Italic'), local('Georgia-Italic'), local('Times New Roman Italic');
+    size-adjust: 95.21%;
+    ascent-override: 102.72%;
+    descent-override: 26.78%;
+    line-gap-override: 0%;
+  }
+  @font-face {
+    font-family: 'DM Sans fallback';
+    src: local('Arial'), local('ArialMT'), local('Helvetica');
+    size-adjust: 103.75%;
+    ascent-override: 95.61%;
+    descent-override: 29.88%;
+    line-gap-override: 0%;
+  }
+
   :root {
     --paper: #f3e9d6;
     --sand: #e8d6b0;
@@ -20,7 +93,7 @@
     --clay: #d4572b;
     --rust: #9c3b1e;
     --plum: #6b3f5e;
-    --body-font: 'DM Sans', system-ui, sans-serif;
+    --body-font: 'DM Sans', 'DM Sans fallback', system-ui, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,7 +115,7 @@
     color: var(--muted);
   }
 
-  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 900; letter-spacing: -.02em; }
+  h1, h2, h3 { font-family: 'Fraunces', 'Fraunces fallback', Georgia, serif; font-weight: 900; letter-spacing: -.02em; }
 
   header {
     display: flex;
@@ -67,7 +140,7 @@
   h1 em { font-style: italic; font-weight: 400; color: var(--clay); }
 
   .stats { margin-left: auto; text-align: right; }
-  .stats b { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; }
+  .stats b { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 28px; font-weight: 700; }
 
 
   .ticket {
@@ -112,18 +185,19 @@
     justify-content: center;
     text-align: center;
   }
-  .ticket .route { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 900; line-height: 1.1; }
+  .ticket .route { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 30px; font-weight: 900; line-height: 1.1; }
   .ticket .route span { display: inline-block; color: #2f7f8a; font-family: var(--body-font); font-weight: 500; font-size: .8em; vertical-align: .12em; }
   .ticket .legs-list { font-size: 14px; line-height: 1.7; }
   .ticket .legs-list div { display: grid; grid-template-columns: 64px 100px auto; }
   .ticket .legs-list small { color: var(--muted); }
-  .ticket .stub b { font-family: 'Fraunces', serif; font-size: 26px; line-height: 1; }
+  .ticket .stub b { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 26px; line-height: 1; }
 
   main { margin-top: 32px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
 
   .map { position: sticky; top: 24px; grid-column: 1; grid-row: 1; }
   .legs { grid-column: 2; grid-row: 1; }
   .map svg { width: 100%; height: auto; display: block; }
+  .map-geometry { position: absolute; width: 0; height: 0; overflow: hidden; }
   .map-mobile, .inset-stacked { display: none !important; }
   .flight { fill: none; stroke: #1f2a24; stroke-linecap: round; animation: fly 1.2s linear infinite; }
   @keyframes fly { to { stroke-dashoffset: calc(var(--dash-cycle) * 1px); } }
@@ -148,7 +222,7 @@
     display: grid;
     place-items: center;
     color: var(--paper);
-    font-family: 'Fraunces', serif;
+    font-family: 'Fraunces', 'Fraunces fallback', serif;
     font-size: 22px;
     font-weight: 900;
     border: 2px solid var(--ink);
@@ -180,10 +254,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
     width: 55%;
-    background-size: cover;
-    background-position: right center;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
     -webkit-mask-image: linear-gradient(to right, transparent 5%, rgba(0, 0, 0, .5) 35%, #000 75%);
     mask-image: linear-gradient(to right, transparent 5%, rgba(0, 0, 0, .5) 35%, #000 75%);
   }
@@ -201,9 +275,11 @@
     scroll-margin-top: 16px;
   }
   .stop-art {
+    display: block;
+    width: 100%;
     height: 240px;
-    background-size: cover;
-    background-position: right center;
+    object-fit: cover;
+    object-position: right center;
     -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
     mask-image: linear-gradient(to bottom, #000 55%, transparent);
   }
@@ -244,7 +320,7 @@
   .status.is-booked { background: #3f6b4a; border-color: #3f6b4a; color: var(--paper); }
   .status.is-todo { color: var(--clay); }
   .stay + .stay { margin-top: 14px; }
-  .stay .name { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 700; line-height: 1.2; }
+  .stay .name { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 19px; font-weight: 700; line-height: 1.2; }
   .stay .dates { font-weight: 700; font-size: 13px; margin: 2px 0 4px; }
   .stay ul { color: var(--muted); font-size: 13px; }
   .chip {
@@ -307,7 +383,7 @@
   }
   .day .day-icon { position: absolute; right: 9px; bottom: 8px; width: 18px; height: 18px; color: var(--paper); }
   .day.off { background: transparent; color: var(--muted); border: 2px dashed #c9bb9c; }
-  .day .num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 900; line-height: 1; }
+  .day .num { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 26px; font-weight: 900; line-height: 1; }
   .day .num small { font-family: var(--body-font); font-size: 10px; font-weight: 400; margin-left: 4px; opacity: .8; }
   .day .note { font-size: 10.5px; line-height: 1.3; margin-top: 6px; text-transform: uppercase; letter-spacing: .06em; }
   .day.christmas .num, .day.christmas .note { color: #fbf5e9; }
@@ -317,7 +393,7 @@
   .day .scene {
     position: absolute;
     inset: 0;
-    background: url('images/christmas-night.jpg') 72% 60% / cover;
+    background: url('images/christmas-night.webp') 72% 60% / cover;
   }
   .day .mini { width: 13px; height: 13px; vertical-align: -2px; margin-right: 5px; }
 
@@ -327,11 +403,11 @@
 
   .budget-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 8px; }
   .budget-summary div { padding: 12px 14px; border: 2px solid var(--ink); border-radius: 12px; background: #fbf5e9; }
-  .budget-summary b { display: block; font-family: 'Fraunces', serif; font-size: 28px; line-height: 1.1; }
+  .budget-summary b { display: block; font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 28px; line-height: 1.1; }
   .budget-summary small { color: var(--muted); font-size: 12px; }
   .budget { list-style: none; border-top: 3px solid var(--ink); }
   .budget li { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: start; padding: 11px 0; border-bottom: 1.5px dashed #c9bb9c; }
-  .budget .what { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; }
+  .budget .what { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 18px; font-weight: 700; }
   .budget .chip.paid { margin-left: 0; padding: 0 8px 0 6px; font-size: 11px; line-height: 19px; letter-spacing: .06em; }
   .budget .chip.paid svg { width: 14px; height: 14px; }
   .budget .detail { color: var(--muted); font-size: 12.5px; }
@@ -373,7 +449,7 @@
     border-radius: 4px;
     align-self: center;
   }
-  .todo .what { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 700; }
+  .todo .what { font-family: 'Fraunces', 'Fraunces fallback', serif; font-size: 19px; font-weight: 700; }
   .todo .when { font-weight: 700; }
   .todo .note { color: var(--muted); font-size: 13px; }
   .todo .assignee { text-align: right; }

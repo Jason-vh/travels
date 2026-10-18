@@ -41,7 +41,7 @@ const when = leg => `${dayName(leg.from)} ${leg.from} – ${dayName(leg.to)} ${l
 function renderLegs() {
   return legs.map(leg => `
   <a class="leg" href="#stop-${leg.id}" data-leg="${leg.id}">
-    <div class="art" style="background-image:url('${leg.art}')"></div>
+    <img class="art" src="images/${leg.art}-640.webp" width="640" height="427" alt="" decoding="async">
     <div class="side">
       <div class="badge" style="background:${leg.color}">${legNumber(leg)}</div>
     </div>
@@ -96,8 +96,8 @@ function ticket({ art, route, flights: legsFlown, month, day }) {
   <div class="stop-ticket">
     <div class="ticket">
       <div class="main">
-        <div class="flight-art" style="background-image:url('images/${art}.jpg')" aria-hidden="true"></div>
-        <img class="airline" src="images/swiss.svg" alt="SWISS">
+        <div class="flight-art" style="background-image:url('images/${art}.webp')" aria-hidden="true"></div>
+        <img class="airline" src="images/swiss.svg" width="52" height="12" alt="SWISS">
         <div class="route">${route.join(' <span>→</span> ')}</div>
         <div class="legs-list">${rows}</div>
       </div>
@@ -106,10 +106,12 @@ function ticket({ art, route, flights: legsFlown, month, day }) {
   </div>`;
 }
 
+const artSrcset = name => [640, 1024, 1536].map(width => `images/${name}-${width}.webp ${width}w`).join(', ');
+
 function renderStops() {
   const stops = legs.map(leg => `
   <article class="stop" id="stop-${leg.id}">
-    <div class="stop-art" style="background-image:url('${leg.art}')"></div>
+    <img class="stop-art" src="images/${leg.art}-1024.webp" srcset="${artSrcset(leg.art)}" sizes="(max-width: 640px) 100vw, 1180px" width="1536" height="1024" alt="" loading="lazy" decoding="async">
     <div class="stop-head">
       <div class="badge" style="background:${leg.color}">${legNumber(leg)}</div>
       <div>
@@ -245,7 +247,7 @@ function marker({ place: id, dx, dy, anchor, text }, k) {
   const firstX = x - (stops.length - 1) * step / 2;
   const badges = stops.map((leg, i) => `<g data-leg="${leg.id}">
     <circle cx="${firstX + i * step}" cy="${y}" r="${radius}" fill="${leg.color}" stroke="#1f2a24" stroke-width="${2.5 * k}"/>
-    <text x="${firstX + i * step}" y="${y + 5 * k}" font-family="Fraunces, serif" font-weight="900" font-size="${15 * k}" fill="#f3e9d6" text-anchor="middle">${legNumber(leg)}</text>
+    <text x="${firstX + i * step}" y="${y + 5 * k}" font-family="Fraunces, 'Fraunces fallback', serif" font-weight="900" font-size="${15 * k}" fill="#f3e9d6" text-anchor="middle">${legNumber(leg)}</text>
   </g>`).reverse().join('');
   const label = text ? `<text data-leg="${stops.map(leg => leg.id).join(' ')}" x="${x + dx * k}" y="${y + dy * k}" font-size="${13 * Math.min(k, 1.6)}" font-weight="700" fill="#1f2a24" text-anchor="${anchor}">${text}</text>` : '';
   return `<g>${badges}${label}</g>`;
@@ -301,17 +303,17 @@ function mapSvg(variant, k) {
     </pattern>
   </defs>
   <rect width="800" height="720" fill="url(#waves-${variant})"/>
-  ${Object.values(provinces).map(rings => `<path d="${shape(rings)}" fill="#1f2a24" stroke="#1f2a24" stroke-width="${5 * k}" stroke-linejoin="round"/>`).join('')}
-  ${neighbours.map(rings => `<path d="${shape(rings)}" fill="#f3e9d6"/>`).join('')}
-  ${Object.entries(provinces).map(([name, rings]) => `<path d="${shape(rings)}" fill="${provinceShades[name]}" stroke="#1f2a24" stroke-opacity=".3" stroke-width="1" stroke-linejoin="round"/>`).join('')}
-  ${neighbours.map(rings => `<path d="${shape(rings)}" fill="none" stroke="#1f2a24" stroke-width="1.2" stroke-dasharray="4 3"/>`).join('')}
+  ${provinceIds.map(id => `<use href="#${id}" fill="#1f2a24" stroke="#1f2a24" stroke-width="${5 * k}" stroke-linejoin="round"/>`).join('')}
+  ${neighbourIds.map(id => `<use href="#${id}" fill="#f3e9d6"/>`).join('')}
+  ${provinceIds.map((id, i) => `<use href="#${id}" fill="${Object.values(provinceShades)[i]}" stroke="#1f2a24" stroke-opacity=".3" stroke-width="1" stroke-linejoin="round"/>`).join('')}
+  ${neighbourIds.map(id => `<use href="#${id}" fill="none" stroke="#1f2a24" stroke-width="1.2" stroke-dasharray="4 3"/>`).join('')}
   <path d="${line(addoPark)}Z" fill="url(#hatch-${variant})" stroke="#c4512a" stroke-width="1.5"/>
 
   ${oceanLabels(k)}
 
   ${drives.map(r => `
-    <path d="${line(r.path)}" fill="none" stroke="#1f2a24" stroke-width="${7 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>
-    <path d="${line(r.path)}" fill="none" stroke="${legColor(r.leg)}" stroke-width="${4 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
+    <use href="#drive-${r.leg}" fill="none" stroke="#1f2a24" stroke-width="${7 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>
+    <use href="#drive-${r.leg}" fill="none" stroke="${legColor(r.leg)}" stroke-width="${4 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
   ${flights.map(f => `<path class="flight" d="${arc(f.from, f.to, f.bend)}" stroke-width="${2 * k}" stroke-dasharray="${3 * k} ${7 * k}" style="--dash-cycle:${-20 * k}" data-leg="${f.leg}"/>`).join('')}
 
   ${insetOutline(k)}
@@ -334,8 +336,8 @@ function insetSvg(variant, k) {
     </pattern>
   </defs>
   <rect x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" fill="url(#inset-waves-${variant})"/>
-  <path d="${line(easternCapeDetail)}Z" fill="${provinceShades['Eastern Cape']}" stroke="#1f2a24" stroke-width="${2.5 * k}" stroke-linejoin="round"/>
-  <path d="${shape(addoParkDetail)}" fill="url(#inset-hatch-${variant})" stroke="#c4512a" stroke-width="${1.5 * k}"/>
+  <use href="#eastern-cape-detail" fill="${provinceShades['Eastern Cape']}" stroke="#1f2a24" stroke-width="${2.5 * k}" stroke-linejoin="round"/>
+  <use href="#addo-park-detail" fill="url(#inset-hatch-${variant})" stroke="#c4512a" stroke-width="${1.5 * k}"/>
   ${insetDrives.map(r => `<path d="${laneOffset(r.path, 2.2 * k)}" fill="none" stroke="#1f2a24" stroke-width="${6 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
   ${insetDrives.map(r => `<path d="${laneOffset(r.path, 2.2 * k)}" fill="none" stroke="${legColor(r.leg)}" stroke-width="${3.2 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
   ${insetDots.map(d => dot(d, k)).join('')}
@@ -351,11 +353,28 @@ function renderInset() {
   return `<div class="inset">${insetSvg('side', 0.8 * width / desktopWidth)}${insetSvg('stacked', 0.8 * width / stackedWidth)}</div>`;
 }
 
-function renderMap() {
-  return mapSvg('desktop', 1) + mapSvg('mobile', 1.8);
+const provinceIds = Object.keys(provinces).map((name, i) => `province-${i}`);
+const neighbourIds = neighbours.map((rings, i) => `neighbour-${i}`);
+
+// Desktop and mobile maps share these shapes; only stroke widths and labels differ.
+function mapGeometry() {
+  const paths = [
+    ...Object.values(provinces).map((rings, i) => [provinceIds[i], shape(rings)]),
+    ...neighbours.map((rings, i) => [neighbourIds[i], shape(rings)]),
+    ...drives.map(r => [`drive-${r.leg}`, line(r.path)]),
+    ['eastern-cape-detail', line(easternCapeDetail) + 'Z'],
+    ['addo-park-detail', shape(addoParkDetail)],
+  ];
+  return `<svg class="map-geometry" width="0" height="0" aria-hidden="true"><defs>${paths.map(([id, d]) => `<path id="${id}" d="${d}"/>`).join('')}</defs></svg>`;
 }
 
-export function renderPage(template, lang) {
+function renderMap() {
+  return mapGeometry() + mapSvg('desktop', 1) + mapSvg('mobile', 1.8);
+}
+
+const ASSET_PATH = /(?<=["'(\s,])((?:images|fonts)\/[\w.-]+\.(?:webp|png|jpg|svg|woff2))(?=["')\s,])/g;
+
+export function renderPage(template, lang, assetVersion) {
   l = locales[lang];
   const { summary, rows } = renderBudget();
   const slots = {
@@ -374,5 +393,6 @@ export function renderPage(template, lang) {
     .replace(/\{\{(\w+)\}\}/g, (match, name) => {
       if (!(name in slots)) throw new Error(`Unknown template slot: ${name}`);
       return slots[name];
-    });
+    })
+    .replace(ASSET_PATH, path => `${path}?v=${assetVersion(path)}`);
 }
