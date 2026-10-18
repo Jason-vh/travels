@@ -291,7 +291,7 @@ function dot({ place: id, dx, dy, anchor, text }, k) {
 
 function mapSvg(variant, k) {
   return `
-<svg class="map-${variant}" viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg" style="font-family: var(--body-font)">
+<svg class="map-${variant}" aria-hidden="true" viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg" style="font-family: var(--body-font)">
   <defs>
     <pattern id="hatch-${variant}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="6" height="6" fill="#c4512a" opacity=".18"/>
@@ -324,7 +324,7 @@ function insetSvg(variant, k) {
   const box = insetBox();
   const insetDrives = drives.filter(r => ['addo', 'cr', 'xmas'].includes(r.leg));
   return `
-<svg class="inset-${variant}" viewBox="${box.x} ${box.y} ${box.width} ${box.height}" xmlns="http://www.w3.org/2000/svg" style="font-family: var(--body-font)">
+<svg class="inset-${variant}" aria-hidden="true" viewBox="${box.x} ${box.y} ${box.width} ${box.height}" xmlns="http://www.w3.org/2000/svg" style="font-family: var(--body-font)">
   <defs>
     <pattern id="inset-hatch-${variant}" width="${6 * k}" height="${6 * k}" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="${6 * k}" height="${6 * k}" fill="#c4512a" opacity=".18"/>
