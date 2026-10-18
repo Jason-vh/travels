@@ -1,13 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <clipPath id="sun"><path d="M8 46a24 24 0 0 1 48 0z"/></clipPath>
+    <clipPath id="sun"><path d="M2 47a30 30 0 0 1 60 0z"/></clipPath>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#f3e9d6"/>
   <g clip-path="url(#sun)">
-    <rect x="0" y="22" width="64" height="4.5" fill="#f2a33a"/>
-    <rect x="0" y="28.5" width="64" height="4.5" fill="#d4572b"/>
-    <rect x="0" y="35" width="64" height="4.5" fill="#9c3b1e"/>
-    <rect x="0" y="41.5" width="64" height="4.5" fill="#6b3f5e"/>
+    <rect x="0" y="17" width="64" height="6" fill="#f2a33a"/>
+    <rect x="0" y="25" width="64" height="6" fill="#d4572b"/>
+    <rect x="0" y="33" width="64" height="6" fill="#9c3b1e"/>
+    <rect x="0" y="41" width="64" height="6" fill="#6b3f5e"/>
   </g>
-  <rect x="8" y="49" width="48" height="3" rx="1.5" fill="#1f2a24"/>
 </svg>
