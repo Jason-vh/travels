@@ -17,3 +17,5 @@ Static itinerary sites for group trips. Deployed to [travel.vhtm.eu](https://tra
 3. Add a `COPY` line to the `Dockerfile`
 4. Add a `server` block to `nginx.conf` for `mytrip.travels.vhtm.eu`
 5. Push — Railway auto-deploys (wildcard DNS handles the subdomain)
+
+The South Africa site is prerendered: edit `south-africa/src/`, then run `node south-africa/build.mjs` to write `south-africa/dist/`. The Docker build runs this step.
