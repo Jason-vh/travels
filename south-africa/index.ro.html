@@ -121,7 +121,8 @@
 
   main { margin-top: 32px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
 
-  .map { position: sticky; top: 24px; }
+  .map { position: sticky; top: 24px; grid-column: 1; grid-row: 1; }
+  .legs { grid-column: 2; grid-row: 1; }
   .map svg { width: 100%; height: auto; display: block; }
   .map-mobile, .inset-stacked { display: none !important; }
   .flight { fill: none; stroke: #1f2a24; stroke-linecap: round; animation: fly 1.2s linear infinite; }
@@ -276,7 +277,7 @@
 
   .cal {
     --gap: 6px;
-    --split: 6px;
+    --split: 0px;
     position: relative;
     margin-top: 18px;
     display: grid;
@@ -407,7 +408,8 @@
 
   @media (max-width: 900px) {
     main { grid-template-columns: 1fr; }
-    .map { position: static; order: 1; }
+    .map, .legs { grid-column: auto; grid-row: auto; }
+    .map { position: static; }
     .inset { position: static; width: 100%; margin-top: 10px; }
     .inset-side { display: none !important; }
     .inset-stacked { display: block !important; }
@@ -437,7 +439,7 @@
     .leg { min-height: 96px; padding: 14px; gap: 12px; }
     .leg h3 { font-size: 23px; }
     .leg .when { font-size: 12.5px; }
-    .cal { --gap: 4px; --split: 4px; }
+    .cal { --gap: 4px; --split: 0px; }
     .dow { font-size: 9px; letter-spacing: .08em; }
     .day { min-height: 54px; padding: 5px 6px 6px; border-radius: 8px; border-width: 1.5px; }
     .day .day-icon { right: 4px; bottom: 4px; width: 13px; height: 13px; }
@@ -478,6 +480,67 @@
   </header>
 
   <main>
+    <div class="legs">
+  <a class="leg" href="#stop-arrive" data-leg="arrive">
+    <div class="art" style="background-image:url('images/joburg.jpg')"></div>
+    <div class="side">
+      <div class="badge" style="background:#6b3f5e">1</div>
+    </div>
+    <div class="body">
+      <h3>Joburg</h3>
+      <div class="when">sâm. 5 – dum. 6 dec. · 1 noapte</div>
+    </div>
+  </a>
+  <a class="leg" href="#stop-cpt" data-leg="cpt">
+    <div class="art" style="background-image:url('images/cape-town.jpg')"></div>
+    <div class="side">
+      <div class="badge" style="background:#2f7f8a">2</div>
+    </div>
+    <div class="body">
+      <h3>Cape Town</h3>
+      <div class="when">dum. 6 – sâm. 12 dec. · 6 nopți</div>
+    </div>
+  </a>
+  <a class="leg" href="#stop-gr" data-leg="gr">
+    <div class="art" style="background-image:url('images/garden-route.jpg')"></div>
+    <div class="side">
+      <div class="badge" style="background:#3f6b4a">3</div>
+    </div>
+    <div class="body">
+      <h3>Garden Route</h3>
+      <div class="when">sâm. 12 – dum. 13 dec. · 1 noapte</div>
+    </div>
+  </a>
+  <a class="leg" href="#stop-addo" data-leg="addo">
+    <div class="art" style="background-image:url('images/addo.jpg')"></div>
+    <div class="side">
+      <div class="badge" style="background:#c4512a">4</div>
+    </div>
+    <div class="body">
+      <h3>Addo</h3>
+      <div class="when">dum. 13 – mie. 16 dec. · 3 nopți</div>
+    </div>
+  </a>
+  <a class="leg" href="#stop-cr" data-leg="cr">
+    <div class="art" style="background-image:url('images/cannon-rocks.jpg')"></div>
+    <div class="side">
+      <div class="badge" style="background:#d98e1f">5</div>
+    </div>
+    <div class="body">
+      <h3>Cannon Rocks</h3>
+      <div class="when">mie. 16 – sâm. 19 dec. · 3 nopți</div>
+    </div>
+  </a>
+  <a class="leg" href="#stop-xmas" data-leg="xmas">
+    <div class="art" style="background-image:url('images/christmas.jpg')"></div>
+    <div class="side">
+      <div class="badge" style="background:#6b3f5e">6</div>
+    </div>
+    <div class="body">
+      <h3>Joburg</h3>
+      <div class="when">sâm. 19 – dum. 27 dec. · 8 nopți</div>
+    </div>
+  </a></div>
     <div class="map">
       
 <svg class="map-desktop" aria-hidden="true" viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg" style="font-family: var(--body-font)">
@@ -638,67 +701,6 @@
   </g><text data-leg="cr" x="491.56250000000006" y="632.75" font-size="2.274999999999997" font-weight="700" fill="#1f2a24" text-anchor="middle">Cannon Rocks</text></g>
 </svg></div>
     </div>
-    <div class="legs">
-  <a class="leg" href="#stop-arrive" data-leg="arrive">
-    <div class="art" style="background-image:url('images/joburg.jpg')"></div>
-    <div class="side">
-      <div class="badge" style="background:#6b3f5e">1</div>
-    </div>
-    <div class="body">
-      <h3>Joburg</h3>
-      <div class="when">sâm. 5 – dum. 6 dec. · 1 noapte</div>
-    </div>
-  </a>
-  <a class="leg" href="#stop-cpt" data-leg="cpt">
-    <div class="art" style="background-image:url('images/cape-town.jpg')"></div>
-    <div class="side">
-      <div class="badge" style="background:#2f7f8a">2</div>
-    </div>
-    <div class="body">
-      <h3>Cape Town</h3>
-      <div class="when">dum. 6 – sâm. 12 dec. · 6 nopți</div>
-    </div>
-  </a>
-  <a class="leg" href="#stop-gr" data-leg="gr">
-    <div class="art" style="background-image:url('images/garden-route.jpg')"></div>
-    <div class="side">
-      <div class="badge" style="background:#3f6b4a">3</div>
-    </div>
-    <div class="body">
-      <h3>Garden Route</h3>
-      <div class="when">sâm. 12 – dum. 13 dec. · 1 noapte</div>
-    </div>
-  </a>
-  <a class="leg" href="#stop-addo" data-leg="addo">
-    <div class="art" style="background-image:url('images/addo.jpg')"></div>
-    <div class="side">
-      <div class="badge" style="background:#c4512a">4</div>
-    </div>
-    <div class="body">
-      <h3>Addo</h3>
-      <div class="when">dum. 13 – mie. 16 dec. · 3 nopți</div>
-    </div>
-  </a>
-  <a class="leg" href="#stop-cr" data-leg="cr">
-    <div class="art" style="background-image:url('images/cannon-rocks.jpg')"></div>
-    <div class="side">
-      <div class="badge" style="background:#d98e1f">5</div>
-    </div>
-    <div class="body">
-      <h3>Cannon Rocks</h3>
-      <div class="when">mie. 16 – sâm. 19 dec. · 3 nopți</div>
-    </div>
-  </a>
-  <a class="leg" href="#stop-xmas" data-leg="xmas">
-    <div class="art" style="background-image:url('images/christmas.jpg')"></div>
-    <div class="side">
-      <div class="badge" style="background:#6b3f5e">6</div>
-    </div>
-    <div class="body">
-      <h3>Joburg</h3>
-      <div class="when">sâm. 19 – dum. 27 dec. · 8 nopți</div>
-    </div>
-  </a></div>
   </main>
 
   <section>

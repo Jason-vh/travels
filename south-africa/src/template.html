@@ -121,7 +121,8 @@
 
   main { margin-top: 32px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
 
-  .map { position: sticky; top: 24px; }
+  .map { position: sticky; top: 24px; grid-column: 1; grid-row: 1; }
+  .legs { grid-column: 2; grid-row: 1; }
   .map svg { width: 100%; height: auto; display: block; }
   .map-mobile, .inset-stacked { display: none !important; }
   .flight { fill: none; stroke: #1f2a24; stroke-linecap: round; animation: fly 1.2s linear infinite; }
@@ -276,7 +277,7 @@
 
   .cal {
     --gap: 6px;
-    --split: 6px;
+    --split: 0px;
     position: relative;
     margin-top: 18px;
     display: grid;
@@ -407,7 +408,8 @@
 
   @media (max-width: 900px) {
     main { grid-template-columns: 1fr; }
-    .map { position: static; order: 1; }
+    .map, .legs { grid-column: auto; grid-row: auto; }
+    .map { position: static; }
     .inset { position: static; width: 100%; margin-top: 10px; }
     .inset-side { display: none !important; }
     .inset-stacked { display: block !important; }
@@ -437,7 +439,7 @@
     .leg { min-height: 96px; padding: 14px; gap: 12px; }
     .leg h3 { font-size: 23px; }
     .leg .when { font-size: 12.5px; }
-    .cal { --gap: 4px; --split: 4px; }
+    .cal { --gap: 4px; --split: 0px; }
     .dow { font-size: 9px; letter-spacing: .08em; }
     .day { min-height: 54px; padding: 5px 6px 6px; border-radius: 8px; border-width: 1.5px; }
     .day .day-icon { right: 4px; bottom: 4px; width: 13px; height: 13px; }
@@ -478,11 +480,11 @@
   </header>
 
   <main>
+    <div class="legs">{{legs}}</div>
     <div class="map">
       {{map}}
       {{inset}}
     </div>
-    <div class="legs">{{legs}}</div>
   </main>
 
   <section>
