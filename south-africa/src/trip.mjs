@@ -35,7 +35,7 @@ export const legs = [
     from: 6, to: 12, move: 'fly',
     getting: ['Land Sunday morning', 'Pick up the rental car at the airport'],
     stay: null,
-    plans: [{ text: 'Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>', status: 'todo', detail: 'Farm restaurant in the Winelands, ~1h each way. Go a bit earlier if we can: the garden closes at 18:00.' }, 'Table Mountain cableway', 'Chapman’s Peak Drive'],
+    plans: [{ text: 'Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>', status: 'todo', detail: 'Farm restaurant in the Winelands, ~1h each way. Go a bit earlier if we can: the garden closes at 18:00.' }, 'Table Mountain cableway', 'Chapman’s Peak Drive', 'See the penguins at Boulders Beach'],
     notes: ['Working Mon 7 – Fri 11'],
   },
   {

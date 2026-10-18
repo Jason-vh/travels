@@ -44,6 +44,7 @@ export const ro = {
   'Land Sunday morning': 'Aterizăm duminică dimineața',
   'Table Mountain cableway': 'Telecabina pe Table Mountain',
   'Chapman’s Peak Drive': 'Drumul Chapman’s Peak',
+  'See the penguins at Boulders Beach': 'Vedem pinguinii de pe Boulders Beach',
   'Pick up the rental car at the airport': 'Luăm mașina închiriată de la aeroport',
   [`Fri evening: dinner at ${babelLink('Babel at Babylonstoren')}`]: `Vineri seara: cină la ${babelLink('Babel, la Babylonstoren')}`,
   'Farm restaurant in the Winelands, ~1h each way. Go a bit earlier if we can: the garden closes at 18:00.':
