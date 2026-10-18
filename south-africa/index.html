@@ -66,7 +66,6 @@
   .stats { margin-left: auto; text-align: right; }
   .stats b { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; }
 
-  .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 36px; }
 
   .ticket {
     display: grid;
@@ -76,7 +75,30 @@
     background: #fbf5e9;
     overflow: hidden;
   }
-  .ticket .main { padding: 14px 18px; }
+  .ticket .main {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+    align-items: center;
+    padding: 14px 22px 14px 250px;
+  }
+  .ticket .main > :not(.flight-art) { position: relative; }
+  .ticket .flight-art {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 340px;
+    background-size: cover;
+    background-position: left center;
+    -webkit-mask-image: linear-gradient(to right, #000 20%, transparent 95%);
+    mask-image: linear-gradient(to right, #000 20%, transparent 95%);
+  }
+  .ticket .airline { grid-column: 1; align-self: end; height: 12px; width: auto; margin-bottom: 4px; }
+  .ticket .route { grid-column: 1; align-self: start; }
+  .ticket .legs-list { grid-column: 2; grid-row: 1 / 3; justify-self: end; }
   .ticket .stub {
     padding: 14px 18px;
     border-left: 2px dashed var(--ink);
@@ -88,21 +110,21 @@
     text-align: center;
   }
   .ticket .route { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 900; line-height: 1.1; }
-  .ticket .route span { color: var(--clay); font-weight: 400; }
-  .ticket .legs-list { margin-top: 4px; font-size: 13px; }
-  .ticket .legs-list div { display: grid; grid-template-columns: 58px 84px auto; }
+  .ticket .route span { display: inline-block; color: #2f7f8a; font-family: var(--body-font); font-weight: 500; font-size: .8em; vertical-align: .12em; }
+  .ticket .legs-list { font-size: 14px; line-height: 1.7; }
+  .ticket .legs-list div { display: grid; grid-template-columns: 64px 100px auto; }
   .ticket .legs-list small { color: var(--muted); }
   .ticket .stub b { font-family: 'Fraunces', serif; font-size: 26px; line-height: 1; }
 
-  main { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
+  main { margin-top: 32px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
 
   .map { position: sticky; top: 24px; }
   .map svg { width: 100%; height: auto; display: block; }
   .inset {
     position: absolute;
-    right: 0;
-    bottom: 1%;
-    width: 33%;
+    left: 0;
+    top: 0;
+    width: 40%;
     overflow: hidden;
     border: 2px solid var(--ink);
     border-radius: 10px;
@@ -153,26 +175,10 @@
     -webkit-mask-image: linear-gradient(to right, transparent 5%, rgba(0, 0, 0, .5) 35%, #000 75%);
     mask-image: linear-gradient(to right, transparent 5%, rgba(0, 0, 0, .5) 35%, #000 75%);
   }
-  .leg .side { display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+  .leg .side { display: flex; align-items: center; }
   .leg .body { align-self: center; text-shadow: 0 0 4px #fbf5e9, 0 0 10px #fbf5e9, 0 0 16px #fbf5e9; }
   .leg h3 { font-size: 26px; line-height: 1.05; }
   .leg .when { font-weight: 700; margin-top: 4px; }
-  .leg .icon { width: 22px; height: 22px; color: var(--ink); }
-  .booked {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 1px 9px;
-    border: 2px solid #3f6b4a;
-    border-radius: 6px;
-    background: #fbf5e9;
-    color: #3f6b4a;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    text-shadow: none;
-    transform: rotate(-2deg);
-  }
 
   .stops { display: grid; gap: 28px; margin-top: 18px; }
   .stop {
@@ -192,7 +198,8 @@
   .stop-head { position: relative; display: flex; align-items: center; gap: 14px; margin-top: -40px; padding: 0 22px; }
   .stop-head h3 { font-size: 36px; line-height: 1; }
   .stop-head .when { font-weight: 700; margin-top: 4px; }
-  .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 36px; padding: 22px 22px 26px; }
+  .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding: 22px 22px 26px; }
+  .blocks .column { display: flex; flex-direction: column; gap: 24px; }
   .block h4 {
     margin-bottom: 8px;
     padding-bottom: 6px;
@@ -254,47 +261,48 @@
   section > h2 { font-size: 40px; margin-bottom: 6px; }
   .sub { color: var(--muted); margin-bottom: 18px; }
 
-  .legend { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin: 14px 0; }
 
-  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal { margin-top: 18px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
   .dow { text-align: center; font-size: 11px; letter-spacing: .18em; color: var(--muted); padding-bottom: 2px; }
 
   .day {
     position: relative;
     min-height: 92px;
     border-radius: 10px;
-    padding: 8px 10px 22px;
+    padding: 8px 10px 10px;
     color: var(--paper);
     border: 2px solid var(--ink);
     overflow: hidden;
     transition: opacity .15s;
   }
+  .day .day-icon { position: absolute; right: 9px; bottom: 8px; width: 18px; height: 18px; color: var(--paper); }
   .day.off { background: transparent; color: var(--muted); border: 2px dashed #c9bb9c; }
   .day .num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 900; line-height: 1; }
   .day .num small { font-family: var(--body-font); font-size: 10px; font-weight: 400; margin-left: 4px; opacity: .8; }
   .day .note { font-size: 10.5px; line-height: 1.3; margin-top: 6px; text-transform: uppercase; letter-spacing: .06em; }
-  .day.christmas .num, .day.christmas .note { color: var(--sun); }
-  .day.christmas .note { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; text-transform: none; letter-spacing: 0; }
+  .day.christmas .num, .day.christmas .note { color: #fbf5e9; }
+  .day.christmas > :not(.scene) { position: relative; }
+  .day.christmas .num, .day.christmas .note { text-shadow: 0 1px 6px #1c1a33; }
+  .day .scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .scene .star { animation: twinkle 3s ease-in-out infinite; }
+  .scene .bulb { animation: twinkle 2.4s ease-in-out infinite; }
+  .scene .tree-glow { animation: breathe 4s ease-in-out infinite; }
+  .scene .topper { animation: pulse 4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+  .scene .shooting { opacity: 0; animation: shoot 9s ease-out infinite 2s; }
+  @keyframes twinkle { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+  @keyframes breathe { 0%, 100% { opacity: .7; transform: scale(.94); } 50% { opacity: 1; transform: scale(1.06); } }
+  @keyframes shoot {
+    0%, 88% { opacity: 0; transform: translate(0, 0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translate(60px, 24px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scene * { animation: none !important; }
+    .scene .shooting { opacity: 0; }
+  }
   .day .mini { width: 13px; height: 13px; vertical-align: -2px; margin-right: 5px; }
 
-  .d {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 16px;
-    border-top: 2px solid var(--ink);
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 14px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .legend .d { position: static; display: inline-block; width: 22px; height: 10px; border: 1.5px solid var(--ink); border-radius: 3px; margin-right: 6px; vertical-align: middle; }
-  .d.work { background: repeating-linear-gradient(45deg, var(--ink) 0 3px, var(--paper) 3px 7px); }
-  .d.off { background: var(--sun); }
-  .d.holiday { background: #3f6b4a; color: var(--paper); }
 
   .focus [data-leg]:not(.hot) { opacity: .22; }
 
@@ -381,20 +389,25 @@
 
 
   @media (max-width: 900px) {
-    main, .tickets { grid-template-columns: 1fr; }
-    .map { position: static; }
+    main { grid-template-columns: 1fr; }
+    .map { position: static; order: 1; }
     .inset { position: static; width: 100%; margin-top: 10px; }
-    .stats { margin-left: 0; text-align: left; }
+    .stats { display: flex; justify-content: space-between; align-items: baseline; width: 100%; margin-left: 0; text-align: left; }
     .day { min-height: 70px; padding: 6px; }
-    .day .note { display: none; }
+    .day .note span { display: none; }
+
   }
 
   @media (max-width: 640px) {
     body { padding: 24px 14px 48px; }
     header { gap: 16px; }
     .sun { width: 88px; height: 44px; -webkit-mask: repeating-linear-gradient(#000 0 8px, transparent 8px 11px); mask: repeating-linear-gradient(#000 0 8px, transparent 8px 11px); }
-    .tickets { margin: 20px 0 24px; gap: 10px; }
-    .ticket .main { padding: 12px 14px; font-size: 11px; }
+    .ticket .main { grid-template-columns: 1fr; padding: 12px 14px; font-size: 11px; }
+    .ticket .main { padding: 8px 14px 14px; }
+    .ticket .main { padding-top: 112px; }
+    .ticket .flight-art { right: 0; width: auto; height: 120px; bottom: auto; background-position: left 35%; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent); mask-image: linear-gradient(to bottom, #000 45%, transparent); }
+    .ticket .legs-list { grid-column: 1; grid-row: 3; justify-self: stretch; margin-top: 6px; font-size: 12px; line-height: 1.6; }
+    .ticket .legs-list div { grid-template-columns: 50px 1fr auto; white-space: nowrap; }
     .ticket .route { font-size: 23px; }
     .ticket .stub { padding: 12px 14px; }
     main { gap: 20px; }
@@ -405,15 +418,22 @@
     .leg .when { font-size: 12.5px; }
     .cal { gap: 4px; }
     .dow { font-size: 9px; letter-spacing: .08em; }
-    .day { min-height: 54px; padding: 5px 6px 12px; border-radius: 8px; border-width: 1.5px; }
+    .day { min-height: 54px; padding: 5px 6px 6px; border-radius: 8px; border-width: 1.5px; }
+    .day .day-icon { right: 4px; bottom: 4px; width: 13px; height: 13px; }
+    .day .note .mini { position: absolute; right: 4px; bottom: 4px; width: 13px; height: 13px; margin: 0; }
+    .day .note:has(.mini) ~ .day-icon { bottom: 19px; }
     .day .num { font-size: 17px; }
     .day .num small { display: none; }
-    .d { height: 8px; font-size: 0; border-top-width: 1.5px; }
-    .legend { gap: 8px 14px; font-size: 11px; }
     .stop-art { height: 170px; }
     .stop-head { padding: 0 16px; margin-top: -32px; }
     .stop-head h3 { font-size: 28px; }
-    .blocks { grid-template-columns: 1fr; gap: 20px; padding: 18px 16px 22px; }
+    .blocks { display: flex; flex-direction: column; gap: 20px; padding: 18px 16px 22px; }
+    .blocks .column { display: contents; }
+    .block.getting { order: 1; }
+    .block.stay { order: 2; }
+    .block.plans { order: 3; }
+    .block.decide { order: 4; }
+    .block.notes { order: 5; }
     .budget-summary { gap: 6px; }
     .budget-summary div { padding: 10px; }
     .budget-summary b { font-size: 21px; }
@@ -436,31 +456,6 @@
     </div>
   </header>
 
-  <div class="tickets">
-    <div class="ticket">
-      <div class="main">
-        <div class="label">Outbound · SWISS</div>
-        <div class="route">AMS <span>→</span> ZRH <span>→</span> JNB</div>
-        <div class="legs-list">
-          <div><b>LX735</b><span>Fri 4 Dec</span><span>20:00 → 21:30</span></div>
-          <div><b>LX282</b><span>Fri 4 Dec</span><span>22:30 → 10:00 <small>+1</small></span></div>
-        </div>
-      </div>
-      <div class="stub"><span class="label" style="color:var(--sand)">Dec</span><b>04</b></div>
-    </div>
-    <div class="ticket">
-      <div class="main">
-        <div class="label">Return · SWISS</div>
-        <div class="route">JNB <span>→</span> ZRH <span>→</span> AMS</div>
-        <div class="legs-list">
-          <div><b>LX283</b><span>Sun 27 Dec</span><span>20:40 → 06:10 <small>+1</small></span></div>
-          <div><b>LX724</b><span>Mon 28 Dec</span><span>07:15 → 09:00</span></div>
-        </div>
-      </div>
-      <div class="stub"><span class="label" style="color:var(--sand)">Dec</span><b>27</b></div>
-    </div>
-  </div>
-
   <main>
     <div class="map">
       <div id="map"></div>
@@ -471,11 +466,6 @@
 
   <section>
     <h2>December at a glance</h2>
-    <div class="legend">
-      <span><i class="d work"></i>Working</span>
-      <span><i class="d off"></i>On leave</span>
-      <span><i class="d holiday"></i>Public holiday</span>
-    </div>
     <div class="cal" id="cal"></div>
   </section>
 
@@ -488,14 +478,17 @@
     <h2>To do</h2>
     <h3 class="todo-group"><i></i>Trip</h3>
     <ul class="todo">
-      <li class="done"><span class="what">Book AMS ⇄ JNB flights</span><span class="when">Fri 4 &amp; Sun 27 Dec</span><span class="note">SWISS · LX735, LX282, LX283, LX724</span><span class="assignee"></span></li>
-      <li><span class="what">Update leave</span><span class="when">Mon 14 – Fri 18, Wed 23 – Mon 28 Dec</span><span class="note">Instead of Mon 21 – Tue 22 and Tue 29 – Thu 31 Dec</span><span class="assignee"><span class="who">Denisa</span></span></li>
+      <li class="done"><span class="what">Book Amsterdam ⇄ Joburg flights</span><span class="when">Fri 4 &amp; Sun 27 Dec</span><span class="note">SWISS · LX735, LX282, LX283, LX724</span><span class="assignee"></span></li>
+      <li><span class="what">Update leave</span><span class="when">Mon 14 – Fri 18, Wed 23 – Mon 28 Dec</span><span class="note">Instead of Mon 21 – Tue 22 and Tue 29 – Thu 31 Dec</span><span class="assignee"><span class="who">@Denisa</span></span></li>
+      <li><span class="what">Get travel insurance</span><span class="when">Before Fri 4 Dec</span><span class="note">Single trip</span><span class="assignee"><span class="who">@Jason</span></span></li>
+      <li><span class="what">Check travel insurance cover</span><span class="when">Before Fri 4 Dec</span><span class="note">Does the current policy cover South Africa?</span><span class="assignee"><span class="who">@Denisa</span></span></li>
     </ul>
     <h3 class="todo-group"><i style="background:#2f7f8a"></i>Cape Town</h3>
     <ul class="todo">
-      <li><span class="what">Book JNB → CPT flights</span><span class="when">Sun 6 Dec, evening</span><span class="note">~2h</span><span class="assignee"></span></li>
+      <li><span class="what">Book Joburg → Cape Town flights</span><span class="when">Sun 6 Dec, evening</span><span class="note"></span><span class="assignee"></span></li>
+      <li><span class="what">Book Stellenbosch dinner</span><span class="when">Fri 11 Dec, evening</span><span class="note">Wine farm with a sunset view</span><span class="assignee"></span></li>
       <li><span class="what">Book Cape Town stay</span><span class="when">Sun 6 – Sat 12 Dec</span><span class="note">6 nights, good Wi-Fi for the work week</span><span class="assignee"></span></li>
-      <li><span class="what">Book CPT car rental</span><span class="when">Sat 12 – Sat 19 Dec</span><span class="note">One way, drop off at P.E</span><span class="assignee"></span></li>
+      <li><span class="what">Book Cape Town car rental</span><span class="when">Sat 12 – Sat 19 Dec</span><span class="note">One way, drop off at Gqeberha</span><span class="assignee"></span></li>
     </ul>
     <h3 class="todo-group"><i style="background:#3f6b4a"></i>Garden Route</h3>
     <ul class="todo">
@@ -510,9 +503,9 @@
     <ul class="todo">
       <li><span class="what">Book Cannon Rocks stay</span><span class="when">Wed 16 – Sat 19 Dec</span><span class="note">3 nights, or Kenton-on-Sea</span><span class="assignee"></span></li>
     </ul>
-    <h3 class="todo-group"><i style="background:#6b3f5e"></i>Johannesburg</h3>
+    <h3 class="todo-group"><i style="background:#6b3f5e"></i>Joburg</h3>
     <ul class="todo">
-      <li><span class="what">Book P.E → JNB flights</span><span class="when">Sat 19 Dec, early afternoon</span><span class="note"></span><span class="assignee"></span></li>
+      <li><span class="what">Book Gqeberha → Joburg flights</span><span class="when">Sat 19 Dec, early afternoon</span><span class="note"></span><span class="assignee"></span></li>
       <li><span class="what">Book Boksburg Airbnb</span><span class="when">Sat 19 – Sun 27 Dec</span><span class="note"></span><span class="assignee"></span></li>
     </ul>
   </section>
@@ -526,9 +519,42 @@
 </div>
 
 <script>
+function flightArt(image) {
+  return `<div class="flight-art" style="background-image:url('images/${image}.jpg')" aria-hidden="true"></div>`;
+}
+
+const tickets = {
+  outbound: () => `
+<div class="ticket">
+  <div class="main">
+    ${flightArt('flight-out')}
+    <img class="airline" src="images/swiss.svg" alt="SWISS">
+    <div class="route">AMS <span>→</span> ZRH <span>→</span> JNB</div>
+    <div class="legs-list">
+      <div><b>LX735</b><span>Fri 4 Dec</span><span>20:00 → 21:30</span></div>
+      <div><b>LX282</b><span>Fri 4 Dec</span><span>22:30 → 10:00 <small>+1</small></span></div>
+    </div>
+  </div>
+  <div class="stub"><span class="label" style="color:var(--sand)">Dec</span><b>04</b></div>
+</div>`,
+  return: () => `
+<div class="ticket">
+  <div class="main">
+    ${flightArt('flight-back')}
+    <img class="airline" src="images/swiss.svg" alt="SWISS">
+    <div class="route">JNB <span>→</span> ZRH <span>→</span> AMS</div>
+    <div class="legs-list">
+      <div><b>LX283</b><span>Sun 27 Dec</span><span>20:40 → 06:10 <small>+1</small></span></div>
+      <div><b>LX724</b><span>Mon 28 Dec</span><span>07:15 → 09:00</span></div>
+    </div>
+  </div>
+  <div class="stub"><span class="label" style="color:var(--sand)">Dec</span><b>27</b></div>
+</div>`,
+};
+
 const legs = [
   {
-    id: 'arrive', place: 'jnb', name: 'Johannesburg', color: '#6b3f5e', art: 'images/joburg.jpg',
+    id: 'arrive', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'images/joburg.jpg',
     from: 5, to: 6, move: 'land',
     getting: ['Land at OR Tambo Sat 10:00'],
     stay: [{ name: 'With family', dates: 'Sat 5 Dec · 1 night', status: 'family', details: [] }],
@@ -540,7 +566,7 @@ const legs = [
     from: 6, to: 12, move: 'fly',
     getting: ['Land Sunday evening'],
     stay: null,
-    plans: null,
+    plans: [{ text: 'Fri evening: Stellenbosch wine farm, sunset and dinner', status: 'todo', detail: 'By Uber, ~45 min each way. Sunset ~19:55.' }],
     notes: ['Working Mon 7 – Fri 11'],
   },
   {
@@ -565,37 +591,40 @@ const legs = [
   {
     id: 'cr', place: 'cr', name: 'Cannon Rocks', color: '#d98e1f', art: 'images/cannon-rocks.jpg',
     from: 16, to: 19, move: 'drive',
-    getting: ['~100 km / 1½h drive from Nyathi (Addo)'],
+    getting: ['~125 km / 2h drive from Nyathi (Addo)'],
     stay: [{ name: 'Cannon Rocks or Kenton-on-Sea', dates: 'Wed 16 – Sat 19 Dec · 3 nights', status: 'todo', details: ['Self-catering'] }],
     plans: ['Beach days'],
     notes: ['Small shops only: Kenton-on-Sea is 15 min away'],
   },
   {
-    id: 'xmas', place: 'jnb', name: 'Johannesburg', color: '#6b3f5e', art: 'images/christmas.jpg',
+    id: 'xmas', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'images/christmas.jpg',
     from: 19, to: 27, move: 'fly',
-    getting: ['~135 km / 1½h drive from Cannon Rocks to P.E airport', 'Drop the rental car at P.E', { text: 'Fly P.E → JNB · ~1h45', status: 'todo' }],
+    getting: ['~135 km / 1½h drive from Cannon Rocks to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · ~1h45', status: 'todo' }],
     stay: [{ name: 'Airbnb in Boksburg', dates: 'Sat 19 – Sun 27 Dec · 8 nights', status: 'todo', details: [] }],
     plans: ['Christmas with family, Fri 25 Dec', 'Maybe a night away: Pilanesberg or the Magaliesberg'],
     decide: ['Rent a car?'],
-    notes: ['We both work Mon 21 – Tue 22', 'Sun 27: fly home 20:40'],
+    notes: ['We both work Mon 21 – Tue 22'],
   },
 ];
 
 const randPerEuro = 18.5;
 
 const budget = [
-  { item: 'Flights AMS ⇄ JNB', detail: 'Return via Zurich, 2 people', estimate: 2000, actual: 1927.74, currency: 'EUR', paidBy: 'Jason' },
-  { item: 'Flight JNB → CPT', detail: 'Sun 6 Dec, 2 people', estimate: 4000 },
+  { item: 'Flights Amsterdam ⇄ Joburg', detail: 'Return via Zurich, 2 people', estimate: 2000, actual: 1927.74, currency: 'EUR', paidBy: 'Jason' },
+  { item: 'Flight Joburg → Cape Town', detail: 'Sun 6 Dec, 2 people', estimate: 4000 },
   { item: 'Cape Town stay', detail: '6 nights', estimate: 15000 },
-  { item: 'Rental car CPT → P.E', detail: '7 days, including one-way fee', estimate: 7000 },
-  { item: 'Fuel, Cape Town → P.E', detail: '~1,300 km', estimate: 2200 },
+  { item: 'Stellenbosch evening', detail: 'Dinner + Uber both ways', estimate: 2200 },
+  { item: 'Cape Town car rental', detail: '7 days, including one-way fee', estimate: 7000 },
+  { item: 'Fuel, Cape Town → Gqeberha', detail: '~1,300 km', estimate: 2200 },
   { item: 'Wilderness or Knysna', detail: '1 night', estimate: 1800 },
   { item: 'Addo: Main Camp + Nyathi', detail: '3 nights + park fees · SANParks RR776219', estimate: 420, actual: 582.45, currency: 'EUR', paidBy: 'Jason' },
-  { item: 'Addo guided game drive', detail: '2 people', estimate: 1600 },
+  { item: 'Addo game drive', detail: '2 people', estimate: 1600 },
   { item: 'Cannon Rocks stay', detail: '3 nights', estimate: 4500 },
-  { item: 'Flight P.E → JNB', detail: 'Sat 19 Dec, 2 people', estimate: 3600 },
-  { item: 'Joburg stay', detail: '8 nights', estimate: 12000 },
-  { item: 'Getting around Joburg', detail: 'Rental car, to decide', estimate: 4400 },
+  { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people', estimate: 3600 },
+  { item: 'Boksburg stay', detail: '8 nights', estimate: 12000 },
+  { item: 'Getting around Joburg', detail: 'Mostly lifts from family', estimate: 100, currency: 'EUR' },
+  { item: 'Food & daily spending', detail: '~€60 a day for 2 × 22 days', estimate: 1320, currency: 'EUR' },
+  { item: 'Travel insurance, Jason', detail: 'Single trip', estimate: 70, currency: 'EUR' },
 ];
 
 const leave = [['2026-12-14', '2026-12-18'], ['2026-12-23', '2026-12-28']];
@@ -618,10 +647,9 @@ function dayStatus(date) {
   return within(leave, date) ? 'off' : 'work';
 }
 
-const statusLabel = { off: 'On leave', holiday: 'Holiday', work: '' };
 
 const icons = {
-  working: '<path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/>',
+  working: '<path d="M2 20h20"/><path d="m9 10 2 2 4-4"/><rect x="3" y="4" width="18" height="12" rx="2"/>',
   booked: '<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="m9 12 2 2 4-4"/>',
   todo: '<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="m9.5 14.5 5-5"/>',
   paid: '<path d="M11.748 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4.875"/><path d="m16 19 2 2 4-4"/><path d="M18 12h.01"/><path d="M6 12h.01"/><circle cx="12" cy="12" r="2"/>',
@@ -638,21 +666,11 @@ function svgIcon(name, className, title = '') {
   return `<svg class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${label}${icons[name]}</svg>`;
 }
 
-function legIcon(leg) {
-  const statuses = [];
-  for (let d = leg.from; d < leg.to; d++) statuses.push(dayStatus(new Date(2026, 11, d)));
-  const workDays = statuses.filter(status => status === 'work').length;
-  const daysOff = statuses.filter(status => status === 'off' || status === 'holiday').length;
-  if (workDays <= daysOff) return '';
-  return svgIcon('working', 'icon', 'Working');
-}
-
 const dayName = d => new Date(2026, 11, d).toLocaleDateString('en-GB', { weekday: 'short' });
 const nights = leg => leg.to - leg.from;
 const legNumber = leg => legs.indexOf(leg) + 1;
 
 const when = leg => `${dayName(leg.from)} ${leg.from} – ${dayName(leg.to)} ${leg.to} Dec · ${nights(leg)} night${nights(leg) > 1 ? 's' : ''}`;
-const isBooked = leg => Boolean(leg.stay?.every(stay => stay.status === 'booked'));
 const undecided = `<div class="empty">${svgIcon('undecided', '')}To be decided</div>`;
 const statusTitle = { booked: 'Booked', todo: 'To book' };
 const statusBadge = status => statusTitle[status] ? `<span class="status is-${status}">${statusTitle[status]}</span>` : '';
@@ -671,12 +689,10 @@ document.getElementById('legs').innerHTML = legs.map(leg => `
     <div class="art" style="background-image:url('${leg.art}')"></div>
     <div class="side">
       <div class="badge" style="background:${leg.color}">${legNumber(leg)}</div>
-      ${legIcon(leg)}
     </div>
     <div class="body">
       <h3>${leg.name}</h3>
       <div class="when">${when(leg)}</div>
-      ${isBooked(leg) ? '<div class="booked">✓ Booked</div>' : ''}
     </div>
   </a>`).join('');
 
@@ -696,11 +712,13 @@ function planBlock(plans) {
   return list(plans);
 }
 
-function block(title, content) {
-  return content ? `<div class="block"><h4>${title}</h4>${content}</div>` : '';
+function block(title, content, kind) {
+  return content ? `<div class="block ${kind}"><h4>${title}</h4>${content}</div>` : '';
 }
 
-document.getElementById('stops').innerHTML = legs.map(leg => `
+const flightTicket = name => `<div class="stop-ticket">${tickets[name]()}</div>`;
+
+document.getElementById('stops').innerHTML = flightTicket('outbound') + legs.map(leg => `
   <article class="stop" id="stop-${leg.id}">
     <div class="stop-art" style="background-image:url('${leg.art}')"></div>
     <div class="stop-head">
@@ -711,13 +729,17 @@ document.getElementById('stops').innerHTML = legs.map(leg => `
       </div>
     </div>
     <div class="blocks">
-      ${block('Getting there', leg.getting.length && list(leg.getting))}
-      ${block('Where we stay', leg.stay ? stayBlock(leg.stay) : undecided)}
-      ${block('Plans', planBlock(leg.plans))}
-      ${block('To decide', leg.decide?.length && list(leg.decide))}
-      ${block('Notes', leg.notes.length && list(leg.notes))}
+      <div class="column">
+        ${block('Getting there', leg.getting.length && list(leg.getting), 'getting')}
+        ${block('Plans', planBlock(leg.plans), 'plans')}
+        ${block('To decide', leg.decide?.length && list(leg.decide), 'decide')}
+      </div>
+      <div class="column">
+        ${block('Where we stay', leg.stay ? stayBlock(leg.stay) : undecided, 'stay')}
+        ${block('Notes', leg.notes.length && list(leg.notes), 'notes')}
+      </div>
     </div>
-  </article>`).join('');
+  </article>`).join('') + flightTicket('return');
 
 const toEuro = (amount, currency) => currency === 'EUR' ? amount : amount / randPerEuro;
 const euro = (amount, cents = false) => '€' + amount.toLocaleString('en-GB', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
@@ -750,9 +772,9 @@ function describeDay(date) {
   const inDec = date.getMonth() === 11;
   const d = date.getDate();
   if (!inDec || d < 4 || d > 28) return { off: true };
-  if (d === 4) return { bg: AIR, note: `${svgIcon('takeoff', 'mini')}AMS 20:00` };
-  if (d === 27) return { bg: `linear-gradient(135deg, ${legs.at(-1).color} 50%, ${AIR} 50%)`, note: `${svgIcon('takeoff', 'mini')}JNB 20:40`, leg: 'xmas' };
-  if (d === 28) return { bg: AIR, note: `${svgIcon('landing', 'mini')}AMS 09:00` };
+  if (d === 4) return { bg: AIR, icon: 'takeoff', note: 'AMS 20:00' };
+  if (d === 27) return { bg: `linear-gradient(135deg, ${legs.at(-1).color} 50%, ${AIR} 50%)`, icon: 'takeoff', note: 'Joburg 20:40', leg: 'xmas' };
+  if (d === 28) return { bg: AIR, icon: 'landing', note: 'AMS 09:00' };
 
   const index = legs.findIndex(leg => d >= leg.from && d < leg.to);
   const leg = legs[index];
@@ -760,8 +782,37 @@ function describeDay(date) {
 
   const previous = legs[index - 1]?.color ?? AIR;
   const moveIcons = { fly: 'plane', land: 'landing', drive: 'car' };
-  const icon = svgIcon(moveIcons[leg.move], 'mini');
-  return { bg: `linear-gradient(135deg, ${previous} 50%, ${leg.color} 50%)`, note: `${icon}${leg.name}`, leg: leg.id };
+  return { bg: `linear-gradient(135deg, ${previous} 50%, ${leg.color} 50%)`, icon: moveIcons[leg.move], note: leg.name, leg: leg.id };
+}
+
+function christmasScene() {
+  const stars = [[18, 10], [34, 22], [52, 7], [70, 16], [88, 6], [104, 24], [122, 11], [61, 30], [9, 28], [96, 34]]
+    .map(([x, y], i) => `<circle class="star" cx="${x}" cy="${y}" r="${i % 3 ? .7 : 1.1}" style="animation-delay:${(i * .37) % 2.6}s"/>`).join('');
+  const lightColors = ['#f2a33a', '#f07a4f', '#fbf0d2', '#8fd0d4'];
+  const lights = [[128, 62], [138, 60], [124, 74], [135, 72], [146, 70], [121, 86], [131, 85], [142, 84], [151, 82]]
+    .map(([x, y], i) => `<circle class="bulb" cx="${x}" cy="${y}" r="1.5" fill="${lightColors[i % 4]}" style="animation-delay:${(i * .53) % 2.4}s"/>`).join('');
+  return `<svg class="scene" viewBox="0 0 160 100" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="xmas-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1c1a33"/>
+        <stop offset=".65" stop-color="#4a2d4f"/>
+        <stop offset="1" stop-color="#7a4560"/>
+      </linearGradient>
+      <mask id="xmas-moon"><rect width="160" height="100" fill="#fff"/><circle cx="115" cy="33.8" r="5.3" fill="#000"/></mask>
+      <radialGradient id="xmas-glow"><stop offset="0" stop-color="#f2a33a" stop-opacity=".55"/><stop offset="1" stop-color="#f2a33a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="160" height="100" fill="url(#xmas-sky)"/>
+    <g fill="#fbf0d2">${stars}</g>
+    <path class="shooting" d="M40 6 l14 6" stroke="#fbf0d2" stroke-width=".8" stroke-linecap="round"/>
+    <circle cx="112" cy="36" r="6" fill="#f6dfa8" mask="url(#xmas-moon)"/>
+    <path d="M0 78 Q30 64 62 74 T120 70 T160 66 V100 H0Z" fill="#3a2440"/>
+    <path d="M0 88 Q40 80 80 86 T160 82 V100 H0Z" fill="#1f2a24"/>
+    <circle class="tree-glow" cx="136" cy="74" r="22" fill="url(#xmas-glow)"/>
+    <path d="M136 50 L150 70 L144 70 L155 86 L117 86 L128 70 L122 70 Z" fill="#2f5a3e"/>
+    <rect x="133.5" y="86" width="5" height="5" fill="#5a3b2a"/>
+    ${lights}
+    <path class="topper" d="M136 44.5 l1.4 3 3.2 .3 -2.4 2.1 .8 3.1 -3-1.7 -3 1.7 .8-3.1 -2.4-2.1 3.2-.3Z" fill="#f2a33a"/>
+  </svg>`;
 }
 
 const cal = document.getElementById('cal');
@@ -779,9 +830,10 @@ for (let i = 0; i < 35; i++) {
   if (info.bg) cell.style.background = info.bg;
   if (info.leg) cell.dataset.leg = info.leg;
   cell.innerHTML = `
+    ${isChristmas ? christmasScene() : ''}
     <div class="num">${date.getDate()}${month}</div>
-    ${info.note ? `<div class="note">${isChristmas ? 'Christmas' : info.note}</div>` : ''}
-    ${status ? `<div class="d ${status}">${statusLabel[status]}</div>` : ''}`;
+    ${info.note ? `<div class="note">${info.icon ? svgIcon(info.icon, 'mini') : ''}<span>${isChristmas ? 'Christmas!' : info.note}</span></div>` : ''}
+    ${status === 'work' ? svgIcon('working', 'day-icon', 'Working') : ''}`;
   cal.appendChild(cell);
 }
 
@@ -855,14 +907,14 @@ const flights = [
 ];
 
 const markers = [
-  { place: 'jnb', dx: -26, dy: 5, anchor: 'end', text: 'Johannesburg' },
+  { place: 'jnb', dx: -32, dy: 5, anchor: 'end', text: 'Joburg' },
   { place: 'cpt', dx: -6, dy: 34, anchor: 'start', text: 'Cape Town' },
   { place: 'gr', dx: 0, dy: 38, anchor: 'middle', text: 'Wilderness' },
   { place: 'cr' },
   { place: 'addo' },
 ];
 
-const insetBounds = { north: -33.3, south: -34.06, west: 25.35, east: 26.9 };
+const insetBounds = { north: -33.28, south: -34.08, west: 25.1, east: 26.9 };
 
 const insetMarkers = [
   { place: 'addo', dx: -18, dy: 5, anchor: 'end', text: 'Main Camp' },
@@ -871,7 +923,7 @@ const insetMarkers = [
 
 const insetDots = [
   { place: 'nyathi', dx: 9, dy: 4, anchor: 'start', text: 'Nyathi' },
-  { place: 'plz', dx: 9, dy: 4, anchor: 'start', text: 'P.E airport' },
+  { place: 'plz', dx: 9, dy: 4, anchor: 'start', text: 'Gqeberha airport' },
 ];
 
 const legColor = id => legs.find(leg => leg.id === id).color;
@@ -880,12 +932,14 @@ function marker({ place: id, dx, dy, anchor, text }, k) {
   const [x, y] = project(place[id]);
   const stops = legs.filter(leg => leg.place === id);
   const radius = 13 * k;
-  const halfWidth = radius + (stops.length - 1) * 9 * k;
-  return `<g data-leg="${stops.map(leg => leg.id).join(' ')}">
-    <rect x="${x - halfWidth}" y="${y - radius}" width="${halfWidth * 2}" height="${radius * 2}" rx="${radius}" fill="${stops[0].color}" stroke="#1f2a24" stroke-width="${2.5 * k}"/>
-    <text x="${x}" y="${y + 5 * k}" font-family="Fraunces, serif" font-weight="900" font-size="${15 * k}" fill="#f3e9d6" text-anchor="middle">${stops.map(legNumber).join('\u00b7')}</text>
-    ${text ? `<text x="${x + dx * k}" y="${y + dy * k}" font-size="${13 * Math.min(k, 1.6)}" font-weight="700" fill="#1f2a24" text-anchor="${anchor}">${text}</text>` : ''}
-  </g>`;
+  const step = radius * 1.45;
+  const firstX = x - (stops.length - 1) * step / 2;
+  const badges = stops.map((leg, i) => `<g data-leg="${leg.id}">
+    <circle cx="${firstX + i * step}" cy="${y}" r="${radius}" fill="${leg.color}" stroke="#1f2a24" stroke-width="${2.5 * k}"/>
+    <text x="${firstX + i * step}" y="${y + 5 * k}" font-family="Fraunces, serif" font-weight="900" font-size="${15 * k}" fill="#f3e9d6" text-anchor="middle">${legNumber(leg)}</text>
+  </g>`).reverse().join('');
+  const label = text ? `<text data-leg="${stops.map(leg => leg.id).join(' ')}" x="${x + dx * k}" y="${y + dy * k}" font-size="${13 * Math.min(k, 1.6)}" font-weight="700" fill="#1f2a24" text-anchor="${anchor}">${text}</text>` : '';
+  return `<g>${badges}${label}</g>`;
 }
 
 function oceanLabels(k) {
@@ -908,6 +962,17 @@ function insetOutline(k) {
   return `<rect x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" rx="${3 * k}" fill="none" stroke="#1f2a24" stroke-width="${1.5 * k}" stroke-dasharray="${4 * k} ${3 * k}"/>`;
 }
 
+function laneOffset(points, distance) {
+  const xy = points.map(project);
+  const shifted = xy.map(([x, y], i) => {
+    const [px, py] = xy[Math.max(i - 1, 0)];
+    const [nx, ny] = xy[Math.min(i + 1, xy.length - 1)];
+    const length = Math.hypot(nx - px, ny - py) || 1;
+    return [x + (ny - py) / length * distance, y - (nx - px) / length * distance];
+  });
+  return 'M' + shifted.map(p => p.map(v => v.toFixed(1)).join(',')).join(' L');
+}
+
 function dot({ place: id, dx, dy, anchor, text }, k) {
   const [x, y] = project(place[id]);
   return `<circle cx="${x}" cy="${y}" r="${4.5 * k}" fill="#f3e9d6" stroke="#1f2a24" stroke-width="${2 * k}"/>
@@ -917,7 +982,7 @@ function dot({ place: id, dx, dy, anchor, text }, k) {
 function renderInset() {
   const container = document.getElementById('inset');
   const box = insetBox();
-  const k = 0.85 * box.width / container.clientWidth;
+  const k = 0.8 * box.width / container.clientWidth;
   const insetDrives = drives.filter(r => ['addo', 'cr', 'xmas'].includes(r.leg));
   container.innerHTML = `
 <svg viewBox="${box.x} ${box.y} ${box.width} ${box.height}" xmlns="http://www.w3.org/2000/svg" style="font-family: var(--body-font)">
@@ -933,9 +998,8 @@ function renderInset() {
   <rect x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" fill="url(#inset-waves)"/>
   <path d="${line(easternCapeDetail)}Z" fill="${provinceShades['Eastern Cape']}" stroke="#1f2a24" stroke-width="${2.5 * k}" stroke-linejoin="round"/>
   <path d="${shape(addoParkDetail)}" fill="url(#inset-hatch)" stroke="#c4512a" stroke-width="${1.5 * k}"/>
-  ${insetDrives.map(r => `
-    <path d="${line(r.path)}" fill="none" stroke="#1f2a24" stroke-width="${7 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>
-    <path d="${line(r.path)}" fill="none" stroke="${legColor(r.leg)}" stroke-width="${4 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
+  ${insetDrives.map(r => `<path d="${laneOffset(r.path, 2.2 * k)}" fill="none" stroke="#1f2a24" stroke-width="${6 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
+  ${insetDrives.map(r => `<path d="${laneOffset(r.path, 2.2 * k)}" fill="none" stroke="${legColor(r.leg)}" stroke-width="${3.2 * k}" stroke-linecap="round" stroke-linejoin="round" data-leg="${r.leg}"/>`).join('')}
   ${insetDots.map(d => dot(d, k)).join('')}
   ${insetMarkers.map(m => marker(m, k)).join('')}
 </svg>`;
