@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{lang}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>South Africa · December 2026</title>
+<title>[[South Africa · December 2026]]</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#f3e9d6">
@@ -45,6 +45,7 @@
   h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 900; letter-spacing: -.02em; }
 
   header {
+    position: relative;
     display: flex;
     align-items: flex-end;
     gap: 28px;
@@ -52,6 +53,10 @@
     padding-bottom: 22px;
     border-bottom: 3px solid var(--ink);
   }
+
+  .lang-switch { position: absolute; top: 0; right: 0; display: flex; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+  .lang-switch a { padding: 2px 8px; border-radius: 99px; color: var(--muted); text-decoration: none; }
+  .lang-switch a[aria-current] { background: var(--ink); color: var(--paper); }
 
   .sun {
     width: 132px;
@@ -449,13 +454,14 @@
 <div class="wrap">
 
   <header>
+    <nav class="lang-switch">{{languageSwitch}}</nav>
     <div class="sun"></div>
     <div>
-      <h1>South <em>Africa</em></h1>
+      <h1>[[South <em>Africa</em>]]</h1>
     </div>
     <div class="stats">
-      <div><b>4 – 28</b> December 2026</div>
-      <div class="label">22 nights</div>
+      <div><b>4 – 28</b> [[December 2026]]</div>
+      <div class="label">[[22 nights]]</div>
     </div>
   </header>
 
@@ -468,22 +474,22 @@
   </main>
 
   <section>
-    <h2>December at a glance</h2>
+    <h2>[[December at a glance]]</h2>
     <div class="cal">{{calendar}}</div>
   </section>
 
   <section>
-    <h2>Stop by stop</h2>
+    <h2>[[Stop by stop]]</h2>
     <div class="stops">{{stops}}</div>
   </section>
 
   <section>
-    <h2>To do</h2>
+    <h2>[[To do]]</h2>
     {{todos}}
   </section>
 
   <section>
-    <h2>Budget</h2>
+    <h2>[[Budget]]</h2>
     <div class="budget-summary">{{budgetSummary}}</div>
     <ul class="budget">{{budget}}</ul>
   </section>

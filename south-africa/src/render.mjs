@@ -1,4 +1,5 @@
 import { icons } from './icons.mjs';
+import { locales } from './locale.mjs';
 import { tickets, legs, randPerEuro, budget, leave, publicHolidays, tripStart, tripEnd, todos } from './trip.mjs';
 import {
   provinces, neighbours, provinceShades, easternCapeDetail, addoParkDetail, addoPark,
@@ -6,8 +7,10 @@ import {
 } from './geo.mjs';
 
 const AIR = '#1f2a24';
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// Set per render; every helper below reads the active language from here.
+let l = locales.en;
+const t = text => l.t(text);
 
 const pad = n => String(n).padStart(2, '0');
 const iso = date => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
@@ -27,11 +30,11 @@ function svgIcon(name, className, title = '') {
   return `<svg class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${label}${icons[name]}</svg>`;
 }
 
-const dayName = d => WEEKDAYS[new Date(2026, 11, d).getDay()];
+const dayName = d => l.weekdays[new Date(2026, 11, d).getDay()];
 const nights = leg => leg.to - leg.from;
 const legNumber = leg => legs.indexOf(leg) + 1;
 const legById = id => legs.find(leg => leg.id === id);
-const when = leg => `${dayName(leg.from)} ${leg.from} – ${dayName(leg.to)} ${leg.to} Dec · ${nights(leg)} night${nights(leg) > 1 ? 's' : ''}`;
+const when = leg => `${dayName(leg.from)} ${leg.from} – ${dayName(leg.to)} ${leg.to} ${l.months[11]} · ${l.nights(nights(leg))}`;
 
 /* ---------- overview cards ---------- */
 
@@ -51,15 +54,15 @@ function renderLegs() {
 
 /* ---------- stop sections ---------- */
 
-const undecided = `<div class="empty">${svgIcon('undecided', '')}To be decided</div>`;
+const undecided = () => `<div class="empty">${svgIcon('undecided', '')}${t('To be decided')}</div>`;
 const statusTitle = { booked: 'Booked', todo: 'To book' };
-const statusBadge = status => statusTitle[status] ? `<span class="status is-${status}">${statusTitle[status]}</span>` : '';
+const statusBadge = status => statusTitle[status] ? `<span class="status is-${status}">${t(statusTitle[status])}</span>` : '';
 
 function listItem(item) {
-  if (typeof item === 'string') return `<li>${item}</li>`;
-  if (item.warning) return `<li class="warning">${item.text}</li>`;
-  const detail = item.detail ? `<div class="detail">${item.detail}</div>` : '';
-  return `<li>${item.text}${statusBadge(item.status)}${detail}</li>`;
+  if (typeof item === 'string') return `<li>${t(item)}</li>`;
+  if (item.warning) return `<li class="warning">${t(item.text)}</li>`;
+  const detail = item.detail ? `<div class="detail">${t(item.detail)}</div>` : '';
+  return `<li>${t(item.text)}${statusBadge(item.status)}${detail}</li>`;
 }
 
 const list = items => `<ul>${items.map(listItem).join('')}</ul>`;
@@ -68,26 +71,26 @@ function stayBlock(stays) {
   const showDates = stays.length > 1;
   return stays.map(stay => `
     <div class="stay">
-      <div class="name">${stay.name}${statusBadge(stay.status)}</div>
-      ${showDates ? `<div class="dates">${stay.dates}</div>` : ''}
+      <div class="name">${t(stay.name)}${statusBadge(stay.status)}</div>
+      ${showDates ? `<div class="dates">${t(stay.dates)}</div>` : ''}
       ${stay.details.length ? list(stay.details) : ''}
     </div>`).join('');
 }
 
 function planBlock(plans) {
-  if (!plans) return undecided;
-  if (!plans.length) return `<div class="empty">${svgIcon('sofa', '')}Nothing planned</div>`;
+  if (!plans) return undecided();
+  if (!plans.length) return `<div class="empty">${svgIcon('sofa', '')}${t('Nothing planned')}</div>`;
   return list(plans);
 }
 
 function block(title, content, kind) {
-  return content ? `<div class="block ${kind}"><h4>${title}</h4>${content}</div>` : '';
+  return content ? `<div class="block ${kind}"><h4>${t(title)}</h4>${content}</div>` : '';
 }
 
 function ticket({ art, route, flights: legsFlown, month, day }) {
   const rows = legsFlown.map(flight => {
     const nextDay = flight.nextDay ? ' <small>+1</small>' : '';
-    return `<div><b>${flight.number}</b><span>${flight.date}</span><span>${flight.times}${nextDay}</span></div>`;
+    return `<div><b>${flight.number}</b><span>${t(flight.date)}</span><span>${flight.times}${nextDay}</span></div>`;
   }).join('');
   return `
   <div class="stop-ticket">
@@ -98,7 +101,7 @@ function ticket({ art, route, flights: legsFlown, month, day }) {
         <div class="route">${route.join(' <span>→</span> ')}</div>
         <div class="legs-list">${rows}</div>
       </div>
-      <div class="stub"><span class="label" style="color:var(--sand)">${month}</span><b>${day}</b></div>
+      <div class="stub"><span class="label" style="color:var(--sand)">${t(month)}</span><b>${day}</b></div>
     </div>
   </div>`;
 }
@@ -121,7 +124,7 @@ function renderStops() {
         ${block('To decide', leg.decide?.length && list(leg.decide), 'decide')}
       </div>
       <div class="column">
-        ${block('Where we stay', leg.stay ? stayBlock(leg.stay) : undecided, 'stay')}
+        ${block('Where we stay', leg.stay ? stayBlock(leg.stay) : undecided(), 'stay')}
         ${block('Notes', leg.notes.length && list(leg.notes), 'notes')}
       </div>
     </div>
@@ -137,10 +140,11 @@ function renderTodos() {
     const dot = leg ? `<i style="background:${leg.color}"></i>` : '<i></i>';
     const rows = items.map(item => {
       const assignee = item.who ? `<span class="who">@${item.who}</span>` : '';
-      return `<li${item.done ? ' class="done"' : ''}><span class="what">${item.what}</span><span class="when">${item.when}</span><span class="note">${item.note ?? ''}</span><span class="assignee">${assignee}</span></li>`;
+      const note = item.note ? t(item.note) : '';
+      return `<li${item.done ? ' class="done"' : ''}><span class="what">${t(item.what)}</span><span class="when">${t(item.when)}</span><span class="note">${note}</span><span class="assignee">${assignee}</span></li>`;
     }).join('\n      ');
     return `
-    <h3 class="todo-group">${dot}${leg?.name ?? group}</h3>
+    <h3 class="todo-group">${dot}${leg?.name ?? t(group)}</h3>
     <ul class="todo">
       ${rows}
     </ul>`;
@@ -150,20 +154,14 @@ function renderTodos() {
 /* ---------- budget ---------- */
 
 const toEuro = (amount, currency) => currency === 'EUR' ? amount : amount / randPerEuro;
-const groupThousands = digits => digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-function euro(amount, cents = false) {
-  const [whole, fraction] = amount.toFixed(cents ? 2 : 0).split('.');
-  return '€' + groupThousands(whole) + (fraction ? '.' + fraction : '');
-}
-
-const rand = amount => 'R' + groupThousands(String(Math.round(amount / 10) * 10));
+const euro = (amount, cents) => l.euro(amount, cents);
+const rand = amount => l.rand(amount);
 
 function budgetRow(line) {
   const amount = toEuro(line.actual ?? line.estimate, line.currency);
-  const paid = line.paidBy ? `<span class="chip paid">${svgIcon('paid', '', 'Paid')}${line.paidBy}</span>` : '';
+  const paid = line.paidBy ? `<span class="chip paid">${svgIcon('paid', '', t('Paid'))}${line.paidBy}</span>` : '';
   return `<li class="${line.actual ? 'actual' : 'estimate'}">
-    <div><div class="what">${line.item}</div>${line.detail ? `<div class="detail">${line.detail}</div>` : ''}</div>
+    <div><div class="what">${t(line.item)}</div>${line.detail ? `<div class="detail">${t(line.detail)}</div>` : ''}</div>
     <div class="payer">${paid}</div>
     <div class="amount"><b>${line.actual ? euro(amount, true) : '~' + euro(amount)}</b><small>${rand(amount * randPerEuro)}</small></div>
   </li>`;
@@ -174,11 +172,11 @@ function renderBudget() {
   const paidLines = budget.filter(line => line.actual && line.paidBy);
   const paidTotal = paidLines.reduce((sum, line) => sum + toEuro(line.actual, line.currency), 0);
   const summary = `
-  <div><span class="label">Total</span><b>${euro(total)}</b><small>${rand(total * randPerEuro)}</small></div>
-  <div><span class="label">Each</span><b>${euro(total / 2)}</b><small>${rand(total / 2 * randPerEuro)}</small></div>
-  <div><span class="label">Paid</span><b>${euro(paidTotal, true)}</b><small>${rand(paidTotal * randPerEuro)}</small></div>`;
+  <div><span class="label">${t('Total')}</span><b>${euro(total)}</b><small>${rand(total * randPerEuro)}</small></div>
+  <div><span class="label">${t('Each')}</span><b>${euro(total / 2)}</b><small>${rand(total / 2 * randPerEuro)}</small></div>
+  <div><span class="label">${t('Paid')}</span><b>${euro(paidTotal, true)}</b><small>${rand(paidTotal * randPerEuro)}</small></div>`;
   const rows = budget.map(budgetRow).join('') +
-    `<li class="rate"><div class="detail">~ is an estimate. R${randPerEuro.toFixed(2)} = €1.</div></li>`;
+    `<li class="rate"><div class="detail">${l.rateNote(randPerEuro)}</div></li>`;
   return { summary, rows };
 }
 
@@ -206,18 +204,18 @@ function christmasScene() {
 }
 
 function renderCalendar() {
-  const header = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map(d => `<div class="dow">${d}</div>`).join('');
+  const header = l.calendarHeader.map(d => `<div class="dow">${d}</div>`).join('');
   const cells = [];
   for (let i = 0; i < 35; i++) {
     const date = new Date(2026, 10, 30 + i);
     const info = describeDay(date);
     const isChristmas = date.getMonth() === 11 && date.getDate() === 25;
-    const month = date.getMonth() === 11 ? '' : `<small>${MONTHS[date.getMonth()]}</small>`;
+    const month = date.getMonth() === 11 ? '' : `<small>${l.months[date.getMonth()]}</small>`;
     const classes = ['day', info.off && 'off', isChristmas && 'christmas'].filter(Boolean).join(' ');
     const style = info.bg ? ` style="background:${info.bg}"` : '';
     const dataLeg = info.leg ? ` data-leg="${info.leg}"` : '';
-    const note = info.note ? `<div class="note">${info.icon ? svgIcon(info.icon, 'mini') : ''}<span>${isChristmas ? 'Christmas!' : info.note}</span></div>` : '';
-    const working = dayStatus(date) === 'work' ? svgIcon('working', 'day-icon', 'Working') : '';
+    const note = info.note ? `<div class="note">${info.icon ? svgIcon(info.icon, 'mini') : ''}<span>${isChristmas ? t('Christmas!') : info.note}</span></div>` : '';
+    const working = dayStatus(date) === 'work' ? svgIcon('working', 'day-icon', t('Working')) : '';
     cells.push(`<div class="${classes}"${style}${dataLeg}>${isChristmas ? christmasScene() : ''}<div class="num">${date.getDate()}${month}</div>${note}${working}</div>`);
   }
   return header + cells.join('\n');
@@ -254,11 +252,11 @@ function marker({ place: id, dx, dy, anchor, text }, k) {
 
 function oceanLabels(k) {
   if (k === 1) {
-    return `<text x="40" y="700" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#2f7f8a">Atlantic</text>
-  <text x="795" y="530" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#2f7f8a" text-anchor="end">Indian Ocean</text>`;
+    return `<text x="40" y="700" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#2f7f8a">${t('Atlantic')}</text>
+  <text x="795" y="530" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#2f7f8a" text-anchor="end">${t('Indian Ocean')}</text>`;
   }
-  return `<text transform="translate(52 610) rotate(-90)" font-family="Fraunces, serif" font-style="italic" font-size="${22 * k}" fill="#2f7f8a">Atlantic</text>
-  <text x="790" y="625" font-family="Fraunces, serif" font-style="italic" font-size="${22 * k}" fill="#2f7f8a" text-anchor="end">Indian Ocean</text>`;
+  return `<text transform="translate(52 610) rotate(-90)" font-family="Fraunces, serif" font-style="italic" font-size="${22 * k}" fill="#2f7f8a">${t('Atlantic')}</text>
+  <text x="790" y="625" font-family="Fraunces, serif" font-style="italic" font-size="${22 * k}" fill="#2f7f8a" text-anchor="end">${t('Indian Ocean')}</text>`;
 }
 
 function insetBox() {
@@ -286,7 +284,7 @@ function laneOffset(points, distance) {
 function dot({ place: id, dx, dy, anchor, text }, k) {
   const [x, y] = project(place[id]);
   return `<circle cx="${x}" cy="${y}" r="${4.5 * k}" fill="#f3e9d6" stroke="#1f2a24" stroke-width="${2 * k}"/>
-    <text x="${x + dx * k}" y="${y + dy * k}" font-size="${12 * k}" font-weight="700" fill="#1f2a24" text-anchor="${anchor}" stroke="#f3e9d6" stroke-width="${4 * k}" stroke-linejoin="round" paint-order="stroke">${text}</text>`;
+    <text x="${x + dx * k}" y="${y + dy * k}" font-size="${12 * k}" font-weight="700" fill="#1f2a24" text-anchor="${anchor}" stroke="#f3e9d6" stroke-width="${4 * k}" stroke-linejoin="round" paint-order="stroke">${t(text)}</text>`;
 }
 
 function mapSvg(variant, k) {
@@ -356,9 +354,19 @@ function renderMap() {
   return mapSvg('desktop', 1) + mapSvg('mobile', 1.8);
 }
 
-export function renderPage(template) {
+function languageSwitch() {
+  return Object.keys(locales).map(code => {
+    const current = code === l.lang ? ' aria-current="true"' : '';
+    return `<a href="/${code}" hreflang="${code}" lang="${code}"${current}>${code.toUpperCase()}</a>`;
+  }).join('');
+}
+
+export function renderPage(template, lang) {
+  l = locales[lang];
   const { summary, rows } = renderBudget();
   const slots = {
+    lang: l.lang,
+    languageSwitch: languageSwitch(),
     map: renderMap(),
     inset: renderInset(),
     legs: renderLegs(),
@@ -368,8 +376,10 @@ export function renderPage(template) {
     budgetSummary: summary,
     budget: rows,
   };
-  return template.replace(/\{\{(\w+)\}\}/g, (match, name) => {
-    if (!(name in slots)) throw new Error(`Unknown template slot: ${name}`);
-    return slots[name];
-  });
+  return template
+    .replace(/\[\[(.+?)\]\]/g, (match, text) => t(text))
+    .replace(/\{\{(\w+)\}\}/g, (match, name) => {
+      if (!(name in slots)) throw new Error(`Unknown template slot: ${name}`);
+      return slots[name];
+    });
 }
