@@ -204,7 +204,7 @@ function christmasScene() {
 }
 
 function renderCalendar() {
-  const header = l.calendarHeader.map((d, i) => `<div class="dow${i >= 5 ? ' weekend' : ''}">${d}</div>`).join('');
+  const header = l.calendarHeader.map(d => `<div class="dow">${d}</div>`).join('');
   const cells = [];
   for (let i = 0; i < 35; i++) {
     const date = new Date(2026, 10, 30 + i);

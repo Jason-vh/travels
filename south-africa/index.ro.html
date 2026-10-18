@@ -274,19 +274,24 @@
   .sub { color: var(--muted); margin-bottom: 18px; }
 
 
-  .cal { --gap: 6px; position: relative; margin-top: 18px; display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--gap); }
+  .cal {
+    --gap: 6px;
+    --split: 26px;
+    position: relative;
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) var(--split) repeat(2, 1fr);
+    gap: var(--gap);
+  }
+  .cal > :nth-child(7n + 6) { grid-column-start: 7; }
   .cal::before {
     content: '';
     position: absolute;
-    top: -6px;
-    bottom: -6px;
-    right: -6px;
-    width: calc((100% - 6 * var(--gap)) * 2 / 7 + var(--gap) + 12px);
-    border-radius: 14px;
-    background: rgba(31, 42, 36, .045);
+    top: 0;
+    bottom: 0;
+    left: calc((100% - 7 * var(--gap) - var(--split)) * 5 / 7 + 5 * var(--gap) + var(--split) / 2 - 1px);
+    border-left: 2px dotted #c9bb9c;
   }
-  .cal > * { position: relative; }
-  .dow.weekend { color: var(--ink); }
   .dow { text-align: center; font-size: 11px; letter-spacing: .18em; color: var(--muted); padding-bottom: 2px; }
 
   .day {
@@ -432,8 +437,7 @@
     .leg { min-height: 96px; padding: 14px; gap: 12px; }
     .leg h3 { font-size: 23px; }
     .leg .when { font-size: 12.5px; }
-    .cal { --gap: 4px; }
-    .cal::before { top: -4px; bottom: -4px; right: -4px; width: calc((100% - 6 * var(--gap)) * 2 / 7 + var(--gap) + 8px); border-radius: 10px; }
+    .cal { --gap: 4px; --split: 12px; }
     .dow { font-size: 9px; letter-spacing: .08em; }
     .day { min-height: 54px; padding: 5px 6px 6px; border-radius: 8px; border-width: 1.5px; }
     .day .day-icon { right: 4px; bottom: 4px; width: 13px; height: 13px; }
@@ -699,7 +703,7 @@
 
   <section>
     <h2>Decembrie pe scurt</h2>
-    <div class="cal"><div class="dow">LUN</div><div class="dow">MAR</div><div class="dow">MIE</div><div class="dow">JOI</div><div class="dow">VIN</div><div class="dow weekend">SÂM</div><div class="dow weekend">DUM</div><div class="day off"><div class="num">30<small>nov.</small></div></div>
+    <div class="cal"><div class="dow">LUN</div><div class="dow">MAR</div><div class="dow">MIE</div><div class="dow">JOI</div><div class="dow">VIN</div><div class="dow">SÂM</div><div class="dow">DUM</div><div class="day off"><div class="num">30<small>nov.</small></div></div>
 <div class="day off"><div class="num">1</div></div>
 <div class="day off"><div class="num">2</div></div>
 <div class="day off"><div class="num">3</div></div>
