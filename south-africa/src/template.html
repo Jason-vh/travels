@@ -45,7 +45,6 @@
   h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 900; letter-spacing: -.02em; }
 
   header {
-    position: relative;
     display: flex;
     align-items: flex-end;
     gap: 28px;
@@ -53,10 +52,6 @@
     padding-bottom: 22px;
     border-bottom: 3px solid var(--ink);
   }
-
-  .lang-switch { position: absolute; top: 0; right: 0; display: flex; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
-  .lang-switch a { padding: 2px 8px; border-radius: 99px; color: var(--muted); text-decoration: none; }
-  .lang-switch a[aria-current] { background: var(--ink); color: var(--paper); }
 
   .sun {
     width: 132px;
@@ -279,7 +274,19 @@
   .sub { color: var(--muted); margin-bottom: 18px; }
 
 
-  .cal { margin-top: 18px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal { --gap: 6px; position: relative; margin-top: 18px; display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--gap); }
+  .cal::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    right: -6px;
+    width: calc((100% - 6 * var(--gap)) * 2 / 7 + var(--gap) + 12px);
+    border-radius: 14px;
+    background: rgba(31, 42, 36, .045);
+  }
+  .cal > * { position: relative; }
+  .dow.weekend { color: var(--ink); }
   .dow { text-align: center; font-size: 11px; letter-spacing: .18em; color: var(--muted); padding-bottom: 2px; }
 
   .day {
@@ -298,7 +305,8 @@
   .day .num small { font-family: var(--body-font); font-size: 10px; font-weight: 400; margin-left: 4px; opacity: .8; }
   .day .note { font-size: 10.5px; line-height: 1.3; margin-top: 6px; text-transform: uppercase; letter-spacing: .06em; }
   .day.christmas .num, .day.christmas .note { color: #fbf5e9; }
-  .day.christmas > :not(.scene) { position: relative; }
+  .day.christmas > :not(.scene), .day.new-year > :not(.scene) { position: relative; }
+  .day.new-year .scene { background: url('images/new-year.jpg') 70% 40% / cover; filter: grayscale(1) contrast(.9); opacity: .3; }
   .day.christmas .num, .day.christmas .note { text-shadow: 0 1px 6px #1c1a33, 0 0 2px #1c1a33; }
   .day .scene {
     position: absolute;
@@ -424,7 +432,8 @@
     .leg { min-height: 96px; padding: 14px; gap: 12px; }
     .leg h3 { font-size: 23px; }
     .leg .when { font-size: 12.5px; }
-    .cal { gap: 4px; }
+    .cal { --gap: 4px; }
+    .cal::before { top: -4px; bottom: -4px; right: -4px; width: calc((100% - 6 * var(--gap)) * 2 / 7 + var(--gap) + 8px); border-radius: 10px; }
     .dow { font-size: 9px; letter-spacing: .08em; }
     .day { min-height: 54px; padding: 5px 6px 6px; border-radius: 8px; border-width: 1.5px; }
     .day .day-icon { right: 4px; bottom: 4px; width: 13px; height: 13px; }
@@ -454,7 +463,6 @@
 <div class="wrap">
 
   <header>
-    <nav class="lang-switch">{{languageSwitch}}</nav>
     <div class="sun"></div>
     <div>
       <h1>[[South <em>Africa</em>]]</h1>

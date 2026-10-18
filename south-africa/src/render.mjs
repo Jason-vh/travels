@@ -204,19 +204,20 @@ function christmasScene() {
 }
 
 function renderCalendar() {
-  const header = l.calendarHeader.map(d => `<div class="dow">${d}</div>`).join('');
+  const header = l.calendarHeader.map((d, i) => `<div class="dow${i >= 5 ? ' weekend' : ''}">${d}</div>`).join('');
   const cells = [];
   for (let i = 0; i < 35; i++) {
     const date = new Date(2026, 10, 30 + i);
     const info = describeDay(date);
     const isChristmas = date.getMonth() === 11 && date.getDate() === 25;
+    const isNewYear = date.getMonth() === 0 && date.getDate() === 1;
     const month = date.getMonth() === 11 ? '' : `<small>${l.months[date.getMonth()]}</small>`;
-    const classes = ['day', info.off && 'off', isChristmas && 'christmas'].filter(Boolean).join(' ');
+    const classes = ['day', info.off && 'off', isChristmas && 'christmas', isNewYear && 'new-year'].filter(Boolean).join(' ');
     const style = info.bg ? ` style="background:${info.bg}"` : '';
     const dataLeg = info.leg ? ` data-leg="${info.leg}"` : '';
     const note = info.note ? `<div class="note">${info.icon ? svgIcon(info.icon, 'mini') : ''}<span>${isChristmas ? t('Christmas!') : info.note}</span></div>` : '';
     const working = dayStatus(date) === 'work' ? svgIcon('working', 'day-icon', t('Working')) : '';
-    cells.push(`<div class="${classes}"${style}${dataLeg}>${isChristmas ? christmasScene() : ''}<div class="num">${date.getDate()}${month}</div>${note}${working}</div>`);
+    cells.push(`<div class="${classes}"${style}${dataLeg}>${isChristmas ? christmasScene() : ''}${isNewYear ? '<div class="scene" aria-hidden="true"></div>' : ''}<div class="num">${date.getDate()}${month}</div>${note}${working}</div>`);
   }
   return header + cells.join('\n');
 }
@@ -354,19 +355,11 @@ function renderMap() {
   return mapSvg('desktop', 1) + mapSvg('mobile', 1.8);
 }
 
-function languageSwitch() {
-  return Object.keys(locales).map(code => {
-    const current = code === l.lang ? ' aria-current="true"' : '';
-    return `<a href="/${code}" hreflang="${code}" lang="${code}"${current}>${code.toUpperCase()}</a>`;
-  }).join('');
-}
-
 export function renderPage(template, lang) {
   l = locales[lang];
   const { summary, rows } = renderBudget();
   const slots = {
     lang: l.lang,
-    languageSwitch: languageSwitch(),
     map: renderMap(),
     inset: renderInset(),
     legs: renderLegs(),

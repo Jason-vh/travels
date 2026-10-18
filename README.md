@@ -18,4 +18,4 @@ Static itinerary sites for group trips. Deployed to [travel.vhtm.eu](https://tra
 4. Add a `server` block to `nginx.conf` for `mytrip.travels.vhtm.eu`
 5. Push — Railway auto-deploys (wildcard DNS handles the subdomain)
 
-The South Africa page is generated in English and Romanian: edit `south-africa/src/` (Romanian strings live in `src/ro.mjs`), run `node south-africa/build.mjs`, and commit the resulting `south-africa/index.en.html` and `index.ro.html`. nginx picks the language from the browser's `Accept-Language`, and `/en` or `/ro` sets a cookie that overrides it.
+The South Africa page is generated in English and Romanian: edit `south-africa/src/` (Romanian strings live in `src/ro.mjs`), run `node south-africa/build.mjs`, and commit the resulting `south-africa/index.en.html` and `index.ro.html`. nginx serves Romanian when it's the browser's first language, English otherwise.
