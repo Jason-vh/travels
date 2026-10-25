@@ -159,9 +159,14 @@ const toEuro = (amount, currency) => currency === 'EUR' ? amount : amount / rand
 const euro = (amount, cents) => l.euro(amount, cents);
 const rand = amount => l.rand(amount);
 
+function paidChip(payers) {
+  const label = payers.length > 1 ? `×${payers.length}` : payers[0];
+  return `<span class="chip paid" title="${payers.join(', ')}">${svgIcon('paid', '', t('Paid'))}${label}</span>`;
+}
+
 function budgetRow(line) {
   const amount = toEuro(line.actual ?? line.estimate, line.currency);
-  const paid = line.paidBy ? `<span class="chip paid">${svgIcon('paid', '', t('Paid'))}${line.paidBy.join(' & ')}</span>` : '';
+  const paid = line.paidBy ? paidChip(line.paidBy) : '';
   return `<li class="${line.actual ? 'actual' : 'estimate'}">
     <div><div class="what">${t(line.item)}</div>${line.detail ? `<div class="detail">${t(line.detail)}</div>` : ''}</div>
     <div class="payer">${paid}</div>
