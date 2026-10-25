@@ -538,6 +538,9 @@
     .budget-summary b { font-size: 21px; }
     .budget-summary small { font-size: 10.5px; }
     .budget .what { font-size: 16px; }
+    .budget li { grid-template-columns: 1fr auto; row-gap: 6px; }
+    .budget .payer { grid-row: 2; height: auto; }
+    .budget .payer:empty { display: none; }
   }
 </style>
 </head>

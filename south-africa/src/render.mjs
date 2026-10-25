@@ -161,7 +161,7 @@ const rand = amount => l.rand(amount);
 
 function budgetRow(line) {
   const amount = toEuro(line.actual ?? line.estimate, line.currency);
-  const paid = line.paidBy ? `<span class="chip paid">${svgIcon('paid', '', t('Paid'))}${line.paidBy}</span>` : '';
+  const paid = line.paidBy ? `<span class="chip paid">${svgIcon('paid', '', t('Paid'))}${line.paidBy.join(' & ')}</span>` : '';
   return `<li class="${line.actual ? 'actual' : 'estimate'}">
     <div><div class="what">${t(line.item)}</div>${line.detail ? `<div class="detail">${t(line.detail)}</div>` : ''}</div>
     <div class="payer">${paid}</div>
