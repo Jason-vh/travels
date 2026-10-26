@@ -107,7 +107,7 @@ export const todos = [
     group: 'Trip',
     items: [
       { done: true, what: 'Book Amsterdam ⇄ Joburg flights', when: 'Fri 4 & Sun 27 Dec', note: 'SWISS · LX735, LX282, LX283, LX724' },
-      { what: 'Update leave', when: 'Mon 14 – Fri 18, Wed 23 – Mon 28 Dec', note: 'Instead of Mon 21 – Tue 22 and Tue 29 – Thu 31 Dec', who: 'Denisa' },
+      { done: true, what: 'Update leave', when: 'Mon 14 – Fri 18, Wed 23 – Mon 28 Dec', note: 'Instead of Mon 21 – Tue 22 and Tue 29 – Thu 31 Dec', who: 'Denisa' },
       { what: 'Get travel insurance', when: 'Before Fri 4 Dec', note: 'Single trip', who: 'Jason' },
       { what: 'Check travel insurance cover', when: 'Before Fri 4 Dec', note: 'Does the current policy cover South Africa?', who: 'Denisa' },
     ],
