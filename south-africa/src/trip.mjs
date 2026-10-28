@@ -42,7 +42,7 @@ export const legs = [
     id: 'gr', place: 'gr', name: 'Garden Route', color: '#3f6b4a', art: 'garden-route',
     from: 12, to: 13, move: 'drive',
     getting: ['~490 km / 5½h drive from Cape Town'],
-    stay: [{ name: 'Knysna', dates: 'Sat 12 Dec · 1 night', status: 'todo', details: ['Or Plettenberg Bay, 30 min further'] }],
+    stay: [{ name: 'Knysna', dates: 'Sat 12 Dec · 1 night', status: 'booked', details: ['Booking.com', 'Check-in 14:00 · check-out 10:00', 'Card charged on 25 Nov'] }],
     plans: ['Sun: stop at Storms River Mouth on the way to Addo'],
     notes: ['Aim to be at Addo by ~16:00'],
   },
@@ -85,7 +85,7 @@ export const budget = [
   { item: 'Babylonstoren dinner', detail: 'Babel set menu, wine and tip, plus transport both ways', estimate: 4800 },
   { item: 'Car rental', detail: '13 days, Cape Town → Gqeberha, including one-way fee', estimate: 10500 },
   { item: 'Fuel, Cape Town → Gqeberha', detail: '~1,300 km', estimate: 2800 },
-  { item: 'Knysna stay', detail: '1 night', estimate: 1800 },
+  { item: 'Knysna stay', detail: '1 night · Booking.com', estimate: 1800, actual: 128.21, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Addo: Main Camp + Nyathi', detail: '3 nights + park fees · SANParks RR776219', estimate: 420, actual: 582.45, currency: 'EUR', paidBy: ['Jason', 'Denisa'] },
   { item: 'Addo game drive', detail: '2 people', estimate: 1600 },
   { item: 'Cannon Rocks stay', detail: '3 nights', estimate: 4500 },
@@ -125,7 +125,7 @@ export const todos = [
   {
     group: 'gr',
     items: [
-      { what: 'Book Knysna stay', when: 'Sat 12 Dec', note: '1 night, or Plettenberg Bay' },
+      { done: true, what: 'Book Knysna stay', when: 'Sat 12 Dec', note: 'Booking.com' },
     ],
   },
   {
