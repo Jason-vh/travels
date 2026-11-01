@@ -93,7 +93,6 @@ export const budget = [
   { item: 'Boksburg stay', detail: '8 nights', estimate: 12000 },
   { item: 'Getting around Joburg', detail: 'Mostly lifts from family', estimate: 100, currency: 'EUR' },
   { item: 'Food & daily spending', detail: '~€60 a day for 2 × 22 days', estimate: 1320, currency: 'EUR' },
-  { item: 'Travel insurance, Jason', detail: 'Single trip', estimate: 70, currency: 'EUR' },
 ];
 
 export const leave = [['2026-12-14', '2026-12-18'], ['2026-12-23', '2026-12-28']];

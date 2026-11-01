@@ -119,8 +119,6 @@ export const ro = {
   'Mostly lifts from family': 'Mai ales ne duce familia cu mașina',
   'Food & daily spending': 'Mâncare și cheltuieli zilnice',
   '~€60 a day for 2 × 22 days': '~60 € pe zi pentru 2 × 22 de zile',
-  'Travel insurance, Jason': 'Asigurare de călătorie, Jason',
-  'Single trip': 'O singură călătorie',
 
   // To do
   'Book Amsterdam ⇄ Joburg flights': 'Rezervă zborurile Amsterdam ⇄ Joburg',
