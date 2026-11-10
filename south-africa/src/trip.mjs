@@ -69,7 +69,7 @@ export const legs = [
     id: 'xmas', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'christmas',
     from: 19, to: 27, move: 'fly',
     getting: ['~135 km / 1½h drive from Cannon Rocks to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · ~1h45', status: 'todo' }],
-    stay: [{ name: 'Airbnb in Boksburg', dates: 'Sat 19 – Sun 27 Dec · 8 nights', status: 'todo', details: [] }],
+    stay: [{ name: 'Airbnb in Benoni', dates: 'Sat 19 – Sun 27 Dec · 8 nights', status: 'booked', details: ['Airbnb', '3-bedroom flat with a garden, hosted by Sonja', 'Free cancellation until 18 Dec', 'Card charged on 10 Dec'] }],
     plans: ['Christmas with family, Fri 25 Dec'],
     decide: ['Rent a car?'],
     notes: ['We both work Mon 21 – Tue 22'],
@@ -90,7 +90,7 @@ export const budget = [
   { item: 'Addo game drive', detail: '2 people', estimate: 1600 },
   { item: 'Cannon Rocks stay', detail: '3 nights', estimate: 4500 },
   { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people', estimate: 3600 },
-  { item: 'Boksburg stay', detail: '8 nights', estimate: 12000 },
+  { item: 'Benoni stay', detail: '8 nights · Airbnb', estimate: 12000, actual: 669.07, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Getting around Joburg', detail: 'Mostly lifts from family', estimate: 100, currency: 'EUR' },
   { item: 'Food & daily spending', detail: '~€60 a day for 2 × 22 days', estimate: 1320, currency: 'EUR' },
 ];
@@ -142,7 +142,7 @@ export const todos = [
     group: 'xmas',
     items: [
       { what: 'Book Gqeberha → Joburg flights', when: 'Sat 19 Dec, early afternoon' },
-      { what: 'Book Boksburg Airbnb', when: 'Sat 19 – Sun 27 Dec' },
+      { done: true, what: 'Book Benoni Airbnb', when: 'Sat 19 – Sun 27 Dec', note: 'Airbnb' },
     ],
   },
 ];
