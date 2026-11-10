@@ -58,17 +58,17 @@ export const legs = [
     notes: ['Buy food and supplies before Addo: Nyathi is self-catering'],
   },
   {
-    id: 'cr', place: 'cr', name: 'Cannon Rocks', color: '#d98e1f', art: 'cannon-rocks',
+    id: 'cr', place: 'cr', name: 'Port Alfred', color: '#d98e1f', art: 'cannon-rocks',
     from: 16, to: 19, move: 'drive',
-    getting: ['~125 km / 2h drive from Nyathi (Addo)'],
-    stay: [{ name: 'Cannon Rocks or Kenton-on-Sea', dates: 'Wed 16 – Sat 19 Dec · 3 nights', status: 'todo', details: ['Self-catering'] }],
+    getting: ['~145 km / 2½h drive from Nyathi (Addo)'],
+    stay: [{ name: 'Royal St. Andrews Hotel', dates: 'Wed 16 – Sat 19 Dec · 3 nights', status: 'booked', details: ['Booking.com', 'Standard Luxury Room, breakfast included', 'Free cancellation until 16 Nov'] }],
     plans: ['Beach days'],
-    notes: ['Small shops only: Kenton-on-Sea is 15 min away'],
+    notes: ['Kelly’s Beach is a 10-minute walk'],
   },
   {
     id: 'xmas', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'christmas',
     from: 19, to: 27, move: 'fly',
-    getting: ['~135 km / 1½h drive from Cannon Rocks to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · FA374', status: 'booked', detail: 'Sat 19 Dec, 15:25 → 17:05' }],
+    getting: ['~155 km / 2h drive from Port Alfred to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · FA374', status: 'booked', detail: 'Sat 19 Dec, 15:25 → 17:05' }],
     stay: [{ name: 'Airbnb in Benoni', dates: 'Sat 19 – Sun 27 Dec · 8 nights', status: 'booked', details: ['Airbnb', '3-bedroom flat with a garden, hosted by Sonja', 'Free cancellation until 18 Dec', 'Card charged on 10 Dec'] }],
     plans: ['Christmas with family, Fri 25 Dec'],
     decide: ['Rent a car?'],
@@ -88,7 +88,7 @@ export const budget = [
   { item: 'Knysna stay', detail: '1 night · Booking.com', estimate: 1800, actual: 128.21, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Addo: Main Camp + Nyathi', detail: '3 nights + park fees · SANParks', estimate: 420, actual: 582.45, currency: 'EUR', paidBy: ['Jason', 'Denisa'] },
   { item: 'Addo game drive', detail: '2 people', estimate: 1600 },
-  { item: 'Cannon Rocks stay', detail: '3 nights', estimate: 4500 },
+  { item: 'Port Alfred stay', detail: '3 nights · Booking.com', estimate: 4500, actual: 325.24, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people · FA374', estimate: 3600, actual: 5009.5, paidBy: ['Jason'] },
   { item: 'Benoni stay', detail: '8 nights · Airbnb', estimate: 12000, actual: 669.07, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Getting around Joburg', detail: 'Mostly lifts from family', estimate: 100, currency: 'EUR' },
@@ -135,7 +135,7 @@ export const todos = [
   {
     group: 'cr',
     items: [
-      { what: 'Book Cannon Rocks stay', when: 'Wed 16 – Sat 19 Dec', note: '3 nights, or Kenton-on-Sea' },
+      { done: true, what: 'Book Port Alfred stay', when: 'Wed 16 – Sat 19 Dec', note: 'Booking.com' },
     ],
   },
   {
