@@ -89,7 +89,7 @@ export const budget = [
   { item: 'Addo: Main Camp + Nyathi', detail: '3 nights + park fees · SANParks', estimate: 420, actual: 582.45, currency: 'EUR', paidBy: ['Jason', 'Denisa'] },
   { item: 'Addo game drive', detail: '2 people', estimate: 1600 },
   { item: 'Cannon Rocks stay', detail: '3 nights', estimate: 4500 },
-  { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people · FA374', estimate: 3600 },
+  { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people · FA374', estimate: 3600, actual: 5009.5, paidBy: ['Jason'] },
   { item: 'Benoni stay', detail: '8 nights · Airbnb', estimate: 12000, actual: 669.07, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Getting around Joburg', detail: 'Mostly lifts from family', estimate: 100, currency: 'EUR' },
   { item: 'Food & daily spending', detail: '~€60 a day for 2 × 22 days', estimate: 1320, currency: 'EUR' },
