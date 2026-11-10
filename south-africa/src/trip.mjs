@@ -33,7 +33,7 @@ export const legs = [
   {
     id: 'cpt', place: 'cpt', name: 'Cape Town', color: '#2f7f8a', art: 'cape-town',
     from: 6, to: 12, move: 'fly',
-    getting: ['Land Sunday morning', 'Pick up the rental car at the airport'],
+    getting: [{ text: 'Fly Joburg → Cape Town · GE131', status: 'booked', detail: 'Sun 6 Dec, 10:00 → 12:10 · 1 checked bag each' }, 'Pick up the rental car at the airport'],
     stay: [{ name: 'Airbnb in Cape Town', dates: 'Sun 6 – Sat 12 Dec · 6 nights', status: 'booked', details: ['Airbnb', 'Entire apartment, hosted by Craig', 'Non-refundable'] }],
     plans: [{ text: 'Fri evening: dinner at <a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>', status: 'todo', detail: 'Farm restaurant in the Winelands, ~1h each way. Go a bit earlier if we can: the garden closes at 18:00.' }, 'Table Mountain cableway', 'Chapman’s Peak Drive', 'See the penguins at Boulders Beach'],
     notes: ['Working Mon 7 – Fri 11'],
@@ -68,7 +68,7 @@ export const legs = [
   {
     id: 'xmas', place: 'jnb', name: 'Joburg', color: '#6b3f5e', art: 'christmas',
     from: 19, to: 27, move: 'fly',
-    getting: ['~135 km / 1½h drive from Cannon Rocks to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · ~1h45', status: 'todo' }],
+    getting: ['~135 km / 1½h drive from Cannon Rocks to Gqeberha airport', 'Drop the rental car at Gqeberha', { text: 'Fly Gqeberha → Joburg · FA374', status: 'booked', detail: 'Sat 19 Dec, 15:25 → 17:05' }],
     stay: [{ name: 'Airbnb in Benoni', dates: 'Sat 19 – Sun 27 Dec · 8 nights', status: 'booked', details: ['Airbnb', '3-bedroom flat with a garden, hosted by Sonja', 'Free cancellation until 18 Dec', 'Card charged on 10 Dec'] }],
     plans: ['Christmas with family, Fri 25 Dec'],
     decide: ['Rent a car?'],
@@ -80,7 +80,7 @@ export const randPerEuro = 18.5;
 
 export const budget = [
   { item: 'Flights Amsterdam ⇄ Joburg', detail: 'Return via Zurich, 2 people', estimate: 2000, actual: 1927.74, currency: 'EUR', paidBy: ['Jason', 'Denisa'] },
-  { item: 'Flight Joburg → Cape Town', detail: 'Sun 6 Dec, 2 people', estimate: 4000 },
+  { item: 'Flight Joburg → Cape Town', detail: 'Sun 6 Dec, 2 people · GE131', estimate: 4000, actual: 6440, paidBy: ['Jason'] },
   { item: 'Cape Town stay', detail: '6 nights · Airbnb', estimate: 15000, actual: 566.16, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Babylonstoren dinner', detail: 'Babel set menu, wine and tip, plus transport both ways', estimate: 4800 },
   { item: 'Car rental', detail: '13 days, Cape Town → Gqeberha, including one-way fee', estimate: 10500 },
@@ -89,7 +89,7 @@ export const budget = [
   { item: 'Addo: Main Camp + Nyathi', detail: '3 nights + park fees · SANParks', estimate: 420, actual: 582.45, currency: 'EUR', paidBy: ['Jason', 'Denisa'] },
   { item: 'Addo game drive', detail: '2 people', estimate: 1600 },
   { item: 'Cannon Rocks stay', detail: '3 nights', estimate: 4500 },
-  { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people', estimate: 3600 },
+  { item: 'Flight Gqeberha → Joburg', detail: 'Sat 19 Dec, 2 people · FA374', estimate: 3600 },
   { item: 'Benoni stay', detail: '8 nights · Airbnb', estimate: 12000, actual: 669.07, currency: 'EUR', paidBy: ['Jason'] },
   { item: 'Getting around Joburg', detail: 'Mostly lifts from family', estimate: 100, currency: 'EUR' },
   { item: 'Food & daily spending', detail: '~€60 a day for 2 × 22 days', estimate: 1320, currency: 'EUR' },
@@ -112,7 +112,7 @@ export const todos = [
   {
     group: 'cpt',
     items: [
-      { what: 'Book Joburg → Cape Town flights', when: 'Sun 6 Dec, morning' },
+      { done: true, what: 'Book Joburg → Cape Town flights', when: 'Sun 6 Dec, 10:00', note: 'GE131' },
       { what: 'Book Babylonstoren dinner', when: 'Fri 11 Dec, evening', note: '<a href="https://babylonstoren.com/babel" target="_blank" rel="noopener">Babel at Babylonstoren</a>' },
       { what: 'Book transport to and from Babylonstoren', when: 'Fri 11 Dec', note: '~1h each way' },
       { done: true, what: 'Book Cape Town stay', when: 'Sun 6 – Sat 12 Dec', note: 'Airbnb' },
@@ -141,7 +141,7 @@ export const todos = [
   {
     group: 'xmas',
     items: [
-      { what: 'Book Gqeberha → Joburg flights', when: 'Sat 19 Dec, early afternoon' },
+      { done: true, what: 'Book Gqeberha → Joburg flights', when: 'Sat 19 Dec, 15:25', note: 'FA374' },
       { done: true, what: 'Book Benoni Airbnb', when: 'Sat 19 – Sun 27 Dec', note: 'Airbnb' },
     ],
   },
